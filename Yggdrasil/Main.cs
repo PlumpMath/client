@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 using System.Threading;
+using System.Drawing;
 
 namespace Yggdrasil
 {
@@ -25,15 +26,29 @@ namespace Yggdrasil
             Thread t = new Thread(new ThreadStart(splash));
             t.Start();
             Thread.Sleep(5000);
-            this.textBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
             localize();
             t.Abort();
             this.Show();
             try
             {
                 label1.Text = new WebClient().DownloadString("http://yggdrasilfs.neocities.org/msg.txt");
-            } catch { }
+            }
+            catch { }
+            if (File.Exists("ygg_bgimage.conf"))
+            {
+                try
+                {
+                    string bgimage_f = File.ReadAllText("ygg_bgimage.conf");
+                    pictureBox1.BackgroundImage = Image.FromFile(bgimage_f);
+                    pictureBox1.Update();
+                }
+                catch
+                {
+                    File.Delete("ygg_bgimage.conf");
+                }
+            }
+            this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
         }
 
         public void splash()
@@ -43,15 +58,18 @@ namespace Yggdrasil
 
         private void localize()
         {
-            button5.Text = Properties.strings.Download;
+            /*button5.Text = Properties.strings.Download;
             button6.Text = Properties.strings.Remove;
             button3.Text = Properties.strings.Clear;
             button4.Text = Properties.strings.Upload;
-            button2.Text = Properties.strings.ListDir;
-            button1.Text = Properties.strings.Connect;
-            checkBox1.Text = Properties.strings.PasswordProtected;
-            button7.Text = Properties.strings.Quit;
+            button2.Text = Properties.strings.ListDir;*/
+            //button1.Text = Properties.strings.Connect;
+            //button7.Text = Properties.strings.Quit;
             button8.Text = Properties.strings.Blog;
+            label3.Text = Properties.strings.File;
+            label4.Text = Properties.strings.Disconnected;
+            checkBox1.Text = Properties.strings.PasswordProtected;
+            button9.Text = Properties.strings.Themes;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -69,7 +87,11 @@ namespace Yggdrasil
                     if (alive == "OK")
                     {
                         textBox1.Enabled = false;
-                        button1.Text = Properties.strings.Disconnect;
+                        //button1.Text = Properties.strings.Disconnect;
+                        richTextBox1.Text = "";
+                        button1.Image = Properties.Resources.disconnect;
+                        label4.Text = Properties.strings.Connected;
+                        label4.ForeColor = System.Drawing.Color.Green;
                         connected = true;
                         string motd = new WebClient().DownloadString("http://" + textBox1.Text + "/motd");
                         motd = motd.Replace("\n", Environment.NewLine);
@@ -98,7 +120,10 @@ namespace Yggdrasil
             {
                 richTextBox1.Text = "";
                 textBox1.Enabled = true;
-                button1.Text = Properties.strings.Connect;
+                //button1.Text = Properties.strings.Connect;
+                button1.Image = Properties.Resources.connect;
+                label4.Text = Properties.strings.Disconnected;
+                label4.ForeColor = System.Drawing.Color.Red;
                 connected = false;
                 textBox4.Text = "";
             }
@@ -117,7 +142,8 @@ namespace Yggdrasil
                     if (dir == "")
                     {
                         richTextBox1.Text += Properties.strings.NoFiles + Environment.NewLine;
-                    } else
+                    }
+                    else
                     {
                         richTextBox1.Text += dir + Environment.NewLine;
                     }
@@ -153,21 +179,23 @@ namespace Yggdrasil
             passPhrase = textBox3.Text;
             try
             {
-                if (connected) {
+                if (connected)
+                {
                     var encryptedfile = "";
                     DialogResult result = openFileDialog1.ShowDialog();
                     if (result == DialogResult.OK)
                     {
                         if (System.IO.File.Exists(openFileDialog1.FileName))
                         {
-                            encryptedfile = Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
+                            encryptedfile = StringCipher.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default), CalculateMD5Hash(passPhrase));
                             Uri uri = new Uri("http://" + textBox1.Text + "/upload");
                             string filename = openFileDialog1.SafeFileName;
                             string downloadedfile = new WebClient().UploadString(uri, "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
                             if (downloadedfile != "ERR_WRONG_PW")
                             {
                                 richTextBox1.Text += "File \"" + openFileDialog1.SafeFileName + "\" uploaded.\n" + Environment.NewLine;
-                            } else
+                            }
+                            else
                             {
                                 richTextBox1.Text += Properties.strings.WrongPassword + Environment.NewLine;
                             }
@@ -200,7 +228,7 @@ namespace Yggdrasil
                         //OK
                     }
                     downloadedfile = downloadedfile.Replace(' ', '+');
-                    string decrypted = Decrypt(downloadedfile);
+                    string decrypted = StringCipher.Decrypt(downloadedfile, CalculateMD5Hash(passPhrase));
                     System.IO.File.WriteAllText(saveFileDialog1.FileName, decrypted, Encoding.Default);
                     richTextBox1.Text += "File \"" + textBox2.Text + "\" downloaded.\n" + Environment.NewLine;
                     richTextBox1.SelectionStart = richTextBox1.Text.Length;
@@ -217,22 +245,18 @@ namespace Yggdrasil
 
         public void button6_Click(object sender, EventArgs e)
         {
-            passPhrase = textBox3.Text;
             try
             {
-                byte[] bytes = Encoding.Convert(Encoding.ASCII, Encoding.Default, Encoding.ASCII.GetBytes(textBox2.Text));
-                string filename = Encoding.Default.GetString(bytes);
-                string callback = new WebClient().DownloadString("http://" + textBox1.Text + "/del?filename=" + textBox2.Text + "&password=" + CalculateMD5Hash(passPhrase));
-                if (callback != "ERR_WRONG_PW")
+                if (connected)
                 {
-                    richTextBox1.Text += "File \"" + textBox2.Text + "\" deleted.\n" + Environment.NewLine;
-                    richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                    richTextBox1.ScrollToCaret();
-                } else
-                {
-                    richTextBox1.Text += Properties.strings.WrongPassword + Environment.NewLine;
-                    richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                    richTextBox1.ScrollToCaret();
+                    string filename = textBox2.Text;
+                    string callback = new WebClient().DownloadString("http://" + textBox1.Text + "/del?filename=" + textBox2.Text + "&password=" + CalculateMD5Hash(passPhrase));
+                    if (callback == "OK")
+                    {
+                        richTextBox1.Text += "File \"" + filename + "\" deleted\n\n" + "\n" + Environment.NewLine;
+                        richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                        richTextBox1.ScrollToCaret();
+                    }
                 }
             }
             catch (Exception ee)
@@ -243,52 +267,13 @@ namespace Yggdrasil
             }
         }
 
-        #region Encryption
-
-        public string Encrypt(string data)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(this.initVector);
-            byte[] rgbSalt = Encoding.UTF8.GetBytes(this.saltValue);
-            byte[] buffer = Encoding.UTF8.GetBytes(data);
-            byte[] rgbKey = new PasswordDeriveBytes(this.passPhrase, rgbSalt, this.hashAlgorithm, this.passwordIterations).GetBytes(this.keySize / 8);
-            RijndaelManaged managed = new RijndaelManaged();
-            managed.Mode = CipherMode.CBC;
-            ICryptoTransform transform = managed.CreateEncryptor(rgbKey, bytes);
-            MemoryStream stream = new MemoryStream();
-            CryptoStream stream2 = new CryptoStream(stream, transform, CryptoStreamMode.Write);
-            stream2.Write(buffer, 0, buffer.Length);
-            stream2.FlushFinalBlock();
-            byte[] inArray = stream.ToArray();
-            stream.Close();
-            stream2.Close();
-            return Convert.ToBase64String(inArray);
-        }
-
-        public string Decrypt(string data)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(this.initVector);
-            byte[] rgbSalt = Encoding.UTF8.GetBytes(this.saltValue);
-            byte[] buffer = Convert.FromBase64String(data);
-            byte[] rgbKey = new PasswordDeriveBytes(this.passPhrase, rgbSalt, this.hashAlgorithm, this.passwordIterations).GetBytes(this.keySize / 8);
-            RijndaelManaged managed = new RijndaelManaged();
-            managed.Mode = CipherMode.CBC;
-            ICryptoTransform transform = managed.CreateDecryptor(rgbKey, bytes);
-            MemoryStream stream = new MemoryStream(buffer);
-            CryptoStream stream2 = new CryptoStream(stream, transform, CryptoStreamMode.Read);
-            byte[] buffer5 = new byte[buffer.Length];
-            int count = stream2.Read(buffer5, 0, buffer5.Length);
-            stream.Close();
-            stream2.Close();
-            return Encoding.UTF8.GetString(buffer5, 0, count);
-        }
-        #endregion
-
         public void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
             {
                 textBox3.Enabled = true;
-            } else
+            }
+            else
             {
                 textBox3.Enabled = false;
                 textBox3.Text = "";
@@ -319,11 +304,54 @@ namespace Yggdrasil
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Blog b = new Blog();
-            if (!b.Visible)
+            try
             {
-                b.Show();
+                new WebClient().DownloadString("http://yggdrasilfs.neocities.org");
+                Blog b = new Blog();
+                if (!b.Visible)
+                {
+                    b.Show();
+                }
+            }
+            catch
+            {
+                MessageBox.Show(Properties.strings.NoBlog, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Contains("\n"))
+            {
+                textBox1.Text = textBox1.Text.Replace('\n', ' ');
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Themes t = new Themes();
+            if (!t.Visible)
+            {
+                t.Show();
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            TextBox t = sender as TextBox;
+            if (t != null && connected)
+            {
+                string[] arr = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+                collection.AddRange(arr);
+                this.textBox1.AutoCompleteCustomSource = collection;
+            }
+        }
+
     }
 }

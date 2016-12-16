@@ -120,17 +120,35 @@
   <data name="Blog" xml:space="preserve">
     <value>Blog</value>
   </data>
+  <data name="Browse" xml:space="preserve">
+    <value>Durchsuchen</value>
+  </data>
+  <data name="ChooseImage" xml:space="preserve">
+    <value>Wähle eine Datei:</value>
+  </data>
   <data name="Clear" xml:space="preserve">
     <value>Leeren</value>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>Verbinden</value>
   </data>
+  <data name="Connected" xml:space="preserve">
+    <value>Verbunden</value>
+  </data>
   <data name="Disconnect" xml:space="preserve">
     <value>Trennen</value>
   </data>
+  <data name="Disconnected" xml:space="preserve">
+    <value>Getrennt</value>
+  </data>
   <data name="Download" xml:space="preserve">
     <value>Herunterladen</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Datei:</value>
   </data>
   <data name="ListDir" xml:space="preserve">
     <value>Verzeichnis auflisten</value>
@@ -138,8 +156,14 @@
   <data name="Loading" xml:space="preserve">
     <value>Lädt...</value>
   </data>
+  <data name="NoBlog" xml:space="preserve">
+    <value>Der Blog ist momentan nicht erreichbar.</value>
+  </data>
   <data name="NoFiles" xml:space="preserve">
     <value>Keine Dateien auf dem Server.</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Okay</value>
   </data>
   <data name="PasswordProtected" xml:space="preserve">
     <value>Passwortgeschützt?</value>
@@ -149,6 +173,12 @@
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Entfernen</value>
+  </data>
+  <data name="RemoveTheme" xml:space="preserve">
+    <value>Thema entfernen</value>
+  </data>
+  <data name="Themes" xml:space="preserve">
+    <value>Themen</value>
   </data>
   <data name="Upload" xml:space="preserve">
     <value>Hochladen</value>
