@@ -150,6 +150,9 @@
   <data name="File" xml:space="preserve">
     <value>Datei:</value>
   </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
   <data name="ListDir" xml:space="preserve">
     <value>Verzeichnis auflisten</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="RemoveTheme" xml:space="preserve">
     <value>Thema entfernen</value>
+  </data>
+  <data name="RestartAppTheme" xml:space="preserve">
+    <value>Bitte starte das Programm neu, um die Änderungen am Theme zu übernehmen.</value>
   </data>
   <data name="Themes" xml:space="preserve">
     <value>Themen</value>

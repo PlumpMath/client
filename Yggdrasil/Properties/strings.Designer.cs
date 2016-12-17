@@ -160,6 +160,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Info ähnelt.
+        /// </summary>
+        internal static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die List directory ähnelt.
         /// </summary>
         internal static string ListDir {
@@ -237,6 +246,15 @@ namespace Yggdrasil.Properties {
         internal static string RemoveTheme {
             get {
                 return ResourceManager.GetString("RemoveTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please restart the application to apply the theme. ähnelt.
+        /// </summary>
+        internal static string RestartAppTheme {
+            get {
+                return ResourceManager.GetString("RestartAppTheme", resourceCulture);
             }
         }
         

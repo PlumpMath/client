@@ -24,7 +24,8 @@ namespace Yggdrasil
                 if (System.IO.File.Exists(openFileDialog1.FileName))
                 {
                     File.WriteAllText("ygg_bgimage.conf", openFileDialog1.FileName);
-                    Application.Restart();
+                    MessageBox.Show(Properties.strings.RestartAppTheme, Properties.strings.Info, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Hide();
                 }
             }
         }
@@ -37,7 +38,8 @@ namespace Yggdrasil
         private void button3_Click(object sender, EventArgs e)
         {
             File.Delete("ygg_bgimage.conf");
-            Application.Restart();
+            MessageBox.Show(Properties.strings.RestartAppTheme, Properties.strings.Info, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Hide();
         }
     }
 }

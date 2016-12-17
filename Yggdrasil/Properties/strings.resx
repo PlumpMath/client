@@ -150,6 +150,9 @@
   <data name="File" xml:space="preserve">
     <value>File:</value>
   </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
   <data name="ListDir" xml:space="preserve">
     <value>List directory</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="RemoveTheme" xml:space="preserve">
     <value>Remove theme</value>
+  </data>
+  <data name="RestartAppTheme" xml:space="preserve">
+    <value>Please restart the application to apply the theme.</value>
   </data>
   <data name="Themes" xml:space="preserve">
     <value>Themes</value>
