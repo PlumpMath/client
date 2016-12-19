@@ -6,3 +6,4 @@
 - Using now a better encryption (files uploaded with old clients won't be compatible anymore)
 - Dropped French translation support (old translation files still work)
 - Yggdrasil server listens now on Port 82
+- Autocomplete works now
