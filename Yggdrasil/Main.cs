@@ -349,7 +349,7 @@ namespace Yggdrasil
                 string[] arr = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
                 AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
                 collection.AddRange(arr);
-                this.textBox1.AutoCompleteCustomSource = collection;
+                this.textBox2.AutoCompleteCustomSource = collection;
             }
         }
 
