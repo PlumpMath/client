@@ -13,11 +13,6 @@ namespace Yggdrasil
     {
         bool connected = false;
         string passPhrase = "";
-        string saltValue = "YGDRSL13";
-        string hashAlgorithm = "MD5";
-        int passwordIterations = 7;
-        string initVector = "~1B2c3D4e5F6g7H8";
-        int keySize = 192;
 
         public Main()
         {
@@ -83,6 +78,13 @@ namespace Yggdrasil
             {
                 try
                 {
+                    if (!textBox1.Text.Contains(":"))
+                    {
+                        if (!Text.Contains(":82"))
+                        {
+                            textBox1.Text = textBox1.Text + ":82";
+                        }
+                    }
                     string alive = new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
                     if (alive == "OK")
                     {
@@ -124,8 +126,12 @@ namespace Yggdrasil
                 button1.Image = Properties.Resources.connect;
                 label4.Text = Properties.strings.Disconnected;
                 label4.ForeColor = System.Drawing.Color.Red;
-                connected = false;
                 textBox4.Text = "";
+                if (textBox1.Text.Contains(":82"))
+                {
+                    textBox1.Text = textBox1.Text.Split(':')[0];
+                }
+                connected = false;
             }
         }
 
