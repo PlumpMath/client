@@ -193,7 +193,7 @@ namespace Yggdrasil
                     {
                         if (System.IO.File.Exists(openFileDialog1.FileName))
                         {
-                            encryptedfile = StringCipher.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default), CalculateMD5Hash(passPhrase));
+							encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
                             Uri uri = new Uri("http://" + textBox1.Text + "/upload");
                             string filename = openFileDialog1.SafeFileName;
                             string downloadedfile = new WebClient().UploadString(uri, "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
@@ -234,7 +234,7 @@ namespace Yggdrasil
                         //OK
                     }
                     downloadedfile = downloadedfile.Replace(' ', '+');
-                    string decrypted = StringCipher.Decrypt(downloadedfile, CalculateMD5Hash(passPhrase));
+                    string decrypted = Setup.Decrypt(downloadedfile);
                     System.IO.File.WriteAllText(saveFileDialog1.FileName, decrypted, Encoding.Default);
                     richTextBox1.Text += "File \"" + textBox2.Text + "\" downloaded.\n" + Environment.NewLine;
                     richTextBox1.SelectionStart = richTextBox1.Text.Length;
@@ -289,11 +289,9 @@ namespace Yggdrasil
 
         public string CalculateMD5Hash(string input)
         {
-            // step 1, calculate MD5 hash from input
             MD5 md5 = System.Security.Cryptography.MD5.Create();
             byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
             byte[] hash = md5.ComputeHash(inputBytes);
-            // step 2, convert byte array to hex string
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)
             {
