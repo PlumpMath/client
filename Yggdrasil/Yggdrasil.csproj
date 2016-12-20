@@ -104,7 +104,6 @@
     <Compile Include="Splash.Designer.cs">
       <DependentUpon>Splash.cs</DependentUpon>
     </Compile>
-    <Compile Include="StringCipher.cs" />
     <Compile Include="Properties\strings.de.Designer.cs">
       <DependentUpon>strings.de.resx</DependentUpon>
       <AutoGen>True</AutoGen>

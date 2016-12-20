@@ -153,7 +153,7 @@
             // button7
             // 
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.Location = new System.Drawing.Point(1082, 415);
+            this.button7.Location = new System.Drawing.Point(1082, 482);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(61, 61);
             this.button7.TabIndex = 14;
@@ -245,11 +245,11 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(855, 166);
+            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
+            this.button9.Location = new System.Drawing.Point(1082, 415);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(203, 23);
+            this.button9.Size = new System.Drawing.Size(61, 61);
             this.button9.TabIndex = 26;
-            this.button9.Text = "Themes";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 

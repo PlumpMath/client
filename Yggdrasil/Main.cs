@@ -64,7 +64,7 @@ namespace Yggdrasil
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
-            button9.Text = Properties.strings.Themes;
+            //button9.Text = Properties.strings.Themes;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
