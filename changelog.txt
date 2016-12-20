@@ -2,7 +2,7 @@
 - New Design
 - Theming integration
 - Icons for easier understanding
-- Now checking if Blog is offline and throwing an error message
+- Now checking if blog is offline and throwing an error message
 - Using now a better encryption (files uploaded with old clients won't be compatible anymore)
 - Dropped French translation support (old translation files still work)
 - Yggdrasil server listens now on Port 82
