@@ -70,6 +70,24 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Browse ähnelt.
+        /// </summary>
+        internal static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Choose an image: ähnelt.
+        /// </summary>
+        internal static string ChooseImage {
+            get {
+                return ResourceManager.GetString("ChooseImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Clear ähnelt.
         /// </summary>
         internal static string Clear {
@@ -88,6 +106,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Connected ähnelt.
+        /// </summary>
+        internal static string Connected {
+            get {
+                return ResourceManager.GetString("Connected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Disconnect ähnelt.
         /// </summary>
         internal static string Disconnect {
@@ -97,11 +124,47 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Disconnected ähnelt.
+        /// </summary>
+        internal static string Disconnected {
+            get {
+                return ResourceManager.GetString("Disconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Download ähnelt.
         /// </summary>
         internal static string Download {
             get {
                 return ResourceManager.GetString("Download", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File: ähnelt.
+        /// </summary>
+        internal static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Info ähnelt.
+        /// </summary>
+        internal static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
             }
         }
         
@@ -124,11 +187,29 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The Blog is currently unavailable right now. ähnelt.
+        /// </summary>
+        internal static string NoBlog {
+            get {
+                return ResourceManager.GetString("NoBlog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die No files on the server. ähnelt.
         /// </summary>
         internal static string NoFiles {
             get {
                 return ResourceManager.GetString("NoFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die OK ähnelt.
+        /// </summary>
+        internal static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
             }
         }
         
@@ -156,6 +237,33 @@ namespace Yggdrasil.Properties {
         internal static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove theme ähnelt.
+        /// </summary>
+        internal static string RemoveTheme {
+            get {
+                return ResourceManager.GetString("RemoveTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please restart the application to apply the theme. ähnelt.
+        /// </summary>
+        internal static string RestartAppTheme {
+            get {
+                return ResourceManager.GetString("RestartAppTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Themes ähnelt.
+        /// </summary>
+        internal static string Themes {
+            get {
+                return ResourceManager.GetString("Themes", resourceCulture);
             }
         }
         
