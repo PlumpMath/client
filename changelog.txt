@@ -2,6 +2,7 @@
 
 - Fixed bug with non-HTTP requests from main server
 - Added public server connection button
+- Disabling buttons when disconnected
 
 
 0.4

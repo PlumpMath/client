@@ -44,6 +44,10 @@ namespace Yggdrasil
             }
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            button2.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
         }
 
         public void splash()
@@ -108,6 +112,10 @@ namespace Yggdrasil
                             textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
                         }
                         catch { }
+                        button2.Enabled = true;
+                        button4.Enabled = true;
+                        button5.Enabled = true;
+                        button6.Enabled = true;
                     }
                     else
                     {
@@ -132,6 +140,10 @@ namespace Yggdrasil
                 {
                     textBox1.Text = textBox1.Text.Split(':')[0];
                 }
+                button2.Enabled = false;
+                button4.Enabled = false;
+                button5.Enabled = false;
+                button6.Enabled = false;
                 connected = false;
             }
         }
