@@ -64,6 +64,7 @@ namespace Yggdrasil
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
+            button10.Text = Properties.strings.ConnectPublic;
             //button9.Text = Properties.strings.Themes;
         }
 
@@ -357,5 +358,13 @@ namespace Yggdrasil
             }
         }
 
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (!connected)
+            {
+                textBox1.Text = "koyuzilla.sytes.net:82";
+                button1_Click("me", System.EventArgs.Empty);
+            }
+        }
     }
 }

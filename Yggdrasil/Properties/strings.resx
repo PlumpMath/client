@@ -135,6 +135,9 @@
   <data name="Connected" xml:space="preserve">
     <value>Connected</value>
   </data>
+  <data name="ConnectPublic" xml:space="preserve">
+    <value>Connect to public server</value>
+  </data>
   <data name="Disconnect" xml:space="preserve">
     <value>Disconnect</value>
   </data>

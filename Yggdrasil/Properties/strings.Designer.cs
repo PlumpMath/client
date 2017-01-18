@@ -115,6 +115,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Connect to public server ähnelt.
+        /// </summary>
+        internal static string ConnectPublic {
+            get {
+                return ResourceManager.GetString("ConnectPublic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Disconnect ähnelt.
         /// </summary>
         internal static string Disconnect {
