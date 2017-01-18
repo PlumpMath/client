@@ -26,7 +26,7 @@ namespace Yggdrasil
             this.Show();
             try
             {
-                label1.Text = new WebClient().DownloadString("http://yggdrasilfs.neocities.org/msg.txt");
+                label1.Text = new WebClient().DownloadString("https://yggdrasilfs.neocities.org/msg.txt");
             }
             catch { }
             if (File.Exists("ygg_bgimage.conf"))
