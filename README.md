@@ -6,7 +6,7 @@ Yggdrasil client software
 
 * Written in C#
 * Highly scalable thanks to the .NET framework
-* Is completely open source
+* Is completely open source (GPLv3)
 * Makes it easy to use Yggdrasil
 
 ## How to install
