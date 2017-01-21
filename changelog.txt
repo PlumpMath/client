@@ -5,6 +5,7 @@
 - Fixed some theming bugs
 - Reverted back to restarting after theme apply
 - Checking if the same theme was applied again
+- Upload, Download, etc. can be now deactivated on the server-side
 
 
 0.4
