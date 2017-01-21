@@ -57,18 +57,20 @@ namespace Yggdrasil
 
         private void localize()
         {
-            /*button5.Text = Properties.strings.Download;
+            /*
+            button5.Text = Properties.strings.Download;
             button6.Text = Properties.strings.Remove;
             button3.Text = Properties.strings.Clear;
             button4.Text = Properties.strings.Upload;
-            button2.Text = Properties.strings.ListDir;*/
-            //button1.Text = Properties.strings.Connect;
-            //button7.Text = Properties.strings.Quit;
+            button2.Text = Properties.strings.ListDir;
+            button1.Text = Properties.strings.Connect;
+            button7.Text = Properties.strings.Quit;
+            button9.Text = Properties.strings.Themes;
+             */
             button8.Text = Properties.strings.Blog;
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
-            //button9.Text = Properties.strings.Themes;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
