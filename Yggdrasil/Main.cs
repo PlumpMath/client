@@ -322,7 +322,7 @@ namespace Yggdrasil
         {
             try
             {
-                new WebClient().DownloadString("http://yggdrasilfs.neocities.org");
+                new WebClient().DownloadString("https://yggdrasilfs.neocities.org");
                 Blog b = new Blog();
                 if (!b.Visible)
                 {
