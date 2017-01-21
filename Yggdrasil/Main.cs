@@ -113,10 +113,23 @@ namespace Yggdrasil
                             textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
                         }
                         catch { }
-                        button2.Enabled = true;
-                        button4.Enabled = true;
-                        button5.Enabled = true;
-                        button6.Enabled = true;
+                        string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
+                        if (!deactivated.Contains("ls"))
+                        {
+                            button2.Enabled = true;
+                        }
+                        if (!deactivated.Contains("upload"))
+                        {
+                            button4.Enabled = true;
+                        }
+                        if (!deactivated.Contains("download"))
+                        {
+                            button5.Enabled = true;
+                        }
+                        if (!deactivated.Contains("del"))
+                        {
+                            button6.Enabled = true;
+                        }
                     }
                     else
                     {
@@ -361,13 +374,15 @@ namespace Yggdrasil
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            TextBox t = sender as TextBox;
-            if (t != null && connected)
-            {
-                string[] arr = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
-                AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
-                collection.AddRange(arr);
-                this.textBox2.AutoCompleteCustomSource = collection;
+            if (connected && new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n')[0] != "ERR_DEACTIVATED") {
+                TextBox t = sender as TextBox;
+                if (t != null && connected && textBox2.TextLength >= 3)
+                {
+                    string[] arr = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                    AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+                    collection.AddRange(arr);
+                    this.textBox2.AutoCompleteCustomSource = collection;
+                }
             }
         }
     }
