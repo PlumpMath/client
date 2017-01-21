@@ -68,7 +68,6 @@ namespace Yggdrasil
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
-            button10.Text = Properties.strings.ConnectPublic;
             //button9.Text = Properties.strings.Themes;
         }
 
