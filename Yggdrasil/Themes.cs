@@ -23,8 +23,19 @@ namespace Yggdrasil
             {
                 if (System.IO.File.Exists(openFileDialog1.FileName))
                 {
-                    File.WriteAllText("ygg_bgimage.conf", openFileDialog1.FileName);
-                    Application.Restart();
+                    string oldpath;
+                    if (File.Exists("ygg_bgimage.conf"))
+                    {
+                        oldpath = File.ReadAllText("ygg_bgimage.conf");
+                    } else
+                    {
+                        oldpath = "";
+                    }
+                    if (openFileDialog1.FileName != oldpath)
+                    {
+                        File.WriteAllText("ygg_bgimage.conf", openFileDialog1.FileName);
+                        Application.Restart();
+                    }
                 }
             }
         }
