@@ -3,6 +3,8 @@
 - Fixed bug with non-HTTP requests from main server
 - Added public server connection button
 - Disabling buttons when disconnected
+- Fixed some theming bugs
+- Reverted back to restarting after theme apply
 
 
 0.4
