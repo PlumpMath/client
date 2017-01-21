@@ -4,6 +4,7 @@
 - Disabling buttons when disconnected
 - Fixed some theming bugs
 - Reverted back to restarting after theme apply
+- Checking if the same theme was applied again
 
 
 0.4
