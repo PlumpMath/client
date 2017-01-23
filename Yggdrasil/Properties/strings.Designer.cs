@@ -88,7 +88,7 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Clear ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Clear screen ähnelt.
         /// </summary>
         internal static string Clear {
             get {
@@ -120,6 +120,15 @@ namespace Yggdrasil.Properties {
         internal static string ConnectPublic {
             get {
                 return ResourceManager.GetString("ConnectPublic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete ähnelt.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
@@ -237,6 +246,24 @@ namespace Yggdrasil.Properties {
         internal static string Quit {
             get {
                 return ResourceManager.GetString("Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Radio off ähnelt.
+        /// </summary>
+        internal static string RadioOff {
+            get {
+                return ResourceManager.GetString("RadioOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Radio on ähnelt.
+        /// </summary>
+        internal static string RadioOn {
+            get {
+                return ResourceManager.GetString("RadioOn", resourceCulture);
             }
         }
         

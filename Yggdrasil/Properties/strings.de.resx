@@ -127,7 +127,7 @@
     <value>Wähle eine Datei:</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Leeren</value>
+    <value>Bildschirm leeren</value>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>Verbinden</value>
@@ -194,5 +194,14 @@
   </data>
   <data name="WrongPassword" xml:space="preserve">
     <value>Das Passwort ist falsch!</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="RadioOff" xml:space="preserve">
+    <value>Radio abschalten</value>
+  </data>
+  <data name="RadioOn" xml:space="preserve">
+    <value>Radio anschalten</value>
   </data>
 </root>

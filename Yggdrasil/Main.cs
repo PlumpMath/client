@@ -446,5 +446,111 @@ namespace Yggdrasil
                 }
             } catch { }
         }
+
+        #region tooltip
+
+        private void button2_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.ListDir, button2);
+        }
+
+        private void button2_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button2);
+        }
+
+        private void button4_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Upload, button4);
+        }
+
+        private void button4_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button4);
+        }
+
+        private void button5_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Download, button5);
+        }
+
+        private void button5_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button5);
+        }
+
+        private void button6_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Delete, button6);
+        }
+
+        private void button6_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button6);
+        }
+
+        private void button3_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Clear, button3);
+        }
+
+        private void button3_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button3);
+        }
+
+        private void button1_MouseHover(object sender, EventArgs e)
+        {
+            if (connected)
+            {
+                toolTip1.Show(Properties.strings.Disconnect, button1);
+            } else
+            {
+                toolTip1.Show(Properties.strings.Connect, button1);
+            }
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button1);
+        }
+
+        private void button9_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Themes, button9);
+        }
+
+        private void button9_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button9);
+        }
+
+        private void button10_MouseHover(object sender, EventArgs e)
+        {
+            if (radio)
+            {
+                toolTip1.Show(Properties.strings.RadioOff, button10);
+            } else
+            {
+                toolTip1.Show(Properties.strings.RadioOn, button10);
+            }
+        }
+
+        private void button10_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button10);
+        }
+
+        private void button7_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Quit, button7);
+        }
+
+        private void button7_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button7);
+        }
+
+        #endregion
     }
 }
