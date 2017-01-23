@@ -52,6 +52,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -138,7 +139,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.richTextBox1.Size = new System.Drawing.Size(839, 583);
+            this.richTextBox1.Size = new System.Drawing.Size(839, 644);
             this.richTextBox1.TabIndex = 10;
             // 
             // pictureBox1
@@ -155,7 +156,7 @@
             // button7
             // 
             this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.Location = new System.Drawing.Point(1082, 482);
+            this.button7.Location = new System.Drawing.Point(1082, 549);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(61, 61);
             this.button7.TabIndex = 14;
@@ -176,15 +177,15 @@
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(857, 415);
+            this.label1.Location = new System.Drawing.Point(856, 513);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(204, 129);
+            this.label1.Size = new System.Drawing.Size(204, 97);
             this.label1.TabIndex = 16;
             // 
             // textBox4
             // 
             this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(11, 606);
+            this.textBox4.Location = new System.Drawing.Point(11, 662);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(840, 20);
             this.textBox4.TabIndex = 17;
@@ -192,7 +193,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(860, 609);
+            this.label2.Location = new System.Drawing.Point(857, 665);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 19;
@@ -200,7 +201,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(904, 606);
+            this.textBox1.Location = new System.Drawing.Point(901, 662);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(239, 20);
             this.textBox1.TabIndex = 20;
@@ -219,7 +220,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(860, 565);
+            this.label4.Location = new System.Drawing.Point(857, 628);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 22;
@@ -258,7 +259,7 @@
             // trackBar1
             // 
             this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(951, 555);
+            this.trackBar1.Location = new System.Drawing.Point(948, 616);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(192, 45);
@@ -267,12 +268,23 @@
             this.trackBar1.Value = 100;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
+            // button10
+            // 
+            this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
+            this.button10.Location = new System.Drawing.Point(1082, 482);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(61, 61);
+            this.button10.TabIndex = 28;
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1155, 638);
+            this.ClientSize = new System.Drawing.Size(1155, 694);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.textBox3);
@@ -331,5 +343,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Button button10;
     }
 }

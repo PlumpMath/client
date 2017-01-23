@@ -169,6 +169,8 @@
   <ItemGroup>
     <None Include="Resources\connect.png" />
     <None Include="Resources\disconnect.png" />
+    <None Include="Resources\radio_off.png" />
+    <None Include="Resources\radio_on.png" />
     <Content Include="ygg-ico.ico" />
   </ItemGroup>
   <ItemGroup>

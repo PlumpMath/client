@@ -14,6 +14,7 @@ namespace Yggdrasil
         bool connected = false;
         string passPhrase = "";
         string stream;
+        bool radio = true;
 
         public Main()
         {
@@ -113,7 +114,7 @@ namespace Yggdrasil
                         {
                             textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
                             stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream");
-                            if (!stream.Contains("ERR_"))
+                            if (!stream.Contains("ERR_") && radio)
                             {
                                 PlayMusicFromURL(stream);
                                 SetPlayerVolume(100);
@@ -425,6 +426,24 @@ namespace Yggdrasil
             try
             {
                 SetPlayerVolume(trackBar1.Value);
+            } catch { }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (radio)
+                {
+                    PlayerStop(stream);
+                    button10.Image = Properties.Resources.radio_off;
+                    radio = false;
+                } else
+                {
+                    PlayMusicFromURL(stream);
+                    button10.Image = Properties.Resources.radio_on;
+                    radio = true;
+                }
             } catch { }
         }
     }
