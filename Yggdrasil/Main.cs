@@ -13,6 +13,7 @@ namespace Yggdrasil
     {
         bool connected = false;
         string passPhrase = "";
+        string stream;
 
         public Main()
         {
@@ -111,6 +112,12 @@ namespace Yggdrasil
                         try
                         {
                             textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
+                            stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream");
+                            if (!stream.Contains("ERR_"))
+                            {
+                                PlayMusicFromURL(stream);
+                                SetPlayerVolume(100);
+                            }
                         }
                         catch { }
                         string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
@@ -159,6 +166,10 @@ namespace Yggdrasil
                 button5.Enabled = false;
                 button6.Enabled = false;
                 connected = false;
+                try
+                {
+                    PlayerStop(stream);
+                } catch { }
             }
         }
 
@@ -200,6 +211,29 @@ namespace Yggdrasil
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
         }
+
+        #region player
+
+        public static WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
+
+        public static void PlayMusicFromURL(string url)
+        {
+            player.URL = url;
+            player.settings.volume = 100;
+            player.controls.play();
+        }
+
+        public static void PlayerStop(string url)
+        {
+            player.controls.stop();
+        }
+
+        public static void SetPlayerVolume(int volume)
+        {
+            player.settings.volume = volume;
+        }
+
+        #endregion
 
         public static string Base64Decode(string base64EncodedData, string useless)
         {
@@ -384,6 +418,14 @@ namespace Yggdrasil
                     this.textBox2.AutoCompleteCustomSource = collection;
                 }
             }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                SetPlayerVolume(trackBar1.Value);
+            } catch { }
         }
     }
 }
