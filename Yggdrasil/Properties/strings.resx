@@ -127,13 +127,16 @@
     <value>Choose an image:</value>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Clear screen</value>
   </data>
   <data name="Connect" xml:space="preserve">
     <value>Connect</value>
   </data>
   <data name="Connected" xml:space="preserve">
     <value>Connected</value>
+  </data>
+  <data name="ConnectPublic" xml:space="preserve">
+    <value>Connect to public server</value>
   </data>
   <data name="Disconnect" xml:space="preserve">
     <value>Disconnect</value>
@@ -191,5 +194,14 @@
   </data>
   <data name="WrongPassword" xml:space="preserve">
     <value>Wrong password!</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="RadioOff" xml:space="preserve">
+    <value>Radio off</value>
+  </data>
+  <data name="RadioOn" xml:space="preserve">
+    <value>Radio on</value>
   </data>
 </root>

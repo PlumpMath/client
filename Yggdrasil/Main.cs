@@ -13,6 +13,8 @@ namespace Yggdrasil
     {
         bool connected = false;
         string passPhrase = "";
+        string stream;
+        bool radio = true;
 
         public Main()
         {
@@ -26,7 +28,7 @@ namespace Yggdrasil
             this.Show();
             try
             {
-                label1.Text = new WebClient().DownloadString("http://yggdrasilfs.neocities.org/msg.txt");
+                label1.Text = new WebClient().DownloadString("https://yggdrasilfs.neocities.org/msg.txt");
             }
             catch { }
             if (File.Exists("ygg_bgimage.conf"))
@@ -44,6 +46,10 @@ namespace Yggdrasil
             }
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            button2.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
         }
 
         public void splash()
@@ -53,23 +59,28 @@ namespace Yggdrasil
 
         private void localize()
         {
-            /*button5.Text = Properties.strings.Download;
+            /*
+            button5.Text = Properties.strings.Download;
             button6.Text = Properties.strings.Remove;
             button3.Text = Properties.strings.Clear;
             button4.Text = Properties.strings.Upload;
-            button2.Text = Properties.strings.ListDir;*/
-            //button1.Text = Properties.strings.Connect;
-            //button7.Text = Properties.strings.Quit;
+            button2.Text = Properties.strings.ListDir;
+            button1.Text = Properties.strings.Connect;
+            button7.Text = Properties.strings.Quit;
+            button9.Text = Properties.strings.Themes;
+             */
             button8.Text = Properties.strings.Blog;
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
-            //button9.Text = Properties.strings.Themes;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Environment.Exit(0);
+            try
+            {
+                Environment.Exit(0);
+            } catch { }
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -105,8 +116,31 @@ namespace Yggdrasil
                         try
                         {
                             textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
+                            stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream");
+                            if (!stream.Contains("ERR_") && radio)
+                            {
+                                PlayMusicFromURL(stream);
+                                SetPlayerVolume(100);
+                            }
                         }
                         catch { }
+                        string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
+                        if (!deactivated.Contains("ls"))
+                        {
+                            button2.Enabled = true;
+                        }
+                        if (!deactivated.Contains("upload"))
+                        {
+                            button4.Enabled = true;
+                        }
+                        if (!deactivated.Contains("download"))
+                        {
+                            button5.Enabled = true;
+                        }
+                        if (!deactivated.Contains("del"))
+                        {
+                            button6.Enabled = true;
+                        }
                     }
                     else
                     {
@@ -131,7 +165,15 @@ namespace Yggdrasil
                 {
                     textBox1.Text = textBox1.Text.Split(':')[0];
                 }
+                button2.Enabled = false;
+                button4.Enabled = false;
+                button5.Enabled = false;
+                button6.Enabled = false;
                 connected = false;
+                try
+                {
+                    PlayerStop(stream);
+                } catch { }
             }
         }
 
@@ -173,6 +215,29 @@ namespace Yggdrasil
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
         }
+
+        #region player
+
+        public static WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
+
+        public static void PlayMusicFromURL(string url)
+        {
+            player.URL = url;
+            player.settings.volume = 100;
+            player.controls.play();
+        }
+
+        public static void PlayerStop(string url)
+        {
+            player.controls.stop();
+        }
+
+        public static void SetPlayerVolume(int volume)
+        {
+            player.settings.volume = volume;
+        }
+
+        #endregion
 
         public static string Base64Decode(string base64EncodedData, string useless)
         {
@@ -310,7 +375,7 @@ namespace Yggdrasil
         {
             try
             {
-                new WebClient().DownloadString("http://yggdrasilfs.neocities.org");
+                new WebClient().DownloadString("https://yggdrasilfs.neocities.org");
                 Blog b = new Blog();
                 if (!b.Visible)
                 {
@@ -347,15 +412,148 @@ namespace Yggdrasil
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            TextBox t = sender as TextBox;
-            if (t != null && connected)
-            {
-                string[] arr = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
-                AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
-                collection.AddRange(arr);
-                this.textBox2.AutoCompleteCustomSource = collection;
+            if (connected && new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n')[0] != "ERR_DEACTIVATED") {
+                TextBox t = sender as TextBox;
+                if (t != null && connected && textBox2.TextLength >= 3)
+                {
+                    string[] arr = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                    AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+                    collection.AddRange(arr);
+                    this.textBox2.AutoCompleteCustomSource = collection;
+                }
             }
         }
 
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            try
+            {
+                SetPlayerVolume(trackBar1.Value);
+            } catch { }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (radio)
+                {
+                    PlayerStop(stream);
+                    button10.Image = Properties.Resources.radio_off;
+                    radio = false;
+                } else
+                {
+                    PlayMusicFromURL(stream);
+                    button10.Image = Properties.Resources.radio_on;
+                    radio = true;
+                }
+            } catch { }
+        }
+
+        #region tooltip
+
+        private void button2_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.ListDir, button2);
+        }
+
+        private void button2_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button2);
+        }
+
+        private void button4_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Upload, button4);
+        }
+
+        private void button4_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button4);
+        }
+
+        private void button5_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Download, button5);
+        }
+
+        private void button5_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button5);
+        }
+
+        private void button6_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Delete, button6);
+        }
+
+        private void button6_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button6);
+        }
+
+        private void button3_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Clear, button3);
+        }
+
+        private void button3_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button3);
+        }
+
+        private void button1_MouseHover(object sender, EventArgs e)
+        {
+            if (connected)
+            {
+                toolTip1.Show(Properties.strings.Disconnect, button1);
+            } else
+            {
+                toolTip1.Show(Properties.strings.Connect, button1);
+            }
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button1);
+        }
+
+        private void button9_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Themes, button9);
+        }
+
+        private void button9_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button9);
+        }
+
+        private void button10_MouseHover(object sender, EventArgs e)
+        {
+            if (radio)
+            {
+                toolTip1.Show(Properties.strings.RadioOff, button10);
+            } else
+            {
+                toolTip1.Show(Properties.strings.RadioOn, button10);
+            }
+        }
+
+        private void button10_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button10);
+        }
+
+        private void button7_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.Show(Properties.strings.Quit, button7);
+        }
+
+        private void button7_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(button7);
+        }
+
+        #endregion
     }
 }

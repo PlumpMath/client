@@ -1,3 +1,16 @@
+0.5
+
+- Fixed bug with non-HTTP requests from main server
+- Disabling buttons when disconnected
+- Fixed some theming bugs
+- Reverted back to restarting after theme apply
+- Checking if the same theme was applied again
+- Upload, Download, etc. can be now deactivated on the server-side
+- Added a radio function
+
+
+0.4
+
 - File deletion is now shown
 - New Design
 - Theming integration
