@@ -18,26 +18,16 @@ namespace Yggdrasil
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult result = openFileDialog1.ShowDialog();
-            if (result == DialogResult.OK)
+            try
             {
-                if (System.IO.File.Exists(openFileDialog1.FileName))
+                DialogResult result = openFileDialog1.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    string oldpath;
-                    if (File.Exists("ygg_bgimage.conf"))
-                    {
-                        oldpath = File.ReadAllText("ygg_bgimage.conf");
-                    } else
-                    {
-                        oldpath = "";
-                    }
-                    if (openFileDialog1.FileName != oldpath)
-                    {
-                        File.WriteAllText("ygg_bgimage.conf", openFileDialog1.FileName);
-                        Application.Restart();
-                    }
+                    File.WriteAllText("ygg_bgimage.conf", openFileDialog1.FileName);
+                    System.Diagnostics.Process.Start(Application.ExecutablePath);
+                    Environment.Exit(0);
                 }
-            }
+            } catch { }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -47,8 +37,12 @@ namespace Yggdrasil
 
         private void button3_Click(object sender, EventArgs e)
         {
-            File.Delete("ygg_bgimage.conf");
-            Application.Restart();
+            try
+            {
+                File.Delete("ygg_bgimage.conf");
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+                Environment.Exit(0);
+            } catch { }
         }
     }
 }

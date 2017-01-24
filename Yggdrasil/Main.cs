@@ -77,7 +77,10 @@ namespace Yggdrasil
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Environment.Exit(0);
+            try
+            {
+                Environment.Exit(0);
+            } catch { }
         }
 
         public void button1_Click(object sender, EventArgs e)
