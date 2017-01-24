@@ -6,6 +6,7 @@
 - Reverted back to restarting after theme apply
 - Checking if the same theme was applied again
 - Upload, Download, etc. can be now deactivated on the server-side
+- Added a radio function
 
 
 0.4
