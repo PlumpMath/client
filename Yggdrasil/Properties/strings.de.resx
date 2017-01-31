@@ -204,4 +204,7 @@
   <data name="RadioOn" xml:space="preserve">
     <value>Radio anschalten</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>Über</value>
+  </data>
 </root>

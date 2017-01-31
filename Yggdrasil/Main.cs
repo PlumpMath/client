@@ -46,10 +46,11 @@ namespace Yggdrasil
             }
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            button2.Enabled = false;
-            button4.Enabled = false;
-            button5.Enabled = false;
-            button6.Enabled = false;
+            listDirectoryToolStripMenuItem.Enabled = false;
+            uploadToolStripMenuItem.Enabled = false;
+            downloadToolStripMenuItem.Enabled = false;
+            deleteToolStripMenuItem.Enabled = false;
+            radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
         }
 
         public void splash()
@@ -69,7 +70,7 @@ namespace Yggdrasil
             button7.Text = Properties.strings.Quit;
             button9.Text = Properties.strings.Themes;
              */
-            button8.Text = Properties.strings.Blog;
+            button8.Text = Properties.strings.About;
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
@@ -80,7 +81,8 @@ namespace Yggdrasil
             try
             {
                 Environment.Exit(0);
-            } catch { }
+            }
+            catch { }
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -102,7 +104,7 @@ namespace Yggdrasil
                         textBox1.Enabled = false;
                         //button1.Text = Properties.strings.Disconnect;
                         richTextBox1.Text = "";
-                        button1.Image = Properties.Resources.disconnect;
+                        connectToolStripMenuItem.Text = Properties.strings.Disconnect;
                         label4.Text = Properties.strings.Connected;
                         label4.ForeColor = System.Drawing.Color.Green;
                         connected = true;
@@ -127,19 +129,19 @@ namespace Yggdrasil
                         string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
                         if (!deactivated.Contains("ls"))
                         {
-                            button2.Enabled = true;
+                            listDirectoryToolStripMenuItem.Enabled = true;
                         }
                         if (!deactivated.Contains("upload"))
                         {
-                            button4.Enabled = true;
+                            uploadToolStripMenuItem.Enabled = true;
                         }
                         if (!deactivated.Contains("download"))
                         {
-                            button5.Enabled = true;
+                            downloadToolStripMenuItem.Enabled = true;
                         }
                         if (!deactivated.Contains("del"))
                         {
-                            button6.Enabled = true;
+                            deleteToolStripMenuItem.Enabled = true;
                         }
                     }
                     else
@@ -157,7 +159,7 @@ namespace Yggdrasil
                 richTextBox1.Text = "";
                 textBox1.Enabled = true;
                 //button1.Text = Properties.strings.Connect;
-                button1.Image = Properties.Resources.connect;
+                connectToolStripMenuItem.Text = Properties.strings.Connect;
                 label4.Text = Properties.strings.Disconnected;
                 label4.ForeColor = System.Drawing.Color.Red;
                 textBox4.Text = "";
@@ -165,15 +167,16 @@ namespace Yggdrasil
                 {
                     textBox1.Text = textBox1.Text.Split(':')[0];
                 }
-                button2.Enabled = false;
-                button4.Enabled = false;
-                button5.Enabled = false;
-                button6.Enabled = false;
+                uploadToolStripMenuItem.Enabled = false;
+                downloadToolStripMenuItem.Enabled = false;
+                listDirectoryToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
                 connected = false;
                 try
                 {
                     PlayerStop(stream);
-                } catch { }
+                }
+                catch { }
             }
         }
 
@@ -258,7 +261,7 @@ namespace Yggdrasil
                     {
                         if (System.IO.File.Exists(openFileDialog1.FileName))
                         {
-							encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
+                            encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
                             Uri uri = new Uri("http://" + textBox1.Text + "/upload");
                             string filename = openFileDialog1.SafeFileName;
                             string downloadedfile = new WebClient().UploadString(uri, "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
@@ -412,7 +415,8 @@ namespace Yggdrasil
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (connected && new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n')[0] != "ERR_DEACTIVATED") {
+            if (connected && new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n')[0] != "ERR_DEACTIVATED")
+            {
                 TextBox t = sender as TextBox;
                 if (t != null && connected && textBox2.TextLength >= 3)
                 {
@@ -429,131 +433,246 @@ namespace Yggdrasil
             try
             {
                 SetPlayerVolume(trackBar1.Value);
-            } catch { }
+            }
+            catch { }
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            About a = new About();
+            a.Show();
+        }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (connected == false)
+            {
+                try
+                {
+                    if (!textBox1.Text.Contains(":"))
+                    {
+                        if (!Text.Contains(":82"))
+                        {
+                            textBox1.Text = textBox1.Text + ":82";
+                        }
+                    }
+                    string alive = new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
+                    if (alive == "OK")
+                    {
+                        textBox1.Enabled = false;
+                        //button1.Text = Properties.strings.Disconnect;
+                        richTextBox1.Text = "";
+                        label4.Text = Properties.strings.Connected;
+                        label4.ForeColor = System.Drawing.Color.Green;
+                        connected = true;
+                        string motd = new WebClient().DownloadString("http://" + textBox1.Text + "/motd");
+                        motd = motd.Replace("\n", Environment.NewLine);
+                        byte[] bytes = Encoding.Default.GetBytes(motd);
+                        motd = Encoding.UTF8.GetString(bytes);
+                        richTextBox1.Text += motd + Environment.NewLine;
+                        richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                        richTextBox1.ScrollToCaret();
+                        try
+                        {
+                            textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
+                            stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream");
+                            if (!stream.Contains("ERR_") && radio)
+                            {
+                                PlayMusicFromURL(stream);
+                                SetPlayerVolume(100);
+                            }
+                        }
+                        catch { }
+                        string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
+                        if (!deactivated.Contains("ls"))
+                        {
+                            listDirectoryToolStripMenuItem.Enabled = true;
+                        }
+                        if (!deactivated.Contains("upload"))
+                        {
+                            uploadToolStripMenuItem.Enabled = true;
+                        }
+                        if (!deactivated.Contains("download"))
+                        {
+                            downloadToolStripMenuItem.Enabled = true;
+                        }
+                        if (!deactivated.Contains("del"))
+                        {
+                            deleteToolStripMenuItem.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        richTextBox1.Text += "Cannot connect to server: Not alive!\n" + Environment.NewLine;
+                    }
+                }
+                catch (Exception ee)
+                {
+                    richTextBox1.Text += "Cannot connect to server:\n\n" + ee + "\n" + Environment.NewLine;
+                }
+            }
+        }
+
+        private void listDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (connected == true)
+            {
+                try
+                {
+                    string dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls");
+                    dir = dir.Replace("\n", Environment.NewLine);
+                    byte[] bytes = Encoding.Default.GetBytes(dir);
+                    dir = Encoding.UTF8.GetString(bytes);
+                    if (dir == "")
+                    {
+                        richTextBox1.Text += Properties.strings.NoFiles + Environment.NewLine;
+                    }
+                    else
+                    {
+                        richTextBox1.Text += dir + Environment.NewLine;
+                    }
+                    richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                    richTextBox1.ScrollToCaret();
+                }
+                catch
+                {
+                    richTextBox1.Text += "Cannot list directory!";
+                }
+            }
+        }
+
+        private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            passPhrase = textBox3.Text;
+            try
+            {
+                if (connected)
+                {
+                    var encryptedfile = "";
+                    DialogResult result = openFileDialog1.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        if (System.IO.File.Exists(openFileDialog1.FileName))
+                        {
+                            encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
+                            Uri uri = new Uri("http://" + textBox1.Text + "/upload");
+                            string filename = openFileDialog1.SafeFileName;
+                            string downloadedfile = new WebClient().UploadString(uri, "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
+                            if (downloadedfile != "ERR_WRONG_PW")
+                            {
+                                richTextBox1.Text += "File \"" + openFileDialog1.SafeFileName + "\" uploaded.\n" + Environment.NewLine;
+                            }
+                            else
+                            {
+                                richTextBox1.Text += Properties.strings.WrongPassword + Environment.NewLine;
+                            }
+                            richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                            richTextBox1.ScrollToCaret();
+                        }
+                    }
+                }
+            }
+            catch (Exception ee)
+            {
+                richTextBox1.Text += "Error encrypting or uploading file:\n\n" + ee + "\n" + Environment.NewLine;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+            }
+        }
+
+        private void downloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            passPhrase = textBox3.Text;
+            try
+            {
+                if (connected)
+                {
+                    string filename = textBox2.Text;
+                    string downloadedfile = new WebClient().DownloadString("http://" + textBox1.Text + "/download?filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
+                    DialogResult result = saveFileDialog1.ShowDialog();
+                    if (result == DialogResult.OK && saveFileDialog1.CheckPathExists)
+                    {
+                        //OK
+                    }
+                    downloadedfile = downloadedfile.Replace(' ', '+');
+                    string decrypted = Setup.Decrypt(downloadedfile);
+                    System.IO.File.WriteAllText(saveFileDialog1.FileName, decrypted, Encoding.Default);
+                    richTextBox1.Text += "File \"" + textBox2.Text + "\" downloaded.\n" + Environment.NewLine;
+                    richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                    richTextBox1.ScrollToCaret();
+                }
+            }
+            catch (Exception ee)
+            {
+                richTextBox1.Text += "An error occured:\n\n" + ee + "\n" + Environment.NewLine;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (connected)
+                {
+                    string filename = textBox2.Text;
+                    string callback = new WebClient().DownloadString("http://" + textBox1.Text + "/del?filename=" + textBox2.Text + "&password=" + CalculateMD5Hash(passPhrase));
+                    if (callback == "OK")
+                    {
+                        richTextBox1.Text += "File \"" + filename + "\" deleted\n\n" + "\n" + Environment.NewLine;
+                        richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                        richTextBox1.ScrollToCaret();
+                    }
+                }
+            }
+            catch (Exception ee)
+            {
+                richTextBox1.Text += "An error occured:\n\n" + ee + "\n" + Environment.NewLine;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+            }
+        }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text = "";
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void themesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Themes t = new Themes();
+            if (!t.Visible)
+            {
+                t.Show();
+            }
+        }
+
+        private void radioStateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 if (radio)
                 {
                     PlayerStop(stream);
-                    button10.Image = Properties.Resources.radio_off;
                     radio = false;
-                } else
+                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
+                }
+                else
                 {
-                    PlayMusicFromURL(stream);
-                    button10.Image = Properties.Resources.radio_on;
                     radio = true;
+                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
+                    if (connected)
+                    {
+                        PlayMusicFromURL(stream);
+                    }
                 }
             } catch { }
         }
-
-        #region tooltip
-
-        private void button2_MouseHover(object sender, EventArgs e)
-        {
-            toolTip1.Show(Properties.strings.ListDir, button2);
-        }
-
-        private void button2_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button2);
-        }
-
-        private void button4_MouseHover(object sender, EventArgs e)
-        {
-            toolTip1.Show(Properties.strings.Upload, button4);
-        }
-
-        private void button4_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button4);
-        }
-
-        private void button5_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.Show(Properties.strings.Download, button5);
-        }
-
-        private void button5_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button5);
-        }
-
-        private void button6_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.Show(Properties.strings.Delete, button6);
-        }
-
-        private void button6_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button6);
-        }
-
-        private void button3_MouseEnter(object sender, EventArgs e)
-        {
-            toolTip1.Show(Properties.strings.Clear, button3);
-        }
-
-        private void button3_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button3);
-        }
-
-        private void button1_MouseHover(object sender, EventArgs e)
-        {
-            if (connected)
-            {
-                toolTip1.Show(Properties.strings.Disconnect, button1);
-            } else
-            {
-                toolTip1.Show(Properties.strings.Connect, button1);
-            }
-        }
-
-        private void button1_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button1);
-        }
-
-        private void button9_MouseHover(object sender, EventArgs e)
-        {
-            toolTip1.Show(Properties.strings.Themes, button9);
-        }
-
-        private void button9_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button9);
-        }
-
-        private void button10_MouseHover(object sender, EventArgs e)
-        {
-            if (radio)
-            {
-                toolTip1.Show(Properties.strings.RadioOff, button10);
-            } else
-            {
-                toolTip1.Show(Properties.strings.RadioOn, button10);
-            }
-        }
-
-        private void button10_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button10);
-        }
-
-        private void button7_MouseHover(object sender, EventArgs e)
-        {
-            toolTip1.Show(Properties.strings.Quit, button7);
-        }
-
-        private void button7_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(button7);
-        }
-
-        #endregion
     }
 }
