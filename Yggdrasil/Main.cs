@@ -710,5 +710,13 @@ namespace Yggdrasil
                 }
             } catch { }
         }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                connectToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
+            }
+        }
     }
 }
