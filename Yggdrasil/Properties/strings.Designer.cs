@@ -61,6 +61,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die About ähnelt.
+        /// </summary>
+        internal static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Blog ähnelt.
         /// </summary>
         internal static string Blog {
@@ -124,6 +133,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Console ähnelt.
+        /// </summary>
+        internal static string Console {
+            get {
+                return ResourceManager.GetString("Console", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Delete ähnelt.
         /// </summary>
         internal static string Delete {
@@ -165,6 +183,15 @@ namespace Yggdrasil.Properties {
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Extras ähnelt.
+        /// </summary>
+        internal static string Extras {
+            get {
+                return ResourceManager.GetString("Extras", resourceCulture);
             }
         }
         
@@ -295,6 +322,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Server ähnelt.
+        /// </summary>
+        internal static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Themes ähnelt.
         /// </summary>
         internal static string Themes {
@@ -309,6 +345,15 @@ namespace Yggdrasil.Properties {
         internal static string Upload {
             get {
                 return ResourceManager.GetString("Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Volume: ähnelt.
+        /// </summary>
+        internal static string Volume {
+            get {
+                return ResourceManager.GetString("Volume", resourceCulture);
             }
         }
         

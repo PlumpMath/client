@@ -1,3 +1,12 @@
+0.5.1
+
+- Bugfixes and small improvements
+- New awesome design
+- No ugly buttons anymore
+- Connect by pressing the Enter key
+- Added about window
+- Removed Nyan Cat
+
 0.5
 
 - Fixed bug with non-HTTP requests from main server

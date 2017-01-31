@@ -204,4 +204,19 @@
   <data name="RadioOn" xml:space="preserve">
     <value>Radio on</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Console" xml:space="preserve">
+    <value>Console</value>
+  </data>
+  <data name="Extras" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Volume:</value>
+  </data>
 </root>
