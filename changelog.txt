@@ -5,6 +5,7 @@
 - No ugly buttons anymore
 - Connect by pressing the Enter key
 - Added about window
+- Removed Nyan Cat
 
 0.5
 
