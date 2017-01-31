@@ -565,7 +565,7 @@ namespace Yggdrasil
                     }
                     else
                     {
-                        richTextBox1.Text += dir + Environment.NewLine;
+                        richTextBox1.Text += dir;
                     }
                     richTextBox1.SelectionStart = richTextBox1.Text.Length;
                     richTextBox1.ScrollToCaret();
