@@ -216,4 +216,7 @@
   <data name="Server" xml:space="preserve">
     <value>Server</value>
   </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Lautstärke:</value>
+  </data>
 </root>

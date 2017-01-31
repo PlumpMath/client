@@ -50,7 +50,6 @@ namespace Yggdrasil
             uploadToolStripMenuItem.Enabled = false;
             downloadToolStripMenuItem.Enabled = false;
             deleteToolStripMenuItem.Enabled = false;
-            radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
         }
 
         public void splash()
@@ -85,6 +84,8 @@ namespace Yggdrasil
             extrasToolStripMenuItem.Text = Properties.strings.Extras;
             themesToolStripMenuItem.Text = Properties.strings.Themes;
             quitToolStripMenuItem.Text = Properties.strings.Quit;
+            radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
+            label5.Text = Properties.strings.Volume;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
