@@ -133,6 +133,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Console ähnelt.
+        /// </summary>
+        internal static string Console {
+            get {
+                return ResourceManager.GetString("Console", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Delete ähnelt.
         /// </summary>
         internal static string Delete {
@@ -174,6 +183,15 @@ namespace Yggdrasil.Properties {
         internal static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Extras ähnelt.
+        /// </summary>
+        internal static string Extras {
+            get {
+                return ResourceManager.GetString("Extras", resourceCulture);
             }
         }
         
@@ -300,6 +318,15 @@ namespace Yggdrasil.Properties {
         internal static string RestartAppTheme {
             get {
                 return ResourceManager.GetString("RestartAppTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Server ähnelt.
+        /// </summary>
+        internal static string Server {
+            get {
+                return ResourceManager.GetString("Server", resourceCulture);
             }
         }
         

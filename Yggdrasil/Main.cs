@@ -50,7 +50,7 @@ namespace Yggdrasil
             uploadToolStripMenuItem.Enabled = false;
             downloadToolStripMenuItem.Enabled = false;
             deleteToolStripMenuItem.Enabled = false;
-            radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
+            radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
         }
 
         public void splash()
@@ -74,6 +74,17 @@ namespace Yggdrasil
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
+            connectToolStripMenuItem.Text = Properties.strings.Connect;
+            serverToolStripMenuItem.Text = Properties.strings.Server;
+            listDirectoryToolStripMenuItem.Text = Properties.strings.ListDir;
+            uploadToolStripMenuItem.Text = Properties.strings.Upload;
+            downloadToolStripMenuItem.Text = Properties.strings.Download;
+            deleteToolStripMenuItem.Text = Properties.strings.Delete;
+            consoleToolStripMenuItem.Text = Properties.strings.Console;
+            clearToolStripMenuItem.Text = Properties.strings.Clear;
+            extrasToolStripMenuItem.Text = Properties.strings.Extras;
+            themesToolStripMenuItem.Text = Properties.strings.Themes;
+            quitToolStripMenuItem.Text = Properties.strings.Quit;
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -464,6 +475,7 @@ namespace Yggdrasil
                         richTextBox1.Text = "";
                         label4.Text = Properties.strings.Connected;
                         label4.ForeColor = System.Drawing.Color.Green;
+                        connectToolStripMenuItem.Text = Properties.strings.Disconnect;
                         connected = true;
                         string motd = new WebClient().DownloadString("http://" + textBox1.Text + "/motd");
                         motd = motd.Replace("\n", Environment.NewLine);
@@ -510,6 +522,29 @@ namespace Yggdrasil
                 {
                     richTextBox1.Text += "Cannot connect to server:\n\n" + ee + "\n" + Environment.NewLine;
                 }
+            } else
+            {
+                richTextBox1.Text = "";
+                textBox1.Enabled = true;
+                //button1.Text = Properties.strings.Connect;
+                connectToolStripMenuItem.Text = Properties.strings.Connect;
+                label4.Text = Properties.strings.Disconnected;
+                label4.ForeColor = System.Drawing.Color.Red;
+                textBox4.Text = "";
+                if (textBox1.Text.Contains(":82"))
+                {
+                    textBox1.Text = textBox1.Text.Split(':')[0];
+                }
+                listDirectoryToolStripMenuItem.Enabled = false;
+                uploadToolStripMenuItem.Enabled = false;
+                downloadToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+                connected = false;
+                try
+                {
+                    PlayerStop(stream);
+                }
+                catch { }
             }
         }
 
@@ -661,12 +696,12 @@ namespace Yggdrasil
                 {
                     PlayerStop(stream);
                     radio = false;
-                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
+                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
                 }
                 else
                 {
                     radio = true;
-                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
+                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
                     if (connected)
                     {
                         PlayMusicFromURL(stream);

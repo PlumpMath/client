@@ -73,7 +73,7 @@ namespace Yggdrasil
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(857, 28);
+            this.textBox2.Location = new System.Drawing.Point(857, 44);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(203, 20);
             this.textBox2.TabIndex = 9;
@@ -90,16 +90,16 @@ namespace Yggdrasil
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.richTextBox1.Size = new System.Drawing.Size(839, 665);
+            this.richTextBox1.Size = new System.Drawing.Size(839, 568);
             this.richTextBox1.TabIndex = 10;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(763, 61);
+            this.pictureBox1.Location = new System.Drawing.Point(758, 35);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(404, 482);
+            this.pictureBox1.Size = new System.Drawing.Size(463, 458);
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -117,7 +117,7 @@ namespace Yggdrasil
             // 
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(0, 699);
+            this.textBox4.Location = new System.Drawing.Point(0, 605);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(1152, 20);
             this.textBox4.TabIndex = 17;
@@ -125,7 +125,7 @@ namespace Yggdrasil
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(857, 667);
+            this.label2.Location = new System.Drawing.Point(857, 583);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 19;
@@ -133,15 +133,15 @@ namespace Yggdrasil
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(904, 664);
+            this.textBox1.Location = new System.Drawing.Point(898, 580);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(239, 20);
+            this.textBox1.Size = new System.Drawing.Size(242, 20);
             this.textBox1.TabIndex = 20;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(857, 12);
+            this.label3.Location = new System.Drawing.Point(857, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 21;
@@ -152,7 +152,7 @@ namespace Yggdrasil
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(857, 648);
+            this.label4.Location = new System.Drawing.Point(857, 564);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 22;
@@ -161,7 +161,7 @@ namespace Yggdrasil
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(903, 57);
+            this.checkBox1.Location = new System.Drawing.Point(898, 70);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(126, 17);
             this.checkBox1.TabIndex = 24;
@@ -172,7 +172,7 @@ namespace Yggdrasil
             // textBox3
             // 
             this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(857, 80);
+            this.textBox3.Location = new System.Drawing.Point(857, 89);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(203, 20);
             this.textBox3.TabIndex = 25;
@@ -181,7 +181,7 @@ namespace Yggdrasil
             // trackBar1
             // 
             this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(936, 600);
+            this.trackBar1.Location = new System.Drawing.Point(857, 496);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(219, 45);
@@ -193,7 +193,7 @@ namespace Yggdrasil
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(933, 584);
+            this.label5.Location = new System.Drawing.Point(857, 480);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 29;
@@ -202,7 +202,7 @@ namespace Yggdrasil
             // button8
             // 
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(860, 616);
+            this.button8.Location = new System.Drawing.Point(1076, 496);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(67, 23);
             this.button8.TabIndex = 30;
@@ -297,14 +297,14 @@ namespace Yggdrasil
             // radioStateToolStripMenuItem
             // 
             this.radioStateToolStripMenuItem.Name = "radioStateToolStripMenuItem";
-            this.radioStateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.radioStateToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.radioStateToolStripMenuItem.Text = "RadioState";
             this.radioStateToolStripMenuItem.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
             // 
             // themesToolStripMenuItem
             // 
             this.themesToolStripMenuItem.Name = "themesToolStripMenuItem";
-            this.themesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.themesToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.themesToolStripMenuItem.Text = "Themes";
             this.themesToolStripMenuItem.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
             // 
@@ -320,7 +320,7 @@ namespace Yggdrasil
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1152, 719);
+            this.ClientSize = new System.Drawing.Size(1152, 625);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.trackBar1);

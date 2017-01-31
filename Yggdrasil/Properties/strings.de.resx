@@ -207,4 +207,13 @@
   <data name="About" xml:space="preserve">
     <value>Über</value>
   </data>
+  <data name="Console" xml:space="preserve">
+    <value>Konsole</value>
+  </data>
+  <data name="Extras" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
 </root>
