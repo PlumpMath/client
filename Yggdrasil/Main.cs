@@ -461,7 +461,6 @@ namespace Yggdrasil
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            textBox1.Text = textBox1.Text.Replace(" ", "");
             if (connected == false)
             {
                 try
@@ -481,7 +480,7 @@ namespace Yggdrasil
                         richTextBox1.Text = "";
                         label4.Text = Properties.strings.Connected;
                         label4.ForeColor = System.Drawing.Color.Green;
-                        connectToolStripMenuItem.Text = Properties.strings.Disconnect;
+                        connectToolStripMenuItem1.Text = Properties.strings.Disconnect;
                         connected = true;
                         string motd = new WebClient().DownloadString("http://" + textBox1.Text + "/motd");
                         motd = motd.Replace("\n", Environment.NewLine);
@@ -537,7 +536,7 @@ namespace Yggdrasil
                 }
                 textBox1.Enabled = true;
                 //button1.Text = Properties.strings.Connect;
-                connectToolStripMenuItem.Text = Properties.strings.Connect;
+                connectToolStripMenuItem1.Text = Properties.strings.Connect;
                 label4.Text = Properties.strings.Disconnected;
                 label4.ForeColor = System.Drawing.Color.Red;
                 textBox4.Text = "";
