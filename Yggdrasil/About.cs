@@ -37,5 +37,10 @@ namespace Yggdrasil
         {
             Process.Start("http://yggdrasil.96.lt");
         }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://t.me/joinchat/AAAAAD9HQ_uZACmiXhexXw");
+        }
     }
 }

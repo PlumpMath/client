@@ -15,6 +15,6 @@ Download the compiled package from http://yggdrasil.96.lt/
 
 ## How to compile
 
-Clone this repository and open it in Visual Studio or MonoDevelop. Then press the F5 key and you will find it in <Repo>/Yggdrasil/bin/Debug/
+Clone this repository and open it in Visual Studio ~~or MonoDevelop~~. Then press the F5 key and you will find it in <Repo>/Yggdrasil/bin/Debug/
 
 *Have a nice day :)*

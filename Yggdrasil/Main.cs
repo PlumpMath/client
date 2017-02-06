@@ -6,6 +6,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Drawing;
+using System.Media;
 
 namespace Yggdrasil
 {
@@ -23,12 +24,14 @@ namespace Yggdrasil
             Thread t = new Thread(new ThreadStart(splash));
             t.Start();
             Thread.Sleep(5000);
-            localize();
             t.Abort();
+            localize();
             this.Show();
             try
             {
-                label1.Text = new WebClient().DownloadString("https://yggdrasilfs.neocities.org/msg.txt");
+                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_5.txt");
+                ads = ads.Replace("\n", Environment.NewLine);
+                richTextBox1.Text += ads + Environment.NewLine;
             }
             catch { }
             if (File.Exists("ygg_bgimage.conf"))
@@ -50,6 +53,10 @@ namespace Yggdrasil
             uploadToolStripMenuItem.Enabled = false;
             downloadToolStripMenuItem.Enabled = false;
             deleteToolStripMenuItem.Enabled = false;
+            Stream str = Properties.Resources.startup;
+            SoundPlayer snd = new SoundPlayer(str);
+            snd.Play();
+
         }
 
         public void splash()
@@ -73,28 +80,22 @@ namespace Yggdrasil
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
-            connectToolStripMenuItem.Text = Properties.strings.Connect;
-            serverToolStripMenuItem.Text = Properties.strings.Server;
-            listDirectoryToolStripMenuItem.Text = Properties.strings.ListDir;
-            uploadToolStripMenuItem.Text = Properties.strings.Upload;
-            downloadToolStripMenuItem.Text = Properties.strings.Download;
-            deleteToolStripMenuItem.Text = Properties.strings.Delete;
-            consoleToolStripMenuItem.Text = Properties.strings.Console;
-            clearToolStripMenuItem.Text = Properties.strings.Clear;
-            extrasToolStripMenuItem.Text = Properties.strings.Extras;
-            themesToolStripMenuItem.Text = Properties.strings.Themes;
-            quitToolStripMenuItem.Text = Properties.strings.Quit;
-            radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
+            connectToolStripMenuItem1.Text = Properties.strings.Connect;
+            serverToolStripMenuItem1.Text = Properties.strings.Server;
+            listDirectoryToolStripMenuItem1.Text = Properties.strings.ListDir;
+            uploadToolStripMenuItem1.Text = Properties.strings.Upload;
+            downloadToolStripMenuItem1.Text = Properties.strings.Download;
+            deleteToolStripMenuItem1.Text = Properties.strings.Delete;
+            consoleToolStripMenuItem1.Text = Properties.strings.Console;
+            clearToolStripMenuItem1.Text = Properties.strings.Clear;
+            extrasToolStripMenuItem1.Text = Properties.strings.Extras;
+            themesToolStripMenuItem1.Text = Properties.strings.Themes;
+            quitToolStripMenuItem2.Text = Properties.strings.Quit;
+            radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
+            radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
+            aboutToolStripMenuItem.Text = Properties.strings.About;
             label5.Text = Properties.strings.Volume;
-        }
-
-        private void Main_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            try
-            {
-                Environment.Exit(0);
-            }
-            catch { }
+            quitToolStripMenuItem1.Text = Properties.strings.Quit;
         }
 
         public void button1_Click(object sender, EventArgs e)
@@ -452,11 +453,15 @@ namespace Yggdrasil
         private void button8_Click_1(object sender, EventArgs e)
         {
             About a = new About();
-            a.Show();
+            if (!a.Visible)
+            {
+                a.Show();
+            }
         }
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            textBox1.Text = textBox1.Text.Replace(" ", "");
             if (connected == false)
             {
                 try
@@ -523,9 +528,13 @@ namespace Yggdrasil
                 {
                     richTextBox1.Text += "Cannot connect to server:\n\n" + ee + "\n" + Environment.NewLine;
                 }
-            } else
+            }
+            else
             {
-                richTextBox1.Text = "";
+                if (connected)
+                {
+                    richTextBox1.Text = "";
+                }
                 textBox1.Enabled = true;
                 //button1.Text = Properties.strings.Connect;
                 connectToolStripMenuItem.Text = Properties.strings.Connect;
@@ -697,18 +706,21 @@ namespace Yggdrasil
                 {
                     PlayerStop(stream);
                     radio = false;
-                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
+                    radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
+                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
                 }
                 else
                 {
                     radio = true;
-                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
+                    radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
+                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
                     if (connected)
                     {
                         PlayMusicFromURL(stream);
                     }
                 }
-            } catch { }
+            }
+            catch { }
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -716,6 +728,63 @@ namespace Yggdrasil
             if (e.KeyCode == Keys.Enter)
             {
                 connectToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
+            }
+        }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (!Visible && e.Button == MouseButtons.Left)
+            {
+                Show();
+            }
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                e.Cancel = true;
+                Hide();
+            }
+            catch { }
+        }
+
+        private void quitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void radioStateToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (radio)
+                {
+                    PlayerStop(stream);
+                    radio = false;
+                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
+                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+                }
+                else
+                {
+                    radio = true;
+                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
+                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
+                    if (connected)
+                    {
+                        PlayMusicFromURL(stream);
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About a = new About();
+            if (!a.Visible)
+            {
+                a.Show();
             }
         }
     }
