@@ -49,10 +49,10 @@ namespace Yggdrasil
             }
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            listDirectoryToolStripMenuItem.Enabled = false;
-            uploadToolStripMenuItem.Enabled = false;
-            downloadToolStripMenuItem.Enabled = false;
-            deleteToolStripMenuItem.Enabled = false;
+            listDirectoryToolStripMenuItem1.Enabled = false;
+            uploadToolStripMenuItem1.Enabled = false;
+            downloadToolStripMenuItem1.Enabled = false;
+            deleteToolStripMenuItem1.Enabled = false;
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
@@ -503,19 +503,19 @@ namespace Yggdrasil
                         string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
                         if (!deactivated.Contains("ls"))
                         {
-                            listDirectoryToolStripMenuItem.Enabled = true;
+                            listDirectoryToolStripMenuItem1.Enabled = true;
                         }
                         if (!deactivated.Contains("upload"))
                         {
-                            uploadToolStripMenuItem.Enabled = true;
+                            uploadToolStripMenuItem1.Enabled = true;
                         }
                         if (!deactivated.Contains("download"))
                         {
-                            downloadToolStripMenuItem.Enabled = true;
+                            downloadToolStripMenuItem1.Enabled = true;
                         }
                         if (!deactivated.Contains("del"))
                         {
-                            deleteToolStripMenuItem.Enabled = true;
+                            deleteToolStripMenuItem1.Enabled = true;
                         }
                     }
                     else
@@ -545,9 +545,9 @@ namespace Yggdrasil
                     textBox1.Text = textBox1.Text.Split(':')[0];
                 }
                 listDirectoryToolStripMenuItem.Enabled = false;
-                uploadToolStripMenuItem.Enabled = false;
-                downloadToolStripMenuItem.Enabled = false;
-                deleteToolStripMenuItem.Enabled = false;
+                uploadToolStripMenuItem1.Enabled = false;
+                downloadToolStripMenuItem1.Enabled = false;
+                deleteToolStripMenuItem1.Enabled = false;
                 connected = false;
                 try
                 {

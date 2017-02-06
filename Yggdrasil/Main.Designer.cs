@@ -379,28 +379,28 @@ namespace Yggdrasil
             // listDirectoryToolStripMenuItem1
             // 
             this.listDirectoryToolStripMenuItem1.Name = "listDirectoryToolStripMenuItem1";
-            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.listDirectoryToolStripMenuItem1.Text = "List directory";
             this.listDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.listDirectoryToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem1
             // 
             this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
-            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.uploadToolStripMenuItem1.Text = "Upload";
             this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
             // downloadToolStripMenuItem1
             // 
             this.downloadToolStripMenuItem1.Name = "downloadToolStripMenuItem1";
-            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.downloadToolStripMenuItem1.Text = "Download";
             this.downloadToolStripMenuItem1.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem1
             // 
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -415,7 +415,7 @@ namespace Yggdrasil
             // clearToolStripMenuItem1
             // 
             this.clearToolStripMenuItem1.Name = "clearToolStripMenuItem1";
-            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
             this.clearToolStripMenuItem1.Text = "Clear";
             this.clearToolStripMenuItem1.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -431,14 +431,14 @@ namespace Yggdrasil
             // radioStateToolStripMenuItem2
             // 
             this.radioStateToolStripMenuItem2.Name = "radioStateToolStripMenuItem2";
-            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(130, 22);
             this.radioStateToolStripMenuItem2.Text = "RadioState";
             this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
             // 
             // themesToolStripMenuItem1
             // 
             this.themesToolStripMenuItem1.Name = "themesToolStripMenuItem1";
-            this.themesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.themesToolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
             this.themesToolStripMenuItem1.Text = "Themes";
             this.themesToolStripMenuItem1.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
             // 
@@ -474,7 +474,7 @@ namespace Yggdrasil
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "Yggdrasil 0.5.2";
+            this.Text = "Yggdrasil 0.5.3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
