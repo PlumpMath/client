@@ -57,7 +57,15 @@ namespace Yggdrasil
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
+            if (!File.Exists("vlc.exe"))
+            {
+                radio = false;
+                radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+                radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
+                radioStateToolStripMenuItem1.Enabled = false;
+                radioStateToolStripMenuItem2.Enabled = false;
 
+            }
         }
 
         public void splash()
@@ -98,6 +106,8 @@ namespace Yggdrasil
             quitToolStripMenuItem1.Text = Properties.strings.Quit;
         }
 
+        #region player
+
         public static void PlayMusicFromURL(string url)
         {
             Process.Start("vlc.exe", "--qt-start-minimized " + url + " -I null");
@@ -105,15 +115,16 @@ namespace Yggdrasil
 
         public static void PlayerStop()
         {
-            //http://stackoverflow.com/questions/739101/launching-process-in-c-sharp-without-distracting-console-window
             Process process = new Process();
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.FileName = @"taskkill";
+            process.StartInfo.FileName = "taskkill";
             process.StartInfo.Arguments = "/IM vlc.exe /F";
             process.Start();
         }
+
+        #endregion
 
         public void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -205,16 +216,6 @@ namespace Yggdrasil
                         richTextBox1.Text += motd + Environment.NewLine;
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
                         richTextBox1.ScrollToCaret();
-                        try
-                        {
-                            textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
-                            stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream");
-                            if (!stream.Contains("ERR_") && radio)
-                            {
-                                PlayMusicFromURL(stream);
-                            }
-                        }
-                        catch { }
                         string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
                         if (!deactivated.Contains("ls"))
                         {
@@ -232,6 +233,19 @@ namespace Yggdrasil
                         {
                             deleteToolStripMenuItem1.Enabled = true;
                         }
+                        try
+                        {
+                            textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
+                        } catch { }
+                        try
+                        {
+                            stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream").Split('\n')[0];
+                            if (!stream.Contains("ERR_") && radio)
+                            {
+                                PlayMusicFromURL(stream);
+                            }
+                        }
+                        catch { }
                     }
                     else
                     {
@@ -400,6 +414,7 @@ namespace Yggdrasil
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            PlayerStop();
             Environment.Exit(0);
         }
 
@@ -465,6 +480,7 @@ namespace Yggdrasil
 
         private void quitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            PlayerStop();
             Environment.Exit(0);
         }
 
