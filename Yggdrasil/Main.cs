@@ -20,33 +20,15 @@ namespace Yggdrasil
         public Main()
         {
             InitializeComponent();
-            this.Hide();
-            Thread t = new Thread(new ThreadStart(splash));
-            t.Start();
-            Thread.Sleep(5000);
-            t.Abort();
             localize();
             this.Show();
             try
             {
-                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_5.txt");
+                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_minimal.txt");
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text += ads + Environment.NewLine;
             }
             catch { }
-            if (File.Exists("ygg_bgimage.conf"))
-            {
-                try
-                {
-                    string bgimage_f = File.ReadAllText("ygg_bgimage.conf");
-                    pictureBox1.BackgroundImage = Image.FromFile(bgimage_f);
-                    pictureBox1.Update();
-                }
-                catch
-                {
-                    File.Delete("ygg_bgimage.conf");
-                }
-            }
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
             listDirectoryToolStripMenuItem1.Enabled = false;
@@ -76,7 +58,6 @@ namespace Yggdrasil
             button7.Text = Properties.strings.Quit;
             button9.Text = Properties.strings.Themes;
              */
-            button8.Text = Properties.strings.About;
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             checkBox1.Text = Properties.strings.PasswordProtected;
@@ -88,38 +69,8 @@ namespace Yggdrasil
             deleteToolStripMenuItem1.Text = Properties.strings.Delete;
             consoleToolStripMenuItem1.Text = Properties.strings.Console;
             clearToolStripMenuItem1.Text = Properties.strings.Clear;
-            extrasToolStripMenuItem1.Text = Properties.strings.Extras;
-            themesToolStripMenuItem1.Text = Properties.strings.Themes;
             quitToolStripMenuItem2.Text = Properties.strings.Quit;
-            radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
-            radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
-            aboutToolStripMenuItem.Text = Properties.strings.About;
-            label5.Text = Properties.strings.Volume;
-            quitToolStripMenuItem1.Text = Properties.strings.Quit;
         }
-
-        #region player
-
-        public static WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-
-        public static void PlayMusicFromURL(string url)
-        {
-            player.URL = url;
-            player.settings.volume = 100;
-            player.controls.play();
-        }
-
-        public static void PlayerStop(string url)
-        {
-            player.controls.stop();
-        }
-
-        public static void SetPlayerVolume(int volume)
-        {
-            player.settings.volume = volume;
-        }
-
-        #endregion
 
         public void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -172,15 +123,6 @@ namespace Yggdrasil
             }
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            try
-            {
-                SetPlayerVolume(trackBar1.Value);
-            }
-            catch { }
-        }
-
         private void button8_Click_1(object sender, EventArgs e)
         {
             About a = new About();
@@ -220,17 +162,6 @@ namespace Yggdrasil
                         richTextBox1.Text += motd + Environment.NewLine;
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
                         richTextBox1.ScrollToCaret();
-                        try
-                        {
-                            textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
-                            stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream");
-                            if (!stream.Contains("ERR_") && radio)
-                            {
-                                PlayMusicFromURL(stream);
-                                SetPlayerVolume(100);
-                            }
-                        }
-                        catch { }
                         string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
                         if (!deactivated.Contains("ls"))
                         {
@@ -270,7 +201,6 @@ namespace Yggdrasil
                 connectToolStripMenuItem1.Text = Properties.strings.Connect;
                 label4.Text = Properties.strings.Disconnected;
                 label4.ForeColor = System.Drawing.Color.Red;
-                textBox4.Text = "";
                 if (textBox1.Text.Contains(":82"))
                 {
                     textBox1.Text = textBox1.Text.Split(':')[0];
@@ -280,11 +210,6 @@ namespace Yggdrasil
                 downloadToolStripMenuItem1.Enabled = false;
                 deleteToolStripMenuItem1.Enabled = false;
                 connected = false;
-                try
-                {
-                    PlayerStop(stream);
-                }
-                catch { }
             }
         }
 
@@ -434,20 +359,11 @@ namespace Yggdrasil
             {
                 if (radio)
                 {
-                    PlayerStop(stream);
                     radio = false;
-                    radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
-                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
                 }
                 else
                 {
                     radio = true;
-                    radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
-                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
-                    if (connected)
-                    {
-                        PlayMusicFromURL(stream);
-                    }
                 }
             }
             catch { }
@@ -469,53 +385,9 @@ namespace Yggdrasil
             }
         }
 
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                e.Cancel = true;
-                Hide();
-            }
-            catch { }
-        }
-
         private void quitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
-        }
-
-        private void radioStateToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (radio)
-                {
-                    PlayerStop(stream);
-                    radio = false;
-                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
-                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
-                }
-                else
-                {
-                    radio = true;
-                    radioStateToolStripMenuItem.Text = Properties.strings.RadioOff;
-                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
-                    if (connected)
-                    {
-                        PlayMusicFromURL(stream);
-                    }
-                }
-            }
-            catch { }
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            About a = new About();
-            if (!a.Visible)
-            {
-                a.Show();
-            }
         }
     }
 }
