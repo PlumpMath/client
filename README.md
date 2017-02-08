@@ -26,4 +26,6 @@ Note that you need to copy the following files/folder from VLC:
 01.06.2016  15:17           137.152 vlc.exe
 ```
 
+If you search the files for the setup, they are [here](https://julain.wolkesicher.de/index.php/s/n4Xg9yMKUx9rvuw/download). Just make the paths fit to your needs. You will need InnoSetup.
+
 *Have a nice day :)*
