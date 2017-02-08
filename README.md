@@ -17,7 +17,7 @@ Download the compiled package from http://yggdrasil.96.lt/
 
 Clone this repository and open it in Visual Studio or MonoDevelop. Then press the F5 key and you will find it in <Repo>/Yggdrasil/bin/Debug/
 
-Note that you need to copy the following files/folder from VLC or add them to the PATH:
+Note that you need to copy the following files/folder from VLC:
 
 ```
 08.02.2017  22:55    <DIR>          plugins
