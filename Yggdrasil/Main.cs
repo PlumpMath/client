@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Drawing;
 using System.Media;
+using System.Diagnostics;
 
 namespace Yggdrasil
 {
@@ -29,7 +30,7 @@ namespace Yggdrasil
             this.Show();
             try
             {
-                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_5.txt");
+                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_6.txt");
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text += ads + Environment.NewLine;
             }
@@ -94,32 +95,25 @@ namespace Yggdrasil
             radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
             radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
             aboutToolStripMenuItem.Text = Properties.strings.About;
-            label5.Text = Properties.strings.Volume;
             quitToolStripMenuItem1.Text = Properties.strings.Quit;
         }
 
-        #region player
-
-        public static WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-
         public static void PlayMusicFromURL(string url)
         {
-            player.URL = url;
-            player.settings.volume = 100;
-            player.controls.play();
+            Process.Start("vlc.exe", "--qt-start-minimized " + url + " -I null");
         }
 
-        public static void PlayerStop(string url)
+        public static void PlayerStop()
         {
-            player.controls.stop();
+            //http://stackoverflow.com/questions/739101/launching-process-in-c-sharp-without-distracting-console-window
+            Process process = new Process();
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.FileName = @"taskkill";
+            process.StartInfo.Arguments = "/IM vlc.exe /F";
+            process.Start();
         }
-
-        public static void SetPlayerVolume(int volume)
-        {
-            player.settings.volume = volume;
-        }
-
-        #endregion
 
         public void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -172,15 +166,6 @@ namespace Yggdrasil
             }
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            try
-            {
-                SetPlayerVolume(trackBar1.Value);
-            }
-            catch { }
-        }
-
         private void button8_Click_1(object sender, EventArgs e)
         {
             About a = new About();
@@ -227,7 +212,6 @@ namespace Yggdrasil
                             if (!stream.Contains("ERR_") && radio)
                             {
                                 PlayMusicFromURL(stream);
-                                SetPlayerVolume(100);
                             }
                         }
                         catch { }
@@ -282,7 +266,7 @@ namespace Yggdrasil
                 connected = false;
                 try
                 {
-                    PlayerStop(stream);
+                    PlayerStop();
                 }
                 catch { }
             }
@@ -434,7 +418,7 @@ namespace Yggdrasil
             {
                 if (radio)
                 {
-                    PlayerStop(stream);
+                    PlayerStop();
                     radio = false;
                     radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
                     radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
@@ -490,7 +474,7 @@ namespace Yggdrasil
             {
                 if (radio)
                 {
-                    PlayerStop(stream);
+                    PlayerStop();
                     radio = false;
                     radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
                     radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;

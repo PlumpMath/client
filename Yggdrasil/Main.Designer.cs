@@ -43,9 +43,7 @@ namespace Yggdrasil
             this.label4 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label5 = new System.Windows.Forms.Label();
             this.button8 = new System.Windows.Forms.Button();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +76,6 @@ namespace Yggdrasil
             this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.themesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -150,7 +147,7 @@ namespace Yggdrasil
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(857, 564);
+            this.label4.Location = new System.Drawing.Point(857, 559);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 13);
             this.label4.TabIndex = 22;
@@ -176,31 +173,10 @@ namespace Yggdrasil
             this.textBox3.TabIndex = 25;
             this.textBox3.UseSystemPasswordChar = true;
             // 
-            // trackBar1
-            // 
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(857, 496);
-            this.trackBar1.Maximum = 100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(219, 45);
-            this.trackBar1.TabIndex = 27;
-            this.trackBar1.TabStop = false;
-            this.trackBar1.Value = 100;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(857, 480);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 29;
-            this.label5.Text = "Volume:";
-            // 
             // button8
             // 
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(1076, 496);
+            this.button8.Location = new System.Drawing.Point(1073, 554);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(67, 23);
             this.button8.TabIndex = 30;
@@ -455,8 +431,6 @@ namespace Yggdrasil
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1152, 625);
             this.Controls.Add(this.button8);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label4);
@@ -473,9 +447,8 @@ namespace Yggdrasil
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "Yggdrasil 0.5.4";
+            this.Text = "Yggdrasil 0.6";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -498,9 +471,7 @@ namespace Yggdrasil
         private System.Windows.Forms.CheckBox checkBox1;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
