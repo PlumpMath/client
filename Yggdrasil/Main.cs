@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Windows.Forms;
-using System.IO;
 using System.Text;
 using System.Security.Cryptography;
-using System.Threading;
-using System.Drawing;
-using System.Media;
 
 namespace Yggdrasil
 {
@@ -34,10 +30,7 @@ namespace Yggdrasil
             listDirectoryToolStripMenuItem1.Enabled = false;
             uploadToolStripMenuItem1.Enabled = false;
             downloadToolStripMenuItem1.Enabled = false;
-            deleteToolStripMenuItem1.Enabled = false;
-            Stream str = Properties.Resources.startup;
-            SoundPlayer snd = new SoundPlayer(str);
-            snd.Play();
+            deleteToolStripMenuItem1.Enabled = false;;
 
         }
 

@@ -59,14 +59,5 @@ namespace Yggdrasil.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream startup {
-            get {
-                return ResourceManager.GetStream("startup", resourceCulture);
-            }
-        }
     }
 }
