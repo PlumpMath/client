@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Drawing;
 using System.Media;
+using System.Diagnostics;
 
 namespace Yggdrasil
 {
@@ -29,7 +30,7 @@ namespace Yggdrasil
             this.Show();
             try
             {
-                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_5.txt");
+                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_6.txt");
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text += ads + Environment.NewLine;
             }
@@ -56,7 +57,15 @@ namespace Yggdrasil
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
+            if (!File.Exists("vlc.exe"))
+            {
+                radio = false;
+                radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+                radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
+                radioStateToolStripMenuItem1.Enabled = false;
+                radioStateToolStripMenuItem2.Enabled = false;
 
+            }
         }
 
         public void splash()
@@ -94,29 +103,25 @@ namespace Yggdrasil
             radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
             radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
             aboutToolStripMenuItem.Text = Properties.strings.About;
-            label5.Text = Properties.strings.Volume;
             quitToolStripMenuItem1.Text = Properties.strings.Quit;
         }
 
         #region player
 
-        public static WMPLib.WindowsMediaPlayer player = new WMPLib.WindowsMediaPlayer();
-
         public static void PlayMusicFromURL(string url)
         {
-            player.URL = url;
-            player.settings.volume = 100;
-            player.controls.play();
+            Process.Start("vlc.exe", "--qt-start-minimized " + url + " -I null");
         }
 
-        public static void PlayerStop(string url)
+        public static void PlayerStop()
         {
-            player.controls.stop();
-        }
-
-        public static void SetPlayerVolume(int volume)
-        {
-            player.settings.volume = volume;
+            Process process = new Process();
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.FileName = "taskkill";
+            process.StartInfo.Arguments = "/IM vlc.exe /F";
+            process.Start();
         }
 
         #endregion
@@ -172,15 +177,6 @@ namespace Yggdrasil
             }
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            try
-            {
-                SetPlayerVolume(trackBar1.Value);
-            }
-            catch { }
-        }
-
         private void button8_Click_1(object sender, EventArgs e)
         {
             About a = new About();
@@ -220,17 +216,6 @@ namespace Yggdrasil
                         richTextBox1.Text += motd + Environment.NewLine;
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
                         richTextBox1.ScrollToCaret();
-                        try
-                        {
-                            textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
-                            stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream");
-                            if (!stream.Contains("ERR_") && radio)
-                            {
-                                PlayMusicFromURL(stream);
-                                SetPlayerVolume(100);
-                            }
-                        }
-                        catch { }
                         string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
                         if (!deactivated.Contains("ls"))
                         {
@@ -248,6 +233,19 @@ namespace Yggdrasil
                         {
                             deleteToolStripMenuItem1.Enabled = true;
                         }
+                        try
+                        {
+                            textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
+                        } catch { }
+                        try
+                        {
+                            stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream").Split('\n')[0];
+                            if (!stream.Contains("ERR_") && radio)
+                            {
+                                PlayMusicFromURL(stream);
+                            }
+                        }
+                        catch { }
                     }
                     else
                     {
@@ -282,7 +280,7 @@ namespace Yggdrasil
                 connected = false;
                 try
                 {
-                    PlayerStop(stream);
+                    PlayerStop();
                 }
                 catch { }
             }
@@ -416,6 +414,7 @@ namespace Yggdrasil
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            PlayerStop();
             Environment.Exit(0);
         }
 
@@ -434,7 +433,7 @@ namespace Yggdrasil
             {
                 if (radio)
                 {
-                    PlayerStop(stream);
+                    PlayerStop();
                     radio = false;
                     radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
                     radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
@@ -481,6 +480,7 @@ namespace Yggdrasil
 
         private void quitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            PlayerStop();
             Environment.Exit(0);
         }
 
@@ -490,7 +490,7 @@ namespace Yggdrasil
             {
                 if (radio)
                 {
-                    PlayerStop(stream);
+                    PlayerStop();
                     radio = false;
                     radioStateToolStripMenuItem.Text = Properties.strings.RadioOn;
                     radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
