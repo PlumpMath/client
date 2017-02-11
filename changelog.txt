@@ -1,3 +1,7 @@
+0.6.1
+
+- Bugfixes and improvements
+
 0.6
 
 - Now using VLC as player engine
