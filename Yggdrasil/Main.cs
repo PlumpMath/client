@@ -56,7 +56,7 @@ namespace Yggdrasil
             init.Start();
             try
             {
-                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_6.txt");
+                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_6.txt");
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text += ads + Environment.NewLine;
             }

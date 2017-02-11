@@ -1,6 +1,6 @@
 0.6.1
 
-- Fixed a bug, where other vlc.exe processes were killed
+- Bugfixes and improvements
 
 0.6
 
