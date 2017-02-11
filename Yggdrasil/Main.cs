@@ -28,13 +28,6 @@ namespace Yggdrasil
             t.Abort();
             localize();
             this.Show();
-            try
-            {
-                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_6.txt");
-                ads = ads.Replace("\n", Environment.NewLine);
-                richTextBox1.Text += ads + Environment.NewLine;
-            }
-            catch { }
             if (File.Exists("ygg_bgimage.conf"))
             {
                 try
@@ -57,20 +50,47 @@ namespace Yggdrasil
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
-            if (!File.Exists("vlc.exe"))
+            Thread.Sleep(20);
+            Thread init = new Thread(new ThreadStart(check));
+            init.IsBackground = true;
+            init.Start();
+            try
             {
-                radio = false;
-                radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
-                radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
-                radioStateToolStripMenuItem1.Enabled = false;
-                radioStateToolStripMenuItem2.Enabled = false;
-
+                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_6.txt");
+                ads = ads.Replace("\n", Environment.NewLine);
+                richTextBox1.Text += ads + Environment.NewLine;
             }
+            catch { }
         }
 
         public void splash()
         {
             Application.Run(new Splash());
+        }
+
+        public void check()
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (!File.Exists("patch061_complete"))
+                {
+                    try
+                    {
+                        new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/yggplayer.exe", "yggplayer.exe");
+                        File.WriteAllText("patch061_complete", "");
+                    }
+                    catch { }
+                }
+                if (!File.Exists("yggplayer.exe"))
+                {
+                    radio = false;
+                    radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+                    radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
+                    radioStateToolStripMenuItem1.Enabled = false;
+                    radioStateToolStripMenuItem2.Enabled = false;
+
+                }
+            });
         }
 
         private void localize()
@@ -110,7 +130,7 @@ namespace Yggdrasil
 
         public static void PlayMusicFromURL(string url)
         {
-            Process.Start("vlc.exe", "--qt-start-minimized " + url + " -I null");
+            Process.Start("yggplayer.exe", "--qt-start-minimized " + url + " -I null");
         }
 
         public static void PlayerStop()
@@ -120,7 +140,7 @@ namespace Yggdrasil
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.FileName = "taskkill";
-            process.StartInfo.Arguments = "/IM vlc.exe /F";
+            process.StartInfo.Arguments = "/IM yggplayer.exe /F";
             process.Start();
         }
 
