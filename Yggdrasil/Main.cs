@@ -21,12 +21,12 @@ namespace Yggdrasil
         public Main()
         {
             InitializeComponent();
-            this.Hide();
             Thread t = new Thread(new ThreadStart(splash));
             t.Start();
-            Thread.Sleep(5000);
-            t.Abort();
+            Hide();
+            ygginit();
             localize();
+            t.Abort();
             this.Show();
             if (File.Exists("ygg_bgimage.conf"))
             {
@@ -50,17 +50,6 @@ namespace Yggdrasil
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
-            Thread.Sleep(20);
-            Thread init = new Thread(new ThreadStart(check));
-            init.IsBackground = true;
-            init.Start();
-            try
-            {
-                string ads = new WebClient().DownloadString("http://koyuhub.96.lt/msg_6.txt");
-                ads = ads.Replace("\n", Environment.NewLine);
-                richTextBox1.Text += ads + Environment.NewLine;
-            }
-            catch { }
         }
 
         public void splash()
@@ -68,29 +57,60 @@ namespace Yggdrasil
             Application.Run(new Splash());
         }
 
-        public void check()
+        public void ygginit()
         {
-            this.Invoke((MethodInvoker)delegate
+            try
             {
-                if (!File.Exists("patch061_complete"))
+                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_6.txt");
+                ads = ads.Replace("\n", Environment.NewLine);
+                richTextBox1.Text += ads + Environment.NewLine;
+            }
+            catch { }
+            bool waserror = false;
+            if (!File.Exists("patch061_complete"))
+            {
+                try
                 {
-                    try
-                    {
-                        new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/yggplayer.exe", "yggplayer.exe");
-                        File.WriteAllText("patch061_complete", "");
-                    }
-                    catch { }
+                    textBox4.Text = "Downloading Yggdrasil Player patch.";
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/yggplayer.exe", "yggplayer.exe");
+                    File.WriteAllText("patch061_complete", "");
+                    textBox4.Text = "Patched Yggdrasil to version 0.6.1.";
                 }
-                if (!File.Exists("yggplayer.exe"))
+                catch
                 {
-                    radio = false;
+                    textBox4.Text = "Error getting patch from Yggdrasil 0.6.1.";
+                    waserror = true;
+                }
+            }
+            try
+            {
+                string[] playerlist = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/playerlist.txt").Split('\n');
+                foreach (string file in playerlist)
+                {
+                    if (File.Exists(file))
+                    {
+                        textBox4.Text = "File \"" + file + "\" OK";
+                    }
+                    else
+                    {
+                        textBox4.Text = "File \"" + file + "\" ERROR";
+                        waserror = true;
+                    }
+                }
+                if (waserror)
+                {
+                    radio = !waserror;
                     radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
                     radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
                     radioStateToolStripMenuItem1.Enabled = false;
                     radioStateToolStripMenuItem2.Enabled = false;
-
                 }
-            });
+            }
+            catch
+            {
+                textBox4.Text = "Error getting file list from server.";
+            }
+            textBox4.Text = "Done. Have a nice day :)";
         }
 
         private void localize()
@@ -256,7 +276,8 @@ namespace Yggdrasil
                         try
                         {
                             textBox4.Text = new WebClient().DownloadString("http://" + textBox1.Text + "/news");
-                        } catch { }
+                        }
+                        catch { }
                         try
                         {
                             stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream").Split('\n')[0];
@@ -501,6 +522,7 @@ namespace Yggdrasil
         private void quitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             PlayerStop();
+            notifyIcon1.Visible = false;
             Environment.Exit(0);
         }
 

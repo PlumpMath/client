@@ -19,7 +19,6 @@ namespace Yggdrasil
         public Splash()
         {
             InitializeComponent();
-            this.Show();
             status.Text = Properties.strings.Loading;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
