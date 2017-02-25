@@ -8,6 +8,8 @@ using System.Threading;
 using System.Drawing;
 using System.Media;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Yggdrasil
 {
@@ -47,6 +49,7 @@ namespace Yggdrasil
             uploadToolStripMenuItem1.Enabled = false;
             downloadToolStripMenuItem1.Enabled = false;
             deleteToolStripMenuItem1.Enabled = false;
+            importFilelistToolStripMenuItem.Enabled = false;
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
@@ -59,6 +62,10 @@ namespace Yggdrasil
 
         public void ygginit()
         {
+            if (!File.Exists("peazip.exe"))
+            {
+                compressionToolToolStripMenuItem.Enabled = false;
+            }
             try
             {
                 string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_6.txt");
@@ -144,6 +151,10 @@ namespace Yggdrasil
             radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
             aboutToolStripMenuItem.Text = Properties.strings.About;
             quitToolStripMenuItem1.Text = Properties.strings.Quit;
+            compressionToolToolStripMenuItem.Text = Properties.strings.CompressionTool;
+            importFilelistToolStripMenuItem.Text = Properties.strings.Import;
+            exportFileListToolStripMenuItem.Text = Properties.strings.Export;
+            filesToolStripMenuItem.Text = Properties.strings.Files;
         }
 
         #region player
@@ -268,6 +279,7 @@ namespace Yggdrasil
                         if (!deactivated.Contains("download"))
                         {
                             downloadToolStripMenuItem1.Enabled = true;
+                            importFilelistToolStripMenuItem.Enabled = true;
                         }
                         if (!deactivated.Contains("del"))
                         {
@@ -318,6 +330,7 @@ namespace Yggdrasil
                 uploadToolStripMenuItem1.Enabled = false;
                 downloadToolStripMenuItem1.Enabled = false;
                 deleteToolStripMenuItem1.Enabled = false;
+                importFilelistToolStripMenuItem.Enabled = false;
                 connected = false;
                 try
                 {
@@ -558,6 +571,71 @@ namespace Yggdrasil
             {
                 a.Show();
             }
+        }
+
+        private void compressionToolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("peazip.exe", "-h");
+        }
+
+        private void importFilelistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (connected)
+                {
+                    Uri uri = new Uri("http://" + textBox1.Text + "/download");
+                    openFileDialog1.Filter = "YggFile|*.ygg";
+                    DialogResult result = openFileDialog1.ShowDialog();
+                    passPhrase = textBox3.Text;
+                    if (result == DialogResult.OK)
+                    {
+                        if (File.Exists(openFileDialog1.FileName))
+                        {
+                            string[] flist = File.ReadAllLines(openFileDialog1.FileName);
+                            var temp = new List<string>();
+                            foreach (var s in flist)
+                            {
+                                if (!string.IsNullOrEmpty(s))
+                                    temp.Add(s);
+                            }
+                            flist = temp.ToArray();
+                            DialogResult r = folderBrowserDialog1.ShowDialog();
+                            if (r == DialogResult.OK)
+                            {
+                                foreach (string filename in flist)
+                                {
+                                    string downloadedfile = new WebClient().DownloadString("http://" + textBox1.Text + "/download?filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
+                                    downloadedfile = downloadedfile.Replace(' ', '+');
+                                    string decrypted = Setup.Decrypt(downloadedfile);
+                                    File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\" + filename, decrypted, Encoding.Default);
+                                }
+                            }
+                        }
+                    }
+                }
+                openFileDialog1.Filter = "";
+            } catch
+            {
+                MessageBox.Show(Properties.strings.CannotRead, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void exportFileListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string[] files = Directory.GetFiles(folderBrowserDialog1.SelectedPath);
+                string filelist = String.Join("\n", files).Replace(folderBrowserDialog1.SelectedPath, "").Replace("\\", "");
+                saveFileDialog1.Filter = "YggFile|*.ygg";
+                DialogResult r = saveFileDialog1.ShowDialog();
+                if (r == DialogResult.OK)
+                {
+                    File.WriteAllText(saveFileDialog1.FileName, filelist);
+                }
+            }
+            saveFileDialog1.Filter = "";
         }
     }
 }

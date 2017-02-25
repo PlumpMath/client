@@ -219,4 +219,19 @@
   <data name="Volume" xml:space="preserve">
     <value>Volume:</value>
   </data>
+  <data name="CannotRead" xml:space="preserve">
+    <value>File invalid!</value>
+  </data>
+  <data name="CompressionTool" xml:space="preserve">
+    <value>Compression tool</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export file list</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import file list</value>
+  </data>
 </root>
