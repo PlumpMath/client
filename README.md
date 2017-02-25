@@ -28,4 +28,6 @@ Note that you need to copy the following files/folder from VLC:
 
 If you search the files for the setup, they are [here](https://julain.wolkesicher.de/index.php/s/n4Xg9yMKUx9rvuw/download). Just make the paths fit to your needs. You will need InnoSetup. Make sure you rename the file vlc.exe to yggplayer.exe.
 
+You also need the PeaZIP (not Pea7z) files.
+
 *Have a nice day :)*

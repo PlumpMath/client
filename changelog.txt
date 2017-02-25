@@ -1,3 +1,9 @@
+0.6.3
+
+- Added compression tool
+- Added file lists
+- Introducing a new file type: .ygg
+
 0.6.1/0.6.2
 
 - Bugfixes and improvements

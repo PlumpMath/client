@@ -219,4 +219,19 @@
   <data name="Volume" xml:space="preserve">
     <value>Lautstärke:</value>
   </data>
+  <data name="CannotRead" xml:space="preserve">
+    <value>Ungültige Datei!</value>
+  </data>
+  <data name="CompressionTool" xml:space="preserve">
+    <value>Komprimierungstool</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Dateiliste exportieren</value>
+  </data>
+  <data name="Files" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Dateiliste importieren</value>
+  </data>
 </root>

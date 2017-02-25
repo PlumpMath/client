@@ -88,6 +88,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File invalid! ähnelt.
+        /// </summary>
+        internal static string CannotRead {
+            get {
+                return ResourceManager.GetString("CannotRead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Choose an image: ähnelt.
         /// </summary>
         internal static string ChooseImage {
@@ -102,6 +111,15 @@ namespace Yggdrasil.Properties {
         internal static string Clear {
             get {
                 return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Compression tool ähnelt.
+        /// </summary>
+        internal static string CompressionTool {
+            get {
+                return ResourceManager.GetString("CompressionTool", resourceCulture);
             }
         }
         
@@ -187,6 +205,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Export file list ähnelt.
+        /// </summary>
+        internal static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Extras ähnelt.
         /// </summary>
         internal static string Extras {
@@ -201,6 +228,24 @@ namespace Yggdrasil.Properties {
         internal static string File {
             get {
                 return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Files ähnelt.
+        /// </summary>
+        internal static string Files {
+            get {
+                return ResourceManager.GetString("Files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Import file list ähnelt.
+        /// </summary>
+        internal static string Import {
+            get {
+                return ResourceManager.GetString("Import", resourceCulture);
             }
         }
         
