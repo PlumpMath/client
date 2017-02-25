@@ -90,20 +90,13 @@ namespace Yggdrasil
                     waserror = true;
                 }
             }
-            if (!File.Exists("patch064_complete"))
+            try
             {
-                try
-                {
-                    textBox4.Text = "Downloading Yggdrasil Player patch.";
-                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Yggdrasil.resources.dll", "de/Yggdrasil.resources.dll");
-                    File.WriteAllText("patch064_complete", "");
-                    textBox4.Text = "Patched Yggdrasil to version 0.6.4.";
-                }
-                catch
-                {
-                    textBox4.Text = "Error getting patch from Yggdrasil 0.6.4.";
-                    waserror = true;
-                }
+                new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Launcher.exe", "Launcher.exe");
+            }
+            catch
+            {
+                textBox4.Text = "Error getting patch from Launcher.";
             }
             try
             {
