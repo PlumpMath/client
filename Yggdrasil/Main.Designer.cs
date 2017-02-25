@@ -64,10 +64,15 @@ namespace Yggdrasil
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressionToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importFilelistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportFileListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.listDirectoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.massUploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,10 +82,6 @@ namespace Yggdrasil
             this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compressionToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importFilelistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportFileListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -327,8 +328,8 @@ namespace Yggdrasil
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.filesToolStripMenuItem,
             this.connectToolStripMenuItem1,
+            this.filesToolStripMenuItem,
             this.serverToolStripMenuItem1,
             this.consoleToolStripMenuItem1,
             this.extrasToolStripMenuItem1,
@@ -338,97 +339,6 @@ namespace Yggdrasil
             this.menuStrip1.Size = new System.Drawing.Size(1152, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // connectToolStripMenuItem1
-            // 
-            this.connectToolStripMenuItem1.Name = "connectToolStripMenuItem1";
-            this.connectToolStripMenuItem1.Size = new System.Drawing.Size(64, 20);
-            this.connectToolStripMenuItem1.Text = "Connect";
-            this.connectToolStripMenuItem1.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
-            // 
-            // serverToolStripMenuItem1
-            // 
-            this.serverToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listDirectoryToolStripMenuItem1,
-            this.uploadToolStripMenuItem1,
-            this.downloadToolStripMenuItem1,
-            this.deleteToolStripMenuItem1});
-            this.serverToolStripMenuItem1.Name = "serverToolStripMenuItem1";
-            this.serverToolStripMenuItem1.Size = new System.Drawing.Size(51, 20);
-            this.serverToolStripMenuItem1.Text = "Server";
-            // 
-            // listDirectoryToolStripMenuItem1
-            // 
-            this.listDirectoryToolStripMenuItem1.Name = "listDirectoryToolStripMenuItem1";
-            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.listDirectoryToolStripMenuItem1.Text = "List directory";
-            this.listDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.listDirectoryToolStripMenuItem_Click);
-            // 
-            // uploadToolStripMenuItem1
-            // 
-            this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
-            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.uploadToolStripMenuItem1.Text = "Upload";
-            this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
-            // 
-            // downloadToolStripMenuItem1
-            // 
-            this.downloadToolStripMenuItem1.Name = "downloadToolStripMenuItem1";
-            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.downloadToolStripMenuItem1.Text = "Download";
-            this.downloadToolStripMenuItem1.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem1
-            // 
-            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.deleteToolStripMenuItem1.Text = "Delete";
-            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // consoleToolStripMenuItem1
-            // 
-            this.consoleToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearToolStripMenuItem1});
-            this.consoleToolStripMenuItem1.Name = "consoleToolStripMenuItem1";
-            this.consoleToolStripMenuItem1.Size = new System.Drawing.Size(62, 20);
-            this.consoleToolStripMenuItem1.Text = "Console";
-            // 
-            // clearToolStripMenuItem1
-            // 
-            this.clearToolStripMenuItem1.Name = "clearToolStripMenuItem1";
-            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
-            this.clearToolStripMenuItem1.Text = "Clear";
-            this.clearToolStripMenuItem1.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
-            // 
-            // extrasToolStripMenuItem1
-            // 
-            this.extrasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.themesToolStripMenuItem1,
-            this.radioStateToolStripMenuItem2});
-            this.extrasToolStripMenuItem1.Name = "extrasToolStripMenuItem1";
-            this.extrasToolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
-            this.extrasToolStripMenuItem1.Text = "Extras";
-            // 
-            // themesToolStripMenuItem1
-            // 
-            this.themesToolStripMenuItem1.Name = "themesToolStripMenuItem1";
-            this.themesToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
-            this.themesToolStripMenuItem1.Text = "Themes";
-            this.themesToolStripMenuItem1.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
-            // 
-            // radioStateToolStripMenuItem2
-            // 
-            this.radioStateToolStripMenuItem2.Name = "radioStateToolStripMenuItem2";
-            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(168, 22);
-            this.radioStateToolStripMenuItem2.Text = "RadioState";
-            this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
-            // 
-            // quitToolStripMenuItem2
-            // 
-            this.quitToolStripMenuItem2.Name = "quitToolStripMenuItem2";
-            this.quitToolStripMenuItem2.Size = new System.Drawing.Size(42, 20);
-            this.quitToolStripMenuItem2.Text = "Quit";
-            this.quitToolStripMenuItem2.Click += new System.EventHandler(this.quitToolStripMenuItem1_Click);
             // 
             // filesToolStripMenuItem
             // 
@@ -461,6 +371,105 @@ namespace Yggdrasil
             this.exportFileListToolStripMenuItem.Text = "Export file list";
             this.exportFileListToolStripMenuItem.Click += new System.EventHandler(this.exportFileListToolStripMenuItem_Click);
             // 
+            // connectToolStripMenuItem1
+            // 
+            this.connectToolStripMenuItem1.Name = "connectToolStripMenuItem1";
+            this.connectToolStripMenuItem1.Size = new System.Drawing.Size(64, 20);
+            this.connectToolStripMenuItem1.Text = "Connect";
+            this.connectToolStripMenuItem1.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+            // 
+            // serverToolStripMenuItem1
+            // 
+            this.serverToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listDirectoryToolStripMenuItem1,
+            this.uploadToolStripMenuItem1,
+            this.massUploadToolStripMenuItem,
+            this.downloadToolStripMenuItem1,
+            this.deleteToolStripMenuItem1});
+            this.serverToolStripMenuItem1.Name = "serverToolStripMenuItem1";
+            this.serverToolStripMenuItem1.Size = new System.Drawing.Size(51, 20);
+            this.serverToolStripMenuItem1.Text = "Server";
+            // 
+            // listDirectoryToolStripMenuItem1
+            // 
+            this.listDirectoryToolStripMenuItem1.Name = "listDirectoryToolStripMenuItem1";
+            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.listDirectoryToolStripMenuItem1.Text = "List directory";
+            this.listDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.listDirectoryToolStripMenuItem_Click);
+            // 
+            // uploadToolStripMenuItem1
+            // 
+            this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
+            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.uploadToolStripMenuItem1.Text = "Upload";
+            this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
+            // 
+            // massUploadToolStripMenuItem
+            // 
+            this.massUploadToolStripMenuItem.Name = "massUploadToolStripMenuItem";
+            this.massUploadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.massUploadToolStripMenuItem.Text = "Mass upload";
+            this.massUploadToolStripMenuItem.Click += new System.EventHandler(this.massUploadToolStripMenuItem_Click);
+            // 
+            // downloadToolStripMenuItem1
+            // 
+            this.downloadToolStripMenuItem1.Name = "downloadToolStripMenuItem1";
+            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.downloadToolStripMenuItem1.Text = "Download";
+            this.downloadToolStripMenuItem1.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem1.Text = "Delete";
+            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // consoleToolStripMenuItem1
+            // 
+            this.consoleToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearToolStripMenuItem1});
+            this.consoleToolStripMenuItem1.Name = "consoleToolStripMenuItem1";
+            this.consoleToolStripMenuItem1.Size = new System.Drawing.Size(62, 20);
+            this.consoleToolStripMenuItem1.Text = "Console";
+            // 
+            // clearToolStripMenuItem1
+            // 
+            this.clearToolStripMenuItem1.Name = "clearToolStripMenuItem1";
+            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.clearToolStripMenuItem1.Text = "Clear";
+            this.clearToolStripMenuItem1.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
+            // 
+            // extrasToolStripMenuItem1
+            // 
+            this.extrasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.themesToolStripMenuItem1,
+            this.radioStateToolStripMenuItem2});
+            this.extrasToolStripMenuItem1.Name = "extrasToolStripMenuItem1";
+            this.extrasToolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
+            this.extrasToolStripMenuItem1.Text = "Extras";
+            // 
+            // themesToolStripMenuItem1
+            // 
+            this.themesToolStripMenuItem1.Name = "themesToolStripMenuItem1";
+            this.themesToolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
+            this.themesToolStripMenuItem1.Text = "Themes";
+            this.themesToolStripMenuItem1.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
+            // 
+            // radioStateToolStripMenuItem2
+            // 
+            this.radioStateToolStripMenuItem2.Name = "radioStateToolStripMenuItem2";
+            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(130, 22);
+            this.radioStateToolStripMenuItem2.Text = "RadioState";
+            this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
+            // 
+            // quitToolStripMenuItem2
+            // 
+            this.quitToolStripMenuItem2.Name = "quitToolStripMenuItem2";
+            this.quitToolStripMenuItem2.Size = new System.Drawing.Size(42, 20);
+            this.quitToolStripMenuItem2.Text = "Quit";
+            this.quitToolStripMenuItem2.Click += new System.EventHandler(this.quitToolStripMenuItem1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,7 +493,7 @@ namespace Yggdrasil
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "Yggdrasil 0.6.3";
+            this.Text = "Yggdrasil 0.6.4";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -545,5 +554,6 @@ namespace Yggdrasil
         private System.Windows.Forms.ToolStripMenuItem compressionToolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importFilelistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportFileListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem massUploadToolStripMenuItem;
     }
 }

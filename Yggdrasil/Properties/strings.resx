@@ -234,4 +234,7 @@
   <data name="Import" xml:space="preserve">
     <value>Import file list</value>
   </data>
+  <data name="MassUpload" xml:space="preserve">
+    <value>Mass upload</value>
+  </data>
 </root>

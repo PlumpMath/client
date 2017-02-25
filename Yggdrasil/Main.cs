@@ -50,6 +50,7 @@ namespace Yggdrasil
             downloadToolStripMenuItem1.Enabled = false;
             deleteToolStripMenuItem1.Enabled = false;
             importFilelistToolStripMenuItem.Enabled = false;
+            massUploadToolStripMenuItem.Enabled = false;
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
@@ -86,6 +87,21 @@ namespace Yggdrasil
                 catch
                 {
                     textBox4.Text = "Error getting patch from Yggdrasil 0.6.1.";
+                    waserror = true;
+                }
+            }
+            if (!File.Exists("patch064_complete"))
+            {
+                try
+                {
+                    textBox4.Text = "Downloading Yggdrasil Player patch.";
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Yggdrasil.resources.dll", "de/Yggdrasil.resources.dll");
+                    File.WriteAllText("patch064_complete", "");
+                    textBox4.Text = "Patched Yggdrasil to version 0.6.4.";
+                }
+                catch
+                {
+                    textBox4.Text = "Error getting patch from Yggdrasil 0.6.4.";
                     waserror = true;
                 }
             }
@@ -155,6 +171,7 @@ namespace Yggdrasil
             importFilelistToolStripMenuItem.Text = Properties.strings.Import;
             exportFileListToolStripMenuItem.Text = Properties.strings.Export;
             filesToolStripMenuItem.Text = Properties.strings.Files;
+            massUploadToolStripMenuItem.Text = Properties.strings.MassUpload;
         }
 
         #region player
@@ -275,6 +292,7 @@ namespace Yggdrasil
                         if (!deactivated.Contains("upload"))
                         {
                             uploadToolStripMenuItem1.Enabled = true;
+                            massUploadToolStripMenuItem.Enabled = true;
                         }
                         if (!deactivated.Contains("download"))
                         {
@@ -331,6 +349,7 @@ namespace Yggdrasil
                 downloadToolStripMenuItem1.Enabled = false;
                 deleteToolStripMenuItem1.Enabled = false;
                 importFilelistToolStripMenuItem.Enabled = false;
+                massUploadToolStripMenuItem.Enabled = false;
                 connected = false;
                 try
                 {
@@ -615,7 +634,8 @@ namespace Yggdrasil
                     }
                 }
                 openFileDialog1.Filter = "";
-            } catch
+            }
+            catch
             {
                 MessageBox.Show(Properties.strings.CannotRead, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -636,6 +656,40 @@ namespace Yggdrasil
                 }
             }
             saveFileDialog1.Filter = "";
+        }
+
+        private void massUploadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (connected)
+                {
+                    DialogResult result = folderBrowserDialog1.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        string[] flist = Directory.GetFiles(folderBrowserDialog1.SelectedPath);
+                        var temp = new List<string>();
+                        foreach (var s in flist)
+                        {
+                            if (!string.IsNullOrEmpty(s))
+                                temp.Add(s);
+                        }
+                        flist = temp.ToArray();
+                        foreach (string f in flist)
+                        {
+                            string passPhrase = textBox3.Text;
+                            string encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(f, Encoding.Default));
+                            Uri uri = new Uri("http://" + textBox1.Text + "/upload");
+                            string filename = f.Replace(folderBrowserDialog1.SelectedPath, "").Replace("\\", "");
+                            string downloadedfile = new WebClient().UploadString(uri, "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show(Properties.strings.CannotRead, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
