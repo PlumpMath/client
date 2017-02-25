@@ -277,6 +277,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mass upload ähnelt.
+        /// </summary>
+        internal static string MassUpload {
+            get {
+                return ResourceManager.GetString("MassUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The Blog is currently unavailable right now. ähnelt.
         /// </summary>
         internal static string NoBlog {
