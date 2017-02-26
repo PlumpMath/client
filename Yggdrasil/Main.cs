@@ -51,6 +51,7 @@ namespace Yggdrasil
             deleteToolStripMenuItem1.Enabled = false;
             importFilelistToolStripMenuItem.Enabled = false;
             massUploadToolStripMenuItem.Enabled = false;
+            listBox1.Enabled = false;
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
@@ -144,6 +145,7 @@ namespace Yggdrasil
             button8.Text = Properties.strings.About;
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
+            label1.Text = Properties.strings.Files + ":";
             checkBox1.Text = Properties.strings.PasswordProtected;
             connectToolStripMenuItem1.Text = Properties.strings.Connect;
             serverToolStripMenuItem1.Text = Properties.strings.Server;
@@ -278,6 +280,20 @@ namespace Yggdrasil
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
                         richTextBox1.ScrollToCaret();
                         string deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
+                        listBox1.Enabled = true;
+                        listBox1.Items.Clear();
+                        string[] dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                        var temp = new List<string>();
+                        foreach (var s in dir)
+                        {
+                            if (!string.IsNullOrEmpty(s))
+                                temp.Add(s);
+                        }
+                        dir = temp.ToArray();
+                        foreach (string item in dir)
+                        {
+                            listBox1.Items.Add(item);
+                        }
                         if (!deactivated.Contains("ls"))
                         {
                             listDirectoryToolStripMenuItem1.Enabled = true;
@@ -328,6 +344,8 @@ namespace Yggdrasil
                     richTextBox1.Text = "";
                 }
                 textBox1.Enabled = true;
+                listBox1.Items.Clear();
+                listBox1.Enabled = false;
                 //button1.Text = Properties.strings.Connect;
                 connectToolStripMenuItem1.Text = Properties.strings.Connect;
                 label4.Text = Properties.strings.Disconnected;
@@ -405,6 +423,19 @@ namespace Yggdrasil
                             {
                                 richTextBox1.Text += Properties.strings.WrongPassword + Environment.NewLine;
                             }
+                            listBox1.Items.Clear();
+                            string[] dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                            var temp = new List<string>();
+                            foreach (var s in dir)
+                            {
+                                if (!string.IsNullOrEmpty(s))
+                                    temp.Add(s);
+                            }
+                            dir = temp.ToArray();
+                            foreach (string item in dir)
+                            {
+                                listBox1.Items.Add(item);
+                            }
                             richTextBox1.SelectionStart = richTextBox1.Text.Length;
                             richTextBox1.ScrollToCaret();
                         }
@@ -456,10 +487,35 @@ namespace Yggdrasil
                 if (connected)
                 {
                     string filename = textBox2.Text;
+                    passPhrase = textBox3.Text;
                     string callback = new WebClient().DownloadString("http://" + textBox1.Text + "/del?filename=" + textBox2.Text + "&password=" + CalculateMD5Hash(passPhrase));
                     if (callback == "OK")
                     {
                         richTextBox1.Text += "File \"" + filename + "\" deleted\n\n" + "\n" + Environment.NewLine;
+                        int nextitem = listBox1.SelectedIndex;
+                        listBox1.Items.Clear();
+                        string[] dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                        var temp = new List<string>();
+                        foreach (var s in dir)
+                        {
+                            if (!string.IsNullOrEmpty(s))
+                                temp.Add(s);
+                        }
+                        dir = temp.ToArray();
+                        foreach (string item in dir)
+                        {
+                            listBox1.Items.Add(item);
+                        }
+                        try
+                        {
+                            listBox1.SetSelected(nextitem, true);
+                            textBox2.Text = listBox1.Items[nextitem].ToString();
+                        } catch { }
+                        richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                        richTextBox1.ScrollToCaret();
+                    } else if (callback == "ERR_WRONG_PW")
+                    {
+                        richTextBox1.Text += "Error: Wrong password!\n" + Environment.NewLine;
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
                         richTextBox1.ScrollToCaret();
                     }
@@ -676,12 +732,39 @@ namespace Yggdrasil
                             string filename = f.Replace(folderBrowserDialog1.SelectedPath, "").Replace("\\", "");
                             string downloadedfile = new WebClient().UploadString(uri, "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
                         }
+                        listBox1.Items.Clear();
+                        string[] dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                        var tmp = new List<string>();
+                        foreach (var s in dir)
+                        {
+                            if (!string.IsNullOrEmpty(s))
+                                tmp.Add(s);
+                        }
+                        dir = tmp.ToArray();
+                        foreach (string item in dir)
+                        {
+                            listBox1.Items.Add(item);
+                        }
                     }
                 }
             }
             catch
             {
                 MessageBox.Show(Properties.strings.CannotRead, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            textBox2.Text = listBox1.GetItemText(listBox1.SelectedItem);
+        }
+
+        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                deleteToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
+                textBox2.Text = "";
             }
         }
     }
