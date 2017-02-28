@@ -70,7 +70,7 @@ namespace Yggdrasil
             }
             try
             {
-                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_6.txt");
+                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1000.txt");
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text += ads + Environment.NewLine;
             }
@@ -510,10 +510,12 @@ namespace Yggdrasil
                         {
                             listBox1.SetSelected(nextitem, true);
                             textBox2.Text = listBox1.Items[nextitem].ToString();
-                        } catch { }
+                        }
+                        catch { }
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
                         richTextBox1.ScrollToCaret();
-                    } else if (callback == "ERR_WRONG_PW")
+                    }
+                    else if (callback == "ERR_WRONG_PW")
                     {
                         richTextBox1.Text += "Error: Wrong password!\n" + Environment.NewLine;
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
@@ -756,15 +758,34 @@ namespace Yggdrasil
 
         private void listBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-            textBox2.Text = listBox1.GetItemText(listBox1.SelectedItem);
+            string deactivated = "del";
+            try
+            {
+                deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
+            }
+            catch { }
+            if (connected && !deactivated.Contains("del"))
+            {
+                textBox2.Text = listBox1.GetItemText(listBox1.SelectedItem);
+            }
         }
 
         private void listBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
+            string deactivated = "del";
+            try
             {
-                deleteToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
-                textBox2.Text = "";
+                deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
+            }
+            catch { }
+            if (e.KeyCode == Keys.Delete && connected && !deactivated.Contains("del"))
+            {
+                try
+                {
+                    deleteToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
+                    textBox2.Text = "";
+                }
+                catch { }
             }
         }
     }
