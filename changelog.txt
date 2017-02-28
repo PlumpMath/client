@@ -1,3 +1,10 @@
+1.0.0
+
+- Release, yay :3
+- Fixed some bugs with /ls command
+- Added build number
+- Added support e-mail address
+
 0.6.5
 
 - Added file list
