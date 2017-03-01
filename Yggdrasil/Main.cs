@@ -29,6 +29,8 @@ namespace Yggdrasil
             ygginit();
             localize();
             t.Abort();
+            this.BackColor = Color.LimeGreen;
+            this.TransparencyKey = Color.LimeGreen;
             this.Show();
             if (File.Exists("ygg_bgimage.conf"))
             {
@@ -55,6 +57,32 @@ namespace Yggdrasil
             Stream str = Properties.Resources.startup;
             SoundPlayer snd = new SoundPlayer(str);
             snd.Play();
+        }
+
+        //Global variables;
+        private bool _dragging = false;
+        //private Point _offset;
+        private Point _start_point = new Point(0, 0);
+
+
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            _dragging = true;  // _dragging is your variable flag
+            _start_point = new Point(e.X, e.Y);
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            _dragging = false;
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_dragging)
+            {
+                Point p = PointToScreen(e.Location);
+                Location = new Point(p.X - this._start_point.X, p.Y - this._start_point.Y);
+            }
         }
 
         public void splash()
@@ -255,6 +283,10 @@ namespace Yggdrasil
             {
                 try
                 {
+                    PlayerStop();
+                } catch { }
+                try
+                {
                     if (!textBox1.Text.Contains(":"))
                     {
                         if (!Text.Contains(":82"))
@@ -365,6 +397,13 @@ namespace Yggdrasil
                 try
                 {
                     PlayerStop();
+                }
+                catch { }
+                try
+                {
+                    string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1000.txt");
+                    ads = ads.Replace("\n", Environment.NewLine);
+                    richTextBox1.Text += ads + Environment.NewLine;
                 }
                 catch { }
             }
@@ -787,6 +826,11 @@ namespace Yggdrasil
                 }
                 catch { }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hide();
         }
     }
 }
