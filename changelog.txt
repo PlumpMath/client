@@ -1,3 +1,8 @@
+1.0.1
+
+- Fixed bug with the radio while applying themes
+- New design
+
 1.0.0
 
 - Release, yay :3

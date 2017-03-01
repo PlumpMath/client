@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace Yggdrasil
 {
@@ -24,6 +24,7 @@ namespace Yggdrasil
                 if (result == DialogResult.OK)
                 {
                     File.WriteAllText("ygg_bgimage.conf", openFileDialog1.FileName);
+                    PlayerStop();
                     System.Diagnostics.Process.Start(Application.ExecutablePath);
                     Environment.Exit(0);
                 }
@@ -40,9 +41,21 @@ namespace Yggdrasil
             try
             {
                 File.Delete("ygg_bgimage.conf");
+                PlayerStop();
                 System.Diagnostics.Process.Start(Application.ExecutablePath);
                 Environment.Exit(0);
             } catch { }
+        }
+
+        public static void PlayerStop()
+        {
+            Process process = new Process();
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.FileName = "taskkill";
+            process.StartInfo.Arguments = "/IM yggplayer.exe /F";
+            process.Start();
         }
     }
 }
