@@ -29,8 +29,7 @@ namespace Yggdrasil
             ygginit();
             localize();
             t.Abort();
-            this.BackColor = Color.LimeGreen;
-            this.TransparencyKey = Color.LimeGreen;
+            this.TransparencyKey = this.BackColor;
             this.Show();
             if (File.Exists("ygg_bgimage.conf"))
             {
@@ -102,7 +101,9 @@ namespace Yggdrasil
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text += ads + Environment.NewLine;
             }
-            catch { }
+            catch {
+                webBrowser1.Visible = false;
+            }
             bool waserror = false;
             if (!File.Exists("patch061_complete"))
             {

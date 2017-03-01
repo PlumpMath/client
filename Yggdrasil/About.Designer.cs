@@ -86,7 +86,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(218, 63);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Yggdrasil 1.0.1";
+            this.label1.Text = "Yggdrasil 1.0.2";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -156,7 +156,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Build 1738";
+            this.label3.Text = "Build 1743";
             // 
             // label4
             // 
