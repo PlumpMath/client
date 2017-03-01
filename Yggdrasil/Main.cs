@@ -376,6 +376,7 @@ namespace Yggdrasil
                     richTextBox1.Text = "";
                 }
                 textBox1.Enabled = true;
+                textBox2.Text = "";
                 listBox1.Items.Clear();
                 listBox1.Enabled = false;
                 //button1.Text = Properties.strings.Connect;
