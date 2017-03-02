@@ -156,7 +156,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Build 1797";
+            this.label3.Text = "Build 1801";
             // 
             // label4
             // 
