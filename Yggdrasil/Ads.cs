@@ -23,7 +23,7 @@ namespace Yggdrasil
                 try
                 {
                     string bgimage_f = File.ReadAllText("ygg_bgimage.conf");
-                    pictureBox1.BackgroundImage = Image.FromFile(bgimage_f);
+                    pictureBox1.Image = Image.FromFile(bgimage_f);
                     pictureBox1.Update();
                 }
                 catch
