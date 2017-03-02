@@ -82,18 +82,13 @@ namespace Yggdrasil
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.textBox4 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,10 +98,10 @@ namespace Yggdrasil
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(759, 44);
+            this.textBox2.Location = new System.Drawing.Point(847, 44);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(287, 20);
+            this.textBox2.Size = new System.Drawing.Size(199, 20);
             this.textBox2.TabIndex = 9;
             // 
             // richTextBox1
@@ -147,7 +142,7 @@ namespace Yggdrasil
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(715, 47);
+            this.label3.Location = new System.Drawing.Point(800, 47);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 21;
@@ -393,35 +388,35 @@ namespace Yggdrasil
             // listDirectoryToolStripMenuItem1
             // 
             this.listDirectoryToolStripMenuItem1.Name = "listDirectoryToolStripMenuItem1";
-            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.listDirectoryToolStripMenuItem1.Text = "List directory";
             this.listDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.listDirectoryToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem1
             // 
             this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
-            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.uploadToolStripMenuItem1.Text = "Upload";
             this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
             // massUploadToolStripMenuItem
             // 
             this.massUploadToolStripMenuItem.Name = "massUploadToolStripMenuItem";
-            this.massUploadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.massUploadToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.massUploadToolStripMenuItem.Text = "Mass upload";
             this.massUploadToolStripMenuItem.Click += new System.EventHandler(this.massUploadToolStripMenuItem_Click);
             // 
             // downloadToolStripMenuItem1
             // 
             this.downloadToolStripMenuItem1.Name = "downloadToolStripMenuItem1";
-            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.downloadToolStripMenuItem1.Text = "Download";
             this.downloadToolStripMenuItem1.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem1
             // 
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -436,7 +431,7 @@ namespace Yggdrasil
             // clearToolStripMenuItem1
             // 
             this.clearToolStripMenuItem1.Name = "clearToolStripMenuItem1";
-            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.clearToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
             this.clearToolStripMenuItem1.Text = "Clear";
             this.clearToolStripMenuItem1.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
@@ -452,14 +447,14 @@ namespace Yggdrasil
             // themesToolStripMenuItem1
             // 
             this.themesToolStripMenuItem1.Name = "themesToolStripMenuItem1";
-            this.themesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.themesToolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
             this.themesToolStripMenuItem1.Text = "Themes";
             this.themesToolStripMenuItem1.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
             // 
             // radioStateToolStripMenuItem2
             // 
             this.radioStateToolStripMenuItem2.Name = "radioStateToolStripMenuItem2";
-            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(130, 22);
             this.radioStateToolStripMenuItem2.Text = "RadioState";
             this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
             // 
@@ -490,20 +485,6 @@ namespace Yggdrasil
             this.label1.TabIndex = 32;
             this.label1.Text = "Files:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(44, 47);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(65, 69);
-            this.pictureBox1.TabIndex = 33;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
@@ -529,29 +510,6 @@ namespace Yggdrasil
             this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBox2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Location = new System.Drawing.Point(28, 122);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(100, 390);
-            this.webBrowser1.TabIndex = 36;
-            this.webBrowser1.Url = new System.Uri("https://koyuawsmbrtn.keybase.pub/yggdrasil/ad.html", System.UriKind.Absolute);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Location = new System.Drawing.Point(12, 31);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(126, 611);
-            this.pictureBox3.TabIndex = 37;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // textBox4
             // 
@@ -586,9 +544,6 @@ namespace Yggdrasil
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.webBrowser1);
-            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox2);
@@ -606,14 +561,12 @@ namespace Yggdrasil
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "Yggdrasil 1.0.1";
+            this.Text = "Yggdrasil";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -671,11 +624,8 @@ namespace Yggdrasil
         private System.Windows.Forms.ToolStripMenuItem massUploadToolStripMenuItem;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label textBox4;
         private System.Windows.Forms.PictureBox pictureBox4;
     }

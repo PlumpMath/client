@@ -1,3 +1,13 @@
+1.0.3
+
+- Bugfixes
+- Left window is now a seperate window
+- Program starts in the center of the screen
+
+1.0.2
+
+- Bugfixes
+
 1.0.1
 
 - Fixed bug with the radio while applying themes
