@@ -19,6 +19,7 @@ namespace Yggdrasil
         string passPhrase = "";
         string stream;
         bool radio = true;
+        Ads af = new Ads();
 
         public Main()
         {
@@ -31,19 +32,11 @@ namespace Yggdrasil
             t.Abort();
             this.TransparencyKey = this.BackColor;
             this.Show();
-            if (File.Exists("ygg_bgimage.conf"))
-            {
-                try
-                {
-                    string bgimage_f = File.ReadAllText("ygg_bgimage.conf");
-                    pictureBox1.BackgroundImage = Image.FromFile(bgimage_f);
-                    pictureBox1.Update();
-                }
-                catch
-                {
-                    File.Delete("ygg_bgimage.conf");
-                }
-            }
+            af.Show();
+            this.CenterToScreen();
+            af.Left = this.Left + 20;
+            af.Top = this.Top;
+            af.SetBounds(af.Bounds.X, this.Bounds.Y, af.Width, af.Height);
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
             listDirectoryToolStripMenuItem1.Enabled = false;
@@ -68,6 +61,7 @@ namespace Yggdrasil
         {
             _dragging = true;  // _dragging is your variable flag
             _start_point = new Point(e.X, e.Y);
+            af.SetBounds(af.Bounds.X, af.Bounds.Y, af.Width, af.Height);
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -82,6 +76,7 @@ namespace Yggdrasil
                 Point p = PointToScreen(e.Location);
                 Location = new Point(p.X - this._start_point.X, p.Y - this._start_point.Y);
             }
+            af.SetBounds(af.Bounds.X, af.Bounds.Y, af.Width, af.Height);
         }
 
         public void splash()
@@ -101,9 +96,7 @@ namespace Yggdrasil
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text += ads + Environment.NewLine;
             }
-            catch {
-                webBrowser1.Visible = false;
-            }
+            catch { }
             bool waserror = false;
             if (!File.Exists("patch061_complete"))
             {
@@ -630,6 +623,10 @@ namespace Yggdrasil
             if (!Visible && e.Button == MouseButtons.Left)
             {
                 Show();
+            }
+            if (!af.Visible && e.Button == MouseButtons.Left)
+            {
+                af.Show();
             }
         }
 
