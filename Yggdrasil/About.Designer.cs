@@ -72,7 +72,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.White;
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(78, -1);
+            this.pictureBox2.Location = new System.Drawing.Point(79, 6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(63, 63);
             this.pictureBox2.TabIndex = 2;
@@ -86,7 +86,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(218, 63);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Yggdrasil 1.0.3";
+            this.label1.Text = "Yggdrasil 1.0.4";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -156,7 +156,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Build 1801";
+            this.label3.Text = "Build 1805";
             // 
             // label4
             // 

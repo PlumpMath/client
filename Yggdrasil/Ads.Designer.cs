@@ -95,6 +95,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Ads";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
