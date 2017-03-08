@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,30 +16,21 @@ namespace Yggdrasil
 {
     public partial class Ads : Form
     {
+        string link = "";
         public Ads()
         {
             InitializeComponent();
-            if (File.Exists("ygg_bgimage.conf"))
-            {
-                try
-                {
-                    string bgimage_f = File.ReadAllText("ygg_bgimage.conf");
-                    pictureBox1.Image = Image.FromFile(bgimage_f);
-                    pictureBox1.Update();
-                }
-                catch
-                {
-                    File.Delete("ygg_bgimage.conf");
-                }
-            }
+            this.TransparencyKey = this.BackColor;
             try
             {
-                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1000.txt");
-            }
-            catch {
+                link = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/ad.txt");
+                new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/ad.png", "ad.png");
+                webBrowser1.Image = Image.FromFile("ad.png");
+                File.Delete("ad.png");
+            } catch
+            {
                 webBrowser1.Visible = false;
             }
-            this.TransparencyKey = this.BackColor;
         }
 
         //Global variables;
@@ -70,6 +62,11 @@ namespace Yggdrasil
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             Hide();
+        }
+
+        private void webBrowser1_Click(object sender, EventArgs e)
+        {
+            Process.Start(link);
         }
     }
 }
