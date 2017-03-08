@@ -692,10 +692,6 @@ namespace Yggdrasil
             {
                 Show();
             }
-            if (!af.Visible && e.Button == MouseButtons.Left)
-            {
-                af.Show();
-            }
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
