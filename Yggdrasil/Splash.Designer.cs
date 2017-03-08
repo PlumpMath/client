@@ -48,9 +48,10 @@
             // 
             this.status.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.status.Font = new System.Drawing.Font("Segoe UI Light", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.status.Location = new System.Drawing.Point(-4, 220);
+            this.status.ForeColor = System.Drawing.Color.White;
+            this.status.Location = new System.Drawing.Point(-1, 220);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(305, 71);
+            this.status.Size = new System.Drawing.Size(292, 71);
             this.status.TabIndex = 1;
             this.status.Text = "LoadingText";
             this.status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -59,7 +60,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(43)))));
             this.ClientSize = new System.Drawing.Size(290, 290);
             this.ControlBox = false;
             this.Controls.Add(this.status);

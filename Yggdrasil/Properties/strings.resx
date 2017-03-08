@@ -237,4 +237,24 @@
   <data name="MassUpload" xml:space="preserve">
     <value>Mass upload</value>
   </data>
+  <data name="ErrorDelete" xml:space="preserve">
+    <value>Error: Cannot delete file!</value>
+  </data>
+  <data name="ErrorDisconnect" xml:space="preserve">
+    <value>Disconnected!
+Server closed connection
+or application crashed.</value>
+  </data>
+  <data name="ErrorDownload" xml:space="preserve">
+    <value>Error downloading or decrypting file!</value>
+  </data>
+  <data name="ErrorUpload" xml:space="preserve">
+    <value>Error uploading or encrypting file!</value>
+  </data>
+  <data name="NotAlive" xml:space="preserve">
+    <value>Error: Server not alive!</value>
+  </data>
+  <data name="StillAlive" xml:space="preserve">
+    <value>This is a triumph!</value>
+  </data>
 </root>

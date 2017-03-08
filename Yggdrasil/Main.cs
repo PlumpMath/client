@@ -20,6 +20,7 @@ namespace Yggdrasil
         string stream;
         bool radio = true;
         Ads af = new Ads();
+        Thread refresh;
 
         public Main()
         {
@@ -30,13 +31,17 @@ namespace Yggdrasil
             ygginit();
             localize();
             t.Abort();
+            refresh = new Thread(check);
+            refresh.Start();
             this.TransparencyKey = this.BackColor;
             this.Show();
+            /*
             af.Show();
             this.CenterToScreen();
             af.Left = this.Left + 20;
             af.Top = this.Top;
             af.SetBounds(af.Bounds.X, this.Bounds.Y, af.Width, af.Height);
+            */
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
             listDirectoryToolStripMenuItem1.Enabled = false;
@@ -46,9 +51,6 @@ namespace Yggdrasil
             importFilelistToolStripMenuItem.Enabled = false;
             massUploadToolStripMenuItem.Enabled = false;
             listBox1.Enabled = false;
-            Stream str = Properties.Resources.startup;
-            SoundPlayer snd = new SoundPlayer(str);
-            snd.Play();
         }
 
         //Global variables;
@@ -56,6 +58,68 @@ namespace Yggdrasil
         //private Point _offset;
         private Point _start_point = new Point(0, 0);
 
+        private void check()
+        {
+            while (true)
+            {
+                try
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        if (connected)
+                        {
+                            try
+                            {
+                                new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
+                                Thread.Sleep(20);
+                            } catch {
+                                MessageBox.Show(Properties.strings.ErrorDisconnect, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                try
+                                {
+                                    if (connected)
+                                    {
+                                        richTextBox1.Text = "";
+                                    }
+                                    textBox1.Enabled = true;
+                                    textBox2.Text = "";
+                                    listBox1.Items.Clear();
+                                    listBox1.Enabled = false;
+                                    //button1.Text = Properties.strings.Connect;
+                                    connectToolStripMenuItem1.Text = Properties.strings.Connect;
+                                    label4.Text = Properties.strings.Disconnected;
+                                    label4.ForeColor = System.Drawing.Color.Red;
+                                    textBox4.Text = "";
+                                    if (textBox1.Text.Contains(":82"))
+                                    {
+                                        textBox1.Text = textBox1.Text.Split(':')[0];
+                                    }
+                                    listDirectoryToolStripMenuItem1.Enabled = false;
+                                    uploadToolStripMenuItem1.Enabled = false;
+                                    downloadToolStripMenuItem1.Enabled = false;
+                                    deleteToolStripMenuItem1.Enabled = false;
+                                    importFilelistToolStripMenuItem.Enabled = false;
+                                    massUploadToolStripMenuItem.Enabled = false;
+                                    connected = false;
+                                    try
+                                    {
+                                        PlayerStop();
+                                    }
+                                    catch { }
+                                    try
+                                    {
+                                        string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1000.txt");
+                                        ads = ads.Replace("\n", Environment.NewLine);
+                                        richTextBox1.Text += ads + Environment.NewLine;
+                                    }
+                                    catch { }
+                                } catch { }
+                            }
+                        }
+                    });
+                }
+                catch { }
+            }
+         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -178,7 +242,6 @@ namespace Yggdrasil
             consoleToolStripMenuItem1.Text = Properties.strings.Console;
             clearToolStripMenuItem1.Text = Properties.strings.Clear;
             extrasToolStripMenuItem1.Text = Properties.strings.Extras;
-            themesToolStripMenuItem1.Text = Properties.strings.Themes;
             quitToolStripMenuItem2.Text = Properties.strings.Quit;
             radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
             radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
@@ -278,7 +341,8 @@ namespace Yggdrasil
                 try
                 {
                     PlayerStop();
-                } catch { }
+                }
+                catch { }
                 try
                 {
                     if (!textBox1.Text.Contains(":"))
@@ -355,12 +419,16 @@ namespace Yggdrasil
                     }
                     else
                     {
-                        richTextBox1.Text += "Cannot connect to server: Not alive!\n" + Environment.NewLine;
+                        richTextBox1.Text += Properties.strings.NotAlive + "\n" + Environment.NewLine;
+                        richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                        richTextBox1.ScrollToCaret();
                     }
                 }
                 catch (Exception ee)
                 {
-                    richTextBox1.Text += "Cannot connect to server:\n\n" + ee + "\n" + Environment.NewLine;
+                    richTextBox1.Text += Properties.strings.NotAlive + "\n" + Environment.NewLine;
+                    richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                    richTextBox1.ScrollToCaret();
                 }
             }
             else
@@ -478,7 +546,7 @@ namespace Yggdrasil
             }
             catch (Exception ee)
             {
-                richTextBox1.Text += "Error encrypting or uploading file:\n\n" + ee + "\n" + Environment.NewLine;
+                richTextBox1.Text += "Error encrypting or uploading file!\n" + Environment.NewLine;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 richTextBox1.ScrollToCaret();
             }
@@ -508,7 +576,7 @@ namespace Yggdrasil
             }
             catch (Exception ee)
             {
-                richTextBox1.Text += "An error occured:\n\n" + ee + "\n" + Environment.NewLine;
+                richTextBox1.Text += Properties.strings.ErrorDownload + "\n" + Environment.NewLine;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 richTextBox1.ScrollToCaret();
             }
@@ -551,7 +619,7 @@ namespace Yggdrasil
                     }
                     else if (callback == "ERR_WRONG_PW")
                     {
-                        richTextBox1.Text += "Error: Wrong password!\n" + Environment.NewLine;
+                        richTextBox1.Text += Properties.strings.WrongPassword + Environment.NewLine;
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
                         richTextBox1.ScrollToCaret();
                     }
@@ -559,7 +627,7 @@ namespace Yggdrasil
             }
             catch (Exception ee)
             {
-                richTextBox1.Text += "An error occured:\n\n" + ee + "\n" + Environment.NewLine;
+                richTextBox1.Text += Properties.strings.ErrorDelete + "\n" + Environment.NewLine;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 richTextBox1.ScrollToCaret();
             }
@@ -709,15 +777,23 @@ namespace Yggdrasil
                             }
                             flist = temp.ToArray();
                             DialogResult r = folderBrowserDialog1.ShowDialog();
-                            if (r == DialogResult.OK)
+                            try
                             {
-                                foreach (string filename in flist)
+                                if (r == DialogResult.OK)
                                 {
-                                    string downloadedfile = new WebClient().DownloadString("http://" + textBox1.Text + "/download?filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
-                                    downloadedfile = downloadedfile.Replace(' ', '+');
-                                    string decrypted = Setup.Decrypt(downloadedfile);
-                                    File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\" + filename, decrypted, Encoding.Default);
+                                    foreach (string filename in flist)
+                                    {
+                                        string downloadedfile = new WebClient().DownloadString("http://" + textBox1.Text + "/download?filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
+                                        downloadedfile = downloadedfile.Replace(' ', '+');
+                                        string decrypted = Setup.Decrypt(downloadedfile);
+                                        File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\" + filename, decrypted, Encoding.Default);
+                                    }
                                 }
+                            } catch
+                            {
+                                richTextBox1.Text += Properties.strings.ErrorDownload + "\n" + Environment.NewLine;
+                                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                                richTextBox1.ScrollToCaret();
                             }
                         }
                     }

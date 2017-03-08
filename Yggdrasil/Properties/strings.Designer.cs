@@ -205,6 +205,44 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error: Cannot delete file! ähnelt.
+        /// </summary>
+        internal static string ErrorDelete {
+            get {
+                return ResourceManager.GetString("ErrorDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Disconnected!
+        ///Server closed connection
+        ///or application crashed. ähnelt.
+        /// </summary>
+        internal static string ErrorDisconnect {
+            get {
+                return ResourceManager.GetString("ErrorDisconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error downloading or decrypting file! ähnelt.
+        /// </summary>
+        internal static string ErrorDownload {
+            get {
+                return ResourceManager.GetString("ErrorDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error uploading or encrypting file! ähnelt.
+        /// </summary>
+        internal static string ErrorUpload {
+            get {
+                return ResourceManager.GetString("ErrorUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Export file list ähnelt.
         /// </summary>
         internal static string Export {
@@ -304,6 +342,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error: Server not alive! ähnelt.
+        /// </summary>
+        internal static string NotAlive {
+            get {
+                return ResourceManager.GetString("NotAlive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die OK ähnelt.
         /// </summary>
         internal static string OK {
@@ -381,6 +428,15 @@ namespace Yggdrasil.Properties {
         internal static string Server {
             get {
                 return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die This is a triumph! ähnelt.
+        /// </summary>
+        internal static string StillAlive {
+            get {
+                return ResourceManager.GetString("StillAlive", resourceCulture);
             }
         }
         
