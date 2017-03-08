@@ -1,3 +1,7 @@
+1.0.5 Build 1861
+
+- Bug causing high CPU percentage fixed
+
 1.0.5 Build 1842
 
 - Bug fixes
