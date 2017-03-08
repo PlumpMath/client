@@ -121,7 +121,7 @@
   <data name="pictureBox2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADcAAAA3CAYAAACo29JGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAC4QAAAuEAT75pj4AAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfhAwcNNzKbs0IJ
+        YQUAAAAJcEhZcwAAC4MAAAuDAWy9AEEAAAAGYktHRAD/AP8A/6C9p5MAAAAHdElNRQfhAwcNNzKbs0IJ
         AAAAHWlUWHRDb21tZW50AAAAAABDcmVhdGVkIHdpdGggR0lNUGQuZQcAAARsSURBVGhD3ZYxjh1VEEUn
         JiJBeBfIIoIEyQlgYQkR2gELAIRESjqZ90AK2yFhCTiy5AUgDdymTuv2nerXPf3/nxko6aj7vVevqs70
         D+bqkvHpi89vOur48UU37Iivr3+Y8f0qtwg/z7y1/cORBZMvv3s14QJ74H7Xw+vlmcj9adAj4UUSxI7I
@@ -161,7 +161,7 @@ WARRANTY AS DESCRIBED IN THE GPL
   <data name="pictureBox3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTCtCgrA
+        YQUAAAAJcEhZcwAADr4AAA6+AepCscAAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTCtCgrA
         AAAAx0lEQVRYR8XOUQ6FIAwFUfe/aR6aSIQO5TbhlY/jxwgtVynlKIyZMGbCmAljJozb3WueVfafCY1z
         KeSdM5llQrO4KBFmYGyEAVPiXYwdcVAncAejERgYOlthRMpg5cwA45S3wPvnwOiiRdREGJe+C7/qNwqj
         ZMPyG0bJ0QeMy1/1G4XRRQupiTBOeYu8fw6MSFmgnBlgNCKDI2crjJ3gwEfgDsYmMMgQ72JshAGu974z

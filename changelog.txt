@@ -1,3 +1,7 @@
+1.0.5 Build 1842
+
+- Bug fixes
+
 1.0.5
 
 - New design
