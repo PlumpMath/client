@@ -22,6 +22,7 @@ namespace Yggdrasil
         Ads af = new Ads();
         About a = new About();
         Thread refresh;
+        string version = "1.1.0";
 
         public Main()
         {
@@ -44,6 +45,12 @@ namespace Yggdrasil
             af.Top = this.Top;
             af.SetBounds(af.Bounds.X, this.Bounds.Y, af.Width, af.Height);
             */
+            try
+            {
+                Stream str = Properties.sounds._in;
+                SoundPlayer snd = new SoundPlayer(str);
+                snd.Play();
+            } catch { }
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
             listDirectoryToolStripMenuItem1.Enabled = false;
@@ -77,6 +84,7 @@ namespace Yggdrasil
                                     new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
                                 } catch
                                 {
+                                    PlayerStop();
                                     MessageBox.Show(Properties.strings.ErrorDisconnect, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     disconnect();
                                 }
@@ -127,6 +135,14 @@ namespace Yggdrasil
                     richTextBox1.Text += ads + Environment.NewLine;
                 }
                 catch { }
+                try
+                {
+                    Stream str = Properties.sounds.off;
+                    SoundPlayer snd = new SoundPlayer(str);
+                    snd.Play();
+                }
+                catch { }
+                Thread.Sleep(1500);
             }
             catch { }
         }
@@ -223,6 +239,17 @@ namespace Yggdrasil
             {
                 textBox4.Text = "Error getting file list from server.";
             }
+            File.WriteAllText("verinfo", version);
+            if (File.Exists("ygg_bgimage.conf"))
+            {
+                try
+                {
+                    this.BackgroundImage = Image.FromFile(File.ReadAllLines("ygg_bgimage.conf")[0]);
+                } catch
+                {
+                    File.Delete("ygg_bgimage.conf");
+                }
+            }
             textBox4.Text = "Done. Have a nice day :)";
         }
 
@@ -262,6 +289,7 @@ namespace Yggdrasil
             exportFileListToolStripMenuItem.Text = Properties.strings.Export;
             filesToolStripMenuItem.Text = Properties.strings.Files;
             massUploadToolStripMenuItem.Text = Properties.strings.MassUpload;
+            themesToolStripMenuItem.Text = Properties.strings.Themes;
         }
 
         #region player
@@ -423,6 +451,13 @@ namespace Yggdrasil
                             {
                                 PlayMusicFromURL(stream);
                             }
+                        }
+                        catch { }
+                        try
+                        {
+                            Stream str = Properties.sounds.on;
+                            SoundPlayer snd = new SoundPlayer(str);
+                            snd.Play();
                         }
                         catch { }
                     }
@@ -615,6 +650,14 @@ namespace Yggdrasil
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PlayerStop();
+            try
+            {
+                Stream str = Properties.sounds._out;
+                SoundPlayer snd = new SoundPlayer(str);
+                snd.Play();
+            }
+            catch { }
+            Thread.Sleep(1500);
             Environment.Exit(0);
         }
 
@@ -674,6 +717,13 @@ namespace Yggdrasil
             {
                 e.Cancel = true;
                 Hide();
+                try
+                {
+                    Stream str = Properties.sounds._out;
+                    SoundPlayer snd = new SoundPlayer(str);
+                    snd.Play();
+                }
+                catch { }
             }
             catch { }
         }
@@ -682,6 +732,15 @@ namespace Yggdrasil
         {
             PlayerStop();
             notifyIcon1.Visible = false;
+            Hide();
+            try
+            {
+                Stream str = Properties.sounds._out;
+                SoundPlayer snd = new SoundPlayer(str);
+                snd.Play();
+            }
+            catch { }
+            Thread.Sleep(1500);
             Environment.Exit(0);
         }
 
