@@ -9,7 +9,6 @@ using System.Drawing;
 using System.Media;
 using System.Diagnostics;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Yggdrasil
 {
@@ -50,7 +49,8 @@ namespace Yggdrasil
                 Stream str = Properties.sounds._in;
                 SoundPlayer snd = new SoundPlayer(str);
                 snd.Play();
-            } catch { }
+            }
+            catch { }
             this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
             listDirectoryToolStripMenuItem1.Enabled = false;
@@ -71,38 +71,35 @@ namespace Yggdrasil
         {
             while (true)
             {
+                Thread.Sleep(20);
                 if (connected)
                 {
-                    try
+                    if (textBox1.Text.Contains(":82"))
                     {
                         this.Invoke((MethodInvoker)delegate
                         {
-                            if (textBox1.Text.Contains(":82"))
+                            try
                             {
-                                try
-                                {
-                                    new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
-                                } catch
-                                {
-                                    PlayerStop();
-                                    MessageBox.Show(Properties.strings.ErrorDisconnect, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    disconnect();
-                                }
+
+                                new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
+                            }
+                            catch
+                            {
+                                disconnect();
+                                MessageBox.Show(Properties.strings.ErrorDisconnect, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         });
-                    } catch { }
-                    Thread.Sleep(30);
+                    }
                 }
+                Thread.Sleep(1000);
             }
         }
         public void disconnect()
         {
             try
             {
-                if (connected)
-                {
-                    richTextBox1.Text = "";
-                }
+                richTextBox1.Text = "";
+                connected = false;
                 textBox1.Enabled = true;
                 textBox2.Text = "";
                 listBox1.Items.Clear();
@@ -122,7 +119,6 @@ namespace Yggdrasil
                 deleteToolStripMenuItem1.Enabled = false;
                 importFilelistToolStripMenuItem.Enabled = false;
                 massUploadToolStripMenuItem.Enabled = false;
-                connected = false;
                 try
                 {
                     PlayerStop();
@@ -245,7 +241,8 @@ namespace Yggdrasil
                 try
                 {
                     this.BackgroundImage = Image.FromFile(File.ReadAllLines("ygg_bgimage.conf")[0]);
-                } catch
+                }
+                catch
                 {
                     File.Delete("ygg_bgimage.conf");
                 }
@@ -650,6 +647,8 @@ namespace Yggdrasil
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PlayerStop();
+            notifyIcon1.Visible = false;
+            Hide();
             try
             {
                 Stream str = Properties.sounds._out;

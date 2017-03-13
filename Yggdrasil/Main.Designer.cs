@@ -620,7 +620,6 @@ namespace Yggdrasil
         private System.Windows.Forms.ToolStripMenuItem radioStateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem themesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem radioStateToolStripMenuItem1;
@@ -650,5 +649,6 @@ namespace Yggdrasil
         private System.Windows.Forms.Label textBox4;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
