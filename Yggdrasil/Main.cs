@@ -51,8 +51,6 @@ namespace Yggdrasil
                 snd.Play();
             }
             catch { }
-            this.textBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            this.textBox2.AutoCompleteSource = AutoCompleteSource.CustomSource;
             listDirectoryToolStripMenuItem1.Enabled = false;
             uploadToolStripMenuItem1.Enabled = false;
             downloadToolStripMenuItem1.Enabled = false;
@@ -60,6 +58,7 @@ namespace Yggdrasil
             importFilelistToolStripMenuItem.Enabled = false;
             massUploadToolStripMenuItem.Enabled = false;
             listBox1.Enabled = false;
+            textBox1.Focus();
         }
 
         //Global variables;
@@ -342,21 +341,6 @@ namespace Yggdrasil
             if (textBox1.Text.Contains("\n"))
             {
                 textBox1.Text = textBox1.Text.Replace('\n', ' ');
-            }
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            if (connected && !new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated").Contains("ls"))
-            {
-                TextBox t = sender as TextBox;
-                if (t != null && connected && textBox2.TextLength >= 3)
-                {
-                    string[] arr = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
-                    AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
-                    collection.AddRange(arr);
-                    this.textBox2.AutoCompleteCustomSource = collection;
-                }
             }
         }
 
