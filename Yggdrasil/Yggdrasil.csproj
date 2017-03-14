@@ -53,7 +53,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>ygg-ico.ico</ApplicationIcon>
+    <ApplicationIcon>logo-new.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Yggdrasil.Program</StartupObject>
@@ -115,6 +115,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\sounds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sounds.resx</DependentUpon>
+    </Compile>
     <Compile Include="Setup.Cryptography.cs" />
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
@@ -162,6 +167,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\sounds.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>sounds.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Splash.resx">
       <DependentUpon>Splash.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,6 +194,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\%24this.BackgroundImage.png" />
+    <None Include="Resources\in.wav" />
+    <None Include="Resources\off.wav" />
+    <None Include="Resources\on.wav" />
+    <None Include="Resources\out.wav" />
+    <Content Include="logo-new.ico" />
     <Content Include="ygg-ico.ico" />
   </ItemGroup>
   <ItemGroup>

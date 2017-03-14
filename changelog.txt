@@ -1,3 +1,13 @@
+1.1.0
+
+- Fixed bug with the icon while closing the application from the context menu
+- Added sounds
+- Reactivated themes
+- Added boilderplate for themes
+- Removed connect by pressing enter
+- Redesigned themes menu
+- Fixed again high CPU usage
+
 1.0.5 Build 1861
 
 - Bug causing high CPU percentage fixed
