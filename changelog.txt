@@ -1,3 +1,8 @@
+1.1.1
+
+- Reactivated enter to connect
+- Delete files in file list without having to reselect the file
+
 1.1.0
 
 - Fixed bug with the icon while closing the application from the context menu
