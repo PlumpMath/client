@@ -21,7 +21,7 @@ namespace Yggdrasil
         Ads af = new Ads();
         About a = new About();
         Thread refresh;
-        string version = "1912";
+        string version = "1.1.1";
 
         public Main()
         {
