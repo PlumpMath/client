@@ -21,7 +21,7 @@ namespace Yggdrasil
         Ads af = new Ads();
         About a = new About();
         Thread refresh;
-        string version = "1.1.0";
+        string version = "1.1.1";
 
         public Main()
         {
@@ -34,7 +34,6 @@ namespace Yggdrasil
             Thread.Sleep(420); //If you know, what I mean ;)
             refresh = new Thread(check);
             t.Abort();
-            refresh.Start();
             this.TransparencyKey = this.BackColor;
             this.Show();
             /*
@@ -135,6 +134,7 @@ namespace Yggdrasil
                     Stream str = Properties.sounds.off;
                     SoundPlayer snd = new SoundPlayer(str);
                     snd.Play();
+                    refresh.Abort();
                 }
                 catch { }
                 Thread.Sleep(1500);
@@ -200,6 +200,7 @@ namespace Yggdrasil
             }
             try
             {
+                new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/latest.txt");
                 new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Launcher.exe", "Launcher.exe");
             }
             catch
@@ -439,6 +440,7 @@ namespace Yggdrasil
                             Stream str = Properties.sounds.on;
                             SoundPlayer snd = new SoundPlayer(str);
                             snd.Play();
+                            refresh.Start();
                         }
                         catch { }
                     }
@@ -682,6 +684,7 @@ namespace Yggdrasil
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.SuppressKeyPress = true;
                 connectToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
             }
         }
@@ -888,13 +891,17 @@ namespace Yggdrasil
             string deactivated = "del";
             try
             {
-                deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
+                if (textBox1.Text.Contains(":82"))
+                {
+                    deactivated = new WebClient().DownloadString("http://" + textBox1.Text + "/deactivated");
+                }
             }
             catch { }
             if (connected && !deactivated.Contains("del"))
             {
                 textBox2.Text = listBox1.GetItemText(listBox1.SelectedItem);
             }
+
         }
 
         private void listBox1_KeyDown(object sender, KeyEventArgs e)
@@ -910,7 +917,7 @@ namespace Yggdrasil
                 try
                 {
                     deleteToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
-                    textBox2.Text = "";
+                    textBox2.Text = listBox1.GetItemText(listBox1.SelectedItem);
                 }
                 catch { }
             }
