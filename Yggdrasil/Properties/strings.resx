@@ -241,9 +241,7 @@
     <value>Error: Cannot delete file!</value>
   </data>
   <data name="ErrorDisconnect" xml:space="preserve">
-    <value>Disconnected!
-Server closed connection
-or application crashed.</value>
+    <value>The server or your internet said goodbye. Maybe you should check your connection or say that to your server administrator.</value>
   </data>
   <data name="ErrorDownload" xml:space="preserve">
     <value>Error downloading or decrypting file!</value>
@@ -256,5 +254,8 @@ or application crashed.</value>
   </data>
   <data name="StillAlive" xml:space="preserve">
     <value>This is a triumph!</value>
+  </data>
+  <data name="OhNo" xml:space="preserve">
+    <value>Oh, no</value>
   </data>
 </root>

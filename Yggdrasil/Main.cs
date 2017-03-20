@@ -65,6 +65,8 @@ namespace Yggdrasil
         //private Point _offset;
         private Point _start_point = new Point(0, 0);
 
+        public int WebClientUploadProgressChanged { get; private set; }
+
         private void check()
         {
             while (true)
@@ -72,22 +74,26 @@ namespace Yggdrasil
                 Thread.Sleep(20);
                 if (connected)
                 {
-                    if (textBox1.Text.Contains(":82"))
+                    try
                     {
-                        this.Invoke((MethodInvoker)delegate
+                        if (textBox1.Text.Contains(":82"))
                         {
-                            try
+                            this.Invoke((MethodInvoker)delegate
                             {
+                                try
+                                {
 
-                                new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
-                            }
-                            catch
-                            {
-                                disconnect();
-                                MessageBox.Show(Properties.strings.ErrorDisconnect, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        });
-                    }
+                                    new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
+                                }
+                                catch
+                                {
+                                    disconnect();
+                                    MsgBox msg = new MsgBox(Properties.strings.ErrorDisconnect);
+                                    msg.ShowDialog();
+                                }
+                            });
+                        }
+                    } catch { }
                 }
                 Thread.Sleep(1000);
             }
@@ -134,7 +140,7 @@ namespace Yggdrasil
                     Stream str = Properties.sounds.off;
                     SoundPlayer snd = new SoundPlayer(str);
                     snd.Play();
-                    refresh.Abort();
+                    //refresh.Abort();
                 }
                 catch { }
                 Thread.Sleep(1500);
@@ -347,10 +353,7 @@ namespace Yggdrasil
 
         private void button8_Click_1(object sender, EventArgs e)
         {
-            if (!a.Visible)
-            {
-                a.Show();
-            }
+            a.ShowDialog();
         }
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -494,76 +497,98 @@ namespace Yggdrasil
 
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            passPhrase = textBox3.Text;
-            try
+            var encryptedfile = "";
+            DialogResult res = openFileDialog1.ShowDialog();
+            WebClient wc = new WebClient();
+            if (res == DialogResult.OK)
             {
-                if (connected)
+                if (System.IO.File.Exists(openFileDialog1.FileName))
                 {
-                    var encryptedfile = "";
-                    DialogResult result = openFileDialog1.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        if (System.IO.File.Exists(openFileDialog1.FileName))
-                        {
-                            encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
-                            Uri uri = new Uri("http://" + textBox1.Text + "/upload");
-                            string filename = openFileDialog1.SafeFileName;
-                            string downloadedfile = new WebClient().UploadString(uri, "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
-                            if (downloadedfile != "ERR_WRONG_PW")
-                            {
-                                richTextBox1.Text += "File \"" + openFileDialog1.SafeFileName + "\" uploaded.\n" + Environment.NewLine;
-                            }
-                            else
-                            {
-                                richTextBox1.Text += Properties.strings.WrongPassword + Environment.NewLine;
-                            }
-                            listBox1.Items.Clear();
-                            string[] dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
-                            var temp = new List<string>();
-                            foreach (var s in dir)
-                            {
-                                if (!string.IsNullOrEmpty(s))
-                                    temp.Add(s);
-                            }
-                            dir = temp.ToArray();
-                            foreach (string item in dir)
-                            {
-                                listBox1.Items.Add(item);
-                            }
-                            richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                            richTextBox1.ScrollToCaret();
-                        }
-                    }
+                    encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
+                    passPhrase = textBox3.Text;
+                    string filename = openFileDialog1.SafeFileName;
+                    wc.UploadStringAsync(new Uri("http://" + textBox1.Text + "/upload"), "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
                 }
             }
-            catch
+            wc.UploadStringCompleted += new UploadStringCompletedEventHandler(wc_UploadStringCompleted1);
+        }
+
+        private void wc_UploadStringCompleted1(object sender, UploadStringCompletedEventArgs e)
+        {
+            progressBar1.Visible = false;
+            try
             {
-                richTextBox1.Text += "Error encrypting or uploading file!\n" + Environment.NewLine;
+                string downloadedfile = e.Result;
+                if (downloadedfile != "ERR_WRONG_PW")
+                {
+                    richTextBox1.Text += "File \"" + openFileDialog1.SafeFileName + "\" uploaded.\n" + Environment.NewLine;
+                }
+                else
+                {
+                    richTextBox1.Text += Properties.strings.WrongPassword + Environment.NewLine;
+                }
+                listBox1.Items.Clear();
+                string[] dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                var temp = new List<string>();
+                foreach (var s in dir)
+                {
+                    if (!string.IsNullOrEmpty(s))
+                        temp.Add(s);
+                }
+                dir = temp.ToArray();
+                foreach (string item in dir)
+                {
+                    listBox1.Items.Add(item);
+                }
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+            } catch
+            {
+                richTextBox1.Text += Properties.strings.ErrorUpload + "\n" + Environment.NewLine;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 richTextBox1.ScrollToCaret();
             }
         }
 
+        string ff;
+
         private void downloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string filename = textBox2.Text;
+            ff = filename;
+            WebClient webClient = new WebClient();
+            webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wb_DownloadStringCompleted);
+            webClient.DownloadProgressChanged += (s, ee) =>
+            {
+                progressBar1.Visible = true;
+                progressBar1.Value = ee.ProgressPercentage;
+            };
+            webClient.DownloadFileCompleted += (s, ee) =>
+            {
+                progressBar1.Visible = false;
+            };
             passPhrase = textBox3.Text;
+            webClient.DownloadStringAsync(new Uri("http://" + textBox1.Text + "/download?filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase)));
+        }
+
+        private void wb_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            progressBar1.Visible = false;
             try
             {
                 if (connected)
                 {
-                    string filename = textBox2.Text;
-                    string downloadedfile = new WebClient().DownloadString("http://" + textBox1.Text + "/download?filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
-                    DialogResult result = saveFileDialog1.ShowDialog();
-                    if (result == DialogResult.OK && saveFileDialog1.CheckPathExists)
+                    DialogResult result = folderBrowserDialog1.ShowDialog();
+                    if (result == DialogResult.OK && Directory.Exists(folderBrowserDialog1.SelectedPath))
                     {
-                        //OK
+                        string downloadedfile = e.Result;
+                        downloadedfile = downloadedfile.Replace(' ', '+');
+                        string decrypted = Setup.Decrypt(downloadedfile);
+                        System.IO.File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\" + ff, decrypted, Encoding.Default);
+                        richTextBox1.Text += "File \"" + textBox2.Text + "\" downloaded.\n" + Environment.NewLine;
+                        richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                        richTextBox1.ScrollToCaret();
                     }
-                    downloadedfile = downloadedfile.Replace(' ', '+');
-                    string decrypted = Setup.Decrypt(downloadedfile);
-                    System.IO.File.WriteAllText(saveFileDialog1.FileName, decrypted, Encoding.Default);
-                    richTextBox1.Text += "File \"" + textBox2.Text + "\" downloaded.\n" + Environment.NewLine;
-                    richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                    richTextBox1.ScrollToCaret();
                 }
             }
             catch
@@ -649,10 +674,7 @@ namespace Yggdrasil
         private void themesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Themes t = new Themes();
-            if (!t.Visible)
-            {
-                t.Show();
-            }
+            t.ShowDialog();
         }
 
         private void radioStateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -818,7 +840,8 @@ namespace Yggdrasil
             }
             catch
             {
-                MessageBox.Show(Properties.strings.CannotRead, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox ms = new MsgBox(Properties.strings.CannotRead);
+                ms.ShowDialog();
             }
         }
 
@@ -882,7 +905,8 @@ namespace Yggdrasil
             }
             catch
             {
-                MessageBox.Show(Properties.strings.CannotRead, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox ms = new MsgBox(Properties.strings.CannotRead);
+                ms.ShowDialog();
             }
         }
 
