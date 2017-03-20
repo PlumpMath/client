@@ -1,3 +1,11 @@
+1.1.2
+
+- Nicer language pack
+- Redesigned MessageBoxes
+- Checkmark on checkBox1 is now black instead of white
+- The check()-Thread shouldn't be aborted on disconnect
+- Nicer uploads and downloads
+
 1.1.1
 
 - Reactivated enter to connect

@@ -214,9 +214,7 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Disconnected!
-        ///Server closed connection
-        ///or application crashed. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die The server or your internet said goodbye. Maybe you should check your connection or say that to your server administrator. ähnelt.
         /// </summary>
         internal static string ErrorDisconnect {
             get {
@@ -347,6 +345,15 @@ namespace Yggdrasil.Properties {
         internal static string NotAlive {
             get {
                 return ResourceManager.GetString("NotAlive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Oh, no ähnelt.
+        /// </summary>
+        internal static string OhNo {
+            get {
+                return ResourceManager.GetString("OhNo", resourceCulture);
             }
         }
         
