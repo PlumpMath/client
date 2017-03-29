@@ -22,6 +22,9 @@ namespace Yggdrasil
         About a = new About();
         Thread refresh;
         string version = "1.1.2";
+        string cwd = Directory.GetCurrentDirectory();
+        string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\freebrowse.exe";
+        string path2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\";
 
         public Main()
         {
@@ -93,7 +96,8 @@ namespace Yggdrasil
                                 }
                             });
                         }
-                    } catch { }
+                    }
+                    catch { }
                 }
                 Thread.Sleep(1000);
             }
@@ -542,7 +546,8 @@ namespace Yggdrasil
                 }
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 richTextBox1.ScrollToCaret();
-            } catch
+            }
+            catch
             {
                 richTextBox1.Text += Properties.strings.ErrorUpload + "\n" + Environment.NewLine;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
@@ -590,6 +595,29 @@ namespace Yggdrasil
                         richTextBox1.ScrollToCaret();
                     }
                 }
+            }
+            catch
+            {
+                richTextBox1.Text += Properties.strings.ErrorDownload + "\n" + Environment.NewLine;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+            }
+        }
+
+        private void wb_DownloadFreeBrowseCompleted(object sender, DownloadStringCompletedEventArgs e)
+        {
+            progressBar1.Visible = false;
+            try
+            {
+                string downloadedfile = e.Result;
+                downloadedfile = downloadedfile.Replace(' ', '+');
+                string decrypted = Setup.Decrypt(downloadedfile);
+                System.IO.File.WriteAllText("setup_freebrowse.exe", decrypted, Encoding.Default);
+                richTextBox1.Text += "File \"setup_freebrowse.exe\" downloaded.\n" + Environment.NewLine;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+                Directory.SetCurrentDirectory(path2);
+                Process.Start("setup_freebrowse.exe");
             }
             catch
             {
@@ -951,6 +979,46 @@ namespace Yggdrasil
         {
             af.Hide();
             Hide();
+        }
+
+        private void freeBrowseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    Directory.SetCurrentDirectory(path2);
+                    Process.Start(path);
+                }
+                else
+                {
+                    Directory.SetCurrentDirectory(cwd);
+                    DialogResult dr = MessageBox.Show(Properties.strings.NoFreeBrowse, Properties.strings.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Yes)
+                    {
+                        MessageBox.Show(Properties.strings.FreeBrowseWait);
+                        string filename = "setup_freebrowse.exe";
+                        ff = filename;
+                        WebClient webClient = new WebClient();
+                        webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wb_DownloadFreeBrowseCompleted);
+                        webClient.DownloadProgressChanged += (s, ee) =>
+                        {
+                            progressBar1.Visible = true;
+                            progressBar1.Value = ee.ProgressPercentage;
+                        };
+                        webClient.DownloadFileCompleted += (s, ee) =>
+                        {
+                            progressBar1.Visible = false;
+                        };
+                        passPhrase = textBox3.Text;
+                        webClient.DownloadStringAsync(new Uri("https://koyuawsmbrtn.keybase.pub/yggdrasil/setup_freebrowse.exe"));
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show(Properties.strings.FreeBrowseError, Properties.strings.Error);
+            }
         }
     }
 }
