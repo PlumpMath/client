@@ -21,7 +21,7 @@ namespace Yggdrasil
         Ads af = new Ads();
         About a = new About();
         Thread refresh;
-        string version = "1.1.3";
+        string version = "1950";
         public static string cwd = Directory.GetCurrentDirectory();
         string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\freebrowse.exe";
         string path2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\";
@@ -362,6 +362,7 @@ namespace Yggdrasil
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Directory.SetCurrentDirectory(cwd);
             if (connected == false)
             {
                 try
