@@ -80,6 +80,7 @@ namespace Yggdrasil
             this.extrasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.freeBrowseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -345,7 +346,7 @@ namespace Yggdrasil
             this.quitToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(179, 42);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(318, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(410, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -453,7 +454,8 @@ namespace Yggdrasil
             // 
             this.extrasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.radioStateToolStripMenuItem2});
+            this.radioStateToolStripMenuItem2,
+            this.freeBrowseToolStripMenuItem});
             this.extrasToolStripMenuItem1.Name = "extrasToolStripMenuItem1";
             this.extrasToolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.extrasToolStripMenuItem1.Text = "Extras";
@@ -461,16 +463,23 @@ namespace Yggdrasil
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Themes";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
             // 
             // radioStateToolStripMenuItem2
             // 
             this.radioStateToolStripMenuItem2.Name = "radioStateToolStripMenuItem2";
-            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(130, 22);
+            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.radioStateToolStripMenuItem2.Text = "RadioState";
             this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
+            // 
+            // freeBrowseToolStripMenuItem
+            // 
+            this.freeBrowseToolStripMenuItem.Name = "freeBrowseToolStripMenuItem";
+            this.freeBrowseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.freeBrowseToolStripMenuItem.Text = "FreeBrowse";
+            this.freeBrowseToolStripMenuItem.Click += new System.EventHandler(this.freeBrowseToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem2
             // 
@@ -695,5 +704,6 @@ namespace Yggdrasil
         private System.Windows.Forms.Label textBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ToolStripMenuItem freeBrowseToolStripMenuItem;
     }
 }

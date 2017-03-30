@@ -19,6 +19,7 @@ namespace Yggdrasil
             label1.Text = Properties.strings.ChooseImage;
             button2.Text = Properties.strings.OK;
             button3.Text = Properties.strings.RemoveTheme;
+            Directory.SetCurrentDirectory(Main.cwd);
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]

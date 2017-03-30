@@ -261,4 +261,13 @@
   <data name="OhNo" xml:space="preserve">
     <value>Oh, nein</value>
   </data>
+  <data name="FreeBrowseError" xml:space="preserve">
+    <value>Whoopsie, ein Fehler mit FreeBrowse ist aufgetreten.</value>
+  </data>
+  <data name="FreeBrowseWait" xml:space="preserve">
+    <value>Bitte warte während FreeBrowse gerade heruntergeladen, entschlüsselt und installiert wird...</value>
+  </data>
+  <data name="NoFreeBrowse" xml:space="preserve">
+    <value>FreeBrowse ist gerade nicht installiert. Möchtest du es herunterladen und installieren?</value>
+  </data>
 </root>

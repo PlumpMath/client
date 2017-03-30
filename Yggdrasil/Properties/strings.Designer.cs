@@ -277,6 +277,24 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Whoopsie, an error with FreeBrowse has occurred. ähnelt.
+        /// </summary>
+        internal static string FreeBrowseError {
+            get {
+                return ResourceManager.GetString("FreeBrowseError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Please wait while FreeBrowse is being downloaded, decrypted and installed. ähnelt.
+        /// </summary>
+        internal static string FreeBrowseWait {
+            get {
+                return ResourceManager.GetString("FreeBrowseWait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Import file list ähnelt.
         /// </summary>
         internal static string Import {
@@ -336,6 +354,15 @@ namespace Yggdrasil.Properties {
         internal static string NoFiles {
             get {
                 return ResourceManager.GetString("NoFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die FreeBrowse isn&apos;t installed right now. Do you want to download and install it? ähnelt.
+        /// </summary>
+        internal static string NoFreeBrowse {
+            get {
+                return ResourceManager.GetString("NoFreeBrowse", resourceCulture);
             }
         }
         
