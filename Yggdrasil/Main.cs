@@ -21,8 +21,8 @@ namespace Yggdrasil
         Ads af = new Ads();
         About a = new About();
         Thread refresh;
-        string version = "1.1.2";
-        string cwd = Directory.GetCurrentDirectory();
+        string version = "1.1.3";
+        public static string cwd = Directory.GetCurrentDirectory();
         string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\freebrowse.exe";
         string path2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\";
 
@@ -616,7 +616,6 @@ namespace Yggdrasil
                 richTextBox1.Text += "File \"setup_freebrowse.exe\" downloaded.\n" + Environment.NewLine;
                 richTextBox1.SelectionStart = richTextBox1.Text.Length;
                 richTextBox1.ScrollToCaret();
-                Directory.SetCurrentDirectory(path2);
                 Process.Start("setup_freebrowse.exe");
             }
             catch
