@@ -439,6 +439,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Refresh file list.
+        /// </summary>
+        internal static string RefreshFileList {
+            get {
+                return ResourceManager.GetString("RefreshFileList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         internal static string Remove {

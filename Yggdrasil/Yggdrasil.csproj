@@ -90,12 +90,6 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ads.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Ads.Designer.cs">
-      <DependentUpon>Ads.cs</DependentUpon>
-    </Compile>
     <Compile Include="Blog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,9 +155,6 @@
     </Compile>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ads.resx">
-      <DependentUpon>Ads.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Blog.resx">
       <DependentUpon>Blog.cs</DependentUpon>
