@@ -267,4 +267,7 @@
   <data name="NoFreeBrowse" xml:space="preserve">
     <value>FreeBrowse isn't installed right now. Do you want to download and install it?</value>
   </data>
+  <data name="MonoIcons" xml:space="preserve">
+    <value>Use monochrome icon</value>
+  </data>
 </root>

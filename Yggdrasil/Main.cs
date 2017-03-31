@@ -21,7 +21,7 @@ namespace Yggdrasil
         Ads af = new Ads();
         About a = new About();
         Thread refresh;
-        string version = "1.1.3";
+        string version = "1967";
         public static string cwd = Directory.GetCurrentDirectory();
         string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\freebrowse.exe";
         string path2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\";
@@ -181,6 +181,17 @@ namespace Yggdrasil
 
         public void ygginit()
         {
+            if (File.Exists("monoicons"))
+            {
+                useMonochromeIconsToolStripMenuItem.Checked = true;
+                notifyIcon1.Icon = Properties.icons.logo_new_big_mono;
+            }
+            else
+            {
+                useMonochromeIconsToolStripMenuItem.Checked = false;
+                notifyIcon1.Icon = Properties.icons.logo_new;
+                this.Icon = Properties.icons.logo_new;
+            }
             if (!File.Exists("peazip.exe"))
             {
                 compressionToolToolStripMenuItem.Enabled = false;
@@ -297,6 +308,7 @@ namespace Yggdrasil
             filesToolStripMenuItem.Text = Properties.strings.Files;
             massUploadToolStripMenuItem.Text = Properties.strings.MassUpload;
             themesToolStripMenuItem.Text = Properties.strings.Themes;
+            useMonochromeIconsToolStripMenuItem.Text = Properties.strings.MonoIcons;
         }
 
         #region player
@@ -362,6 +374,7 @@ namespace Yggdrasil
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Directory.SetCurrentDirectory(cwd);
             if (connected == false)
             {
                 try
@@ -436,10 +449,7 @@ namespace Yggdrasil
                         try
                         {
                             stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream").Split('\n')[0];
-                            if (!stream.Contains("ERR_") && radio)
-                            {
-                                PlayMusicFromURL(stream);
-                            }
+                            PlayMusicFromURL(stream);
                         }
                         catch { }
                         try
@@ -807,10 +817,7 @@ namespace Yggdrasil
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             About a = new About();
-            if (!a.Visible)
-            {
-                a.Show();
-            }
+            a.ShowDialog();
         }
 
         private void compressionToolToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1017,6 +1024,27 @@ namespace Yggdrasil
             catch
             {
                 MessageBox.Show(Properties.strings.FreeBrowseError, Properties.strings.Error);
+            }
+        }
+
+        private void useMonochromeIconsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("monoicons"))
+            {
+                Directory.SetCurrentDirectory(cwd);
+                notifyIcon1.Icon = Properties.icons.logo_new_big_mono;
+                notifyIcon1.Visible = false;
+                notifyIcon1.Visible = true;
+                File.WriteAllText("monoicons", "");
+                useMonochromeIconsToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                notifyIcon1.Icon = Properties.icons.logo_new;
+                notifyIcon1.Visible = false;
+                notifyIcon1.Visible = true;
+                File.Delete("monoicons");
+                useMonochromeIconsToolStripMenuItem.Checked = false;
             }
         }
     }
