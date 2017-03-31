@@ -270,4 +270,7 @@
   <data name="MonoIcons" xml:space="preserve">
     <value>Use monochrome icon</value>
   </data>
+  <data name="RefreshFileList" xml:space="preserve">
+    <value>Refresh file list</value>
+  </data>
 </root>

@@ -18,10 +18,9 @@ namespace Yggdrasil
         string passPhrase = "";
         string stream;
         bool radio = true;
-        Ads af = new Ads();
         About a = new About();
         Thread refresh;
-        string version = "1967";
+        string version = "1.1.4";
         public static string cwd = Directory.GetCurrentDirectory();
         string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\freebrowse.exe";
         string path2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\";
@@ -34,18 +33,11 @@ namespace Yggdrasil
             Hide();
             ygginit();
             localize();
-            Thread.Sleep(420); //If you know, what I mean ;)
+            Thread.Sleep(420);
             refresh = new Thread(check);
             t.Abort();
             this.TransparencyKey = this.BackColor;
             this.Show();
-            /*
-            af.Show();
-            this.CenterToScreen();
-            af.Left = this.Left + 20;
-            af.Top = this.Top;
-            af.SetBounds(af.Bounds.X, this.Bounds.Y, af.Width, af.Height);
-            */
             try
             {
                 Stream str = Properties.sounds._in;
@@ -63,9 +55,7 @@ namespace Yggdrasil
             textBox1.Focus();
         }
 
-        //Global variables;
         private bool _dragging = false;
-        //private Point _offset;
         private Point _start_point = new Point(0, 0);
 
         public int WebClientUploadProgressChanged { get; private set; }
@@ -112,7 +102,6 @@ namespace Yggdrasil
                 textBox2.Text = "";
                 listBox1.Items.Clear();
                 listBox1.Enabled = false;
-                //button1.Text = Properties.strings.Connect;
                 connectToolStripMenuItem1.Text = Properties.strings.Connect;
                 label4.Text = Properties.strings.Disconnected;
                 label4.ForeColor = System.Drawing.Color.Red;
@@ -144,7 +133,6 @@ namespace Yggdrasil
                     Stream str = Properties.sounds.off;
                     SoundPlayer snd = new SoundPlayer(str);
                     snd.Play();
-                    //refresh.Abort();
                 }
                 catch { }
                 Thread.Sleep(1500);
@@ -154,9 +142,8 @@ namespace Yggdrasil
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            _dragging = true;  // _dragging is your variable flag
+            _dragging = true;
             _start_point = new Point(e.X, e.Y);
-            af.SetBounds(af.Bounds.X, af.Bounds.Y, af.Width, af.Height);
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
@@ -171,7 +158,6 @@ namespace Yggdrasil
                 Point p = PointToScreen(e.Location);
                 Location = new Point(p.X - this._start_point.X, p.Y - this._start_point.Y);
             }
-            af.SetBounds(af.Bounds.X, af.Bounds.Y, af.Width, af.Height);
         }
 
         public void splash()
@@ -273,16 +259,6 @@ namespace Yggdrasil
 
         private void localize()
         {
-            /*
-            button5.Text = Properties.strings.Download;
-            button6.Text = Properties.strings.Remove;
-            button3.Text = Properties.strings.Clear;
-            button4.Text = Properties.strings.Upload;
-            button2.Text = Properties.strings.ListDir;
-            button1.Text = Properties.strings.Connect;
-            button7.Text = Properties.strings.Quit;
-            button9.Text = Properties.strings.Themes;
-             */
             button8.Text = Properties.strings.About;
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
@@ -290,7 +266,7 @@ namespace Yggdrasil
             checkBox1.Text = Properties.strings.PasswordProtected;
             connectToolStripMenuItem1.Text = Properties.strings.Connect;
             serverToolStripMenuItem1.Text = Properties.strings.Server;
-            listDirectoryToolStripMenuItem1.Text = Properties.strings.ListDir;
+            listDirectoryToolStripMenuItem1.Text = Properties.strings.RefreshFileList;
             uploadToolStripMenuItem1.Text = Properties.strings.Upload;
             downloadToolStripMenuItem1.Text = Properties.strings.Download;
             deleteToolStripMenuItem1.Text = Properties.strings.Delete;
@@ -395,7 +371,6 @@ namespace Yggdrasil
                     if (alive == "OK")
                     {
                         textBox1.Enabled = false;
-                        //button1.Text = Properties.strings.Disconnect;
                         richTextBox1.Text = "";
                         label4.Text = Properties.strings.Connected;
                         label4.ForeColor = System.Drawing.Color.Green;
@@ -487,26 +462,26 @@ namespace Yggdrasil
             {
                 try
                 {
-                    string dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls");
-                    dir = dir.Replace("\n", Environment.NewLine);
-                    byte[] bytes = Encoding.Default.GetBytes(dir);
-                    dir = Encoding.UTF8.GetString(bytes);
-                    if (dir == "")
+                    listBox1.Items.Clear();
+                    string[] dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                    var temp = new List<string>();
+                    foreach (var s in dir)
                     {
-                        richTextBox1.Text += Properties.strings.NoFiles + Environment.NewLine;
+                        if (!string.IsNullOrEmpty(s))
+                            temp.Add(s);
                     }
-                    else
+                    dir = temp.ToArray();
+                    foreach (string item in dir)
                     {
-                        richTextBox1.Text += dir;
+                        listBox1.Items.Add(item);
                     }
-                    richTextBox1.SelectionStart = richTextBox1.Text.Length;
-                    richTextBox1.ScrollToCaret();
                 }
                 catch
                 {
                     richTextBox1.Text += "Cannot list directory!";
                 }
             }
+            textBox2.Text = "";
         }
 
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -522,6 +497,15 @@ namespace Yggdrasil
                     passPhrase = textBox3.Text;
                     string filename = openFileDialog1.SafeFileName;
                     wc.UploadStringAsync(new Uri("http://" + textBox1.Text + "/upload"), "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
+                    wc.UploadProgressChanged += (s, ee) =>
+                    {
+                        progressBar1.Visible = true;
+                        progressBar1.Value = ee.ProgressPercentage;
+                    };
+                    wc.UploadStringCompleted += (s, ee) =>
+                    {
+                        progressBar1.Visible = false;
+                    };
                 }
             }
             wc.UploadStringCompleted += new UploadStringCompletedEventHandler(wc_UploadStringCompleted1);
@@ -983,7 +967,6 @@ namespace Yggdrasil
 
         private void button1_Click(object sender, EventArgs e)
         {
-            af.Hide();
             Hide();
         }
 
@@ -1045,6 +1028,80 @@ namespace Yggdrasil
                 notifyIcon1.Visible = true;
                 File.Delete("monoicons");
                 useMonochromeIconsToolStripMenuItem.Checked = false;
+            }
+        }
+
+        private void Main_DragDrop(object sender, DragEventArgs e)
+        {
+            WebClient wc = new WebClient();
+            string[] list = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string filename = list[0];
+            ff = Path.GetFileName(filename);
+            if (File.Exists(filename) && connected)
+            {
+                string encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(filename, Encoding.Default));
+                passPhrase = textBox3.Text;
+                wc.UploadStringAsync(new Uri("http://" + textBox1.Text + "/upload"), "content=" + encryptedfile + "&filename=" + ff + "&password=" + CalculateMD5Hash(passPhrase));
+                wc.UploadProgressChanged += (s, ee) =>
+                {
+                    progressBar1.Visible = true;
+                    progressBar1.Value = ee.ProgressPercentage;
+                };
+                wc.UploadStringCompleted += (s, ee) =>
+                {
+                    progressBar1.Visible = false;
+                };
+            }
+            wc.UploadStringCompleted += new UploadStringCompletedEventHandler(wc_UploadStringCompleted2);
+        }
+
+        private void wc_UploadStringCompleted2(object sender, UploadStringCompletedEventArgs e)
+        {
+            progressBar1.Visible = false;
+            try
+            {
+                string downloadedfile = e.Result;
+                if (downloadedfile != "ERR_WRONG_PW")
+                {
+                    richTextBox1.Text += "File \"" + ff + "\" uploaded.\n" + Environment.NewLine;
+                }
+                else
+                {
+                    richTextBox1.Text += Properties.strings.WrongPassword + Environment.NewLine;
+                }
+                listBox1.Items.Clear();
+                string[] dir = new WebClient().DownloadString("http://" + textBox1.Text + "/ls").Split('\n');
+                var temp = new List<string>();
+                foreach (var s in dir)
+                {
+                    if (!string.IsNullOrEmpty(s))
+                        temp.Add(s);
+                }
+                dir = temp.ToArray();
+                foreach (string item in dir)
+                {
+                    listBox1.Items.Add(item);
+                }
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+            }
+            catch
+            {
+                richTextBox1.Text += Properties.strings.ErrorUpload + "\n" + Environment.NewLine;
+                richTextBox1.SelectionStart = richTextBox1.Text.Length;
+                richTextBox1.ScrollToCaret();
+            }
+        }
+
+        private void listBox1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
             }
         }
     }

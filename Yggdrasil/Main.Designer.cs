@@ -81,6 +81,7 @@ namespace Yggdrasil
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.freeBrowseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.useMonochromeIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -93,7 +94,6 @@ namespace Yggdrasil
             this.textBox2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.useMonochromeIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -347,7 +347,7 @@ namespace Yggdrasil
             this.quitToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(179, 42);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(410, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(318, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -404,35 +404,35 @@ namespace Yggdrasil
             // listDirectoryToolStripMenuItem1
             // 
             this.listDirectoryToolStripMenuItem1.Name = "listDirectoryToolStripMenuItem1";
-            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
-            this.listDirectoryToolStripMenuItem1.Text = "List directory";
+            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
+            this.listDirectoryToolStripMenuItem1.Text = "Refresh file list";
             this.listDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.listDirectoryToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem1
             // 
             this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
-            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.uploadToolStripMenuItem1.Text = "Upload";
             this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
             // massUploadToolStripMenuItem
             // 
             this.massUploadToolStripMenuItem.Name = "massUploadToolStripMenuItem";
-            this.massUploadToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.massUploadToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.massUploadToolStripMenuItem.Text = "Mass upload";
             this.massUploadToolStripMenuItem.Click += new System.EventHandler(this.massUploadToolStripMenuItem_Click);
             // 
             // downloadToolStripMenuItem1
             // 
             this.downloadToolStripMenuItem1.Name = "downloadToolStripMenuItem1";
-            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.downloadToolStripMenuItem1.Text = "Download";
             this.downloadToolStripMenuItem1.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem1
             // 
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -483,6 +483,13 @@ namespace Yggdrasil
             this.freeBrowseToolStripMenuItem.Text = "FreeBrowse";
             this.freeBrowseToolStripMenuItem.Click += new System.EventHandler(this.freeBrowseToolStripMenuItem_Click);
             // 
+            // useMonochromeIconsToolStripMenuItem
+            // 
+            this.useMonochromeIconsToolStripMenuItem.Name = "useMonochromeIconsToolStripMenuItem";
+            this.useMonochromeIconsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.useMonochromeIconsToolStripMenuItem.Text = "Use monochrome Icons";
+            this.useMonochromeIconsToolStripMenuItem.Click += new System.EventHandler(this.useMonochromeIconsToolStripMenuItem_Click);
+            // 
             // quitToolStripMenuItem2
             // 
             this.quitToolStripMenuItem2.Name = "quitToolStripMenuItem2";
@@ -492,6 +499,7 @@ namespace Yggdrasil
             // 
             // listBox1
             // 
+            this.listBox1.AllowDrop = true;
             this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(43)))));
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -502,6 +510,8 @@ namespace Yggdrasil
             this.listBox1.Size = new System.Drawing.Size(203, 314);
             this.listBox1.TabIndex = 31;
             this.listBox1.SelectedValueChanged += new System.EventHandler(this.listBox1_SelectedValueChanged);
+            this.listBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.Main_DragDrop);
+            this.listBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox1_DragEnter);
             this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown);
             // 
             // label1
@@ -600,13 +610,6 @@ namespace Yggdrasil
             this.progressBar1.Size = new System.Drawing.Size(203, 23);
             this.progressBar1.TabIndex = 43;
             this.progressBar1.Visible = false;
-            // 
-            // useMonochromeIconsToolStripMenuItem
-            // 
-            this.useMonochromeIconsToolStripMenuItem.Name = "useMonochromeIconsToolStripMenuItem";
-            this.useMonochromeIconsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.useMonochromeIconsToolStripMenuItem.Text = "Use monochrome Icons";
-            this.useMonochromeIconsToolStripMenuItem.Click += new System.EventHandler(this.useMonochromeIconsToolStripMenuItem_Click);
             // 
             // Main
             // 
