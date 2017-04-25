@@ -28,9 +28,27 @@ namespace Yggdrasil
         public Main()
         {
             InitializeComponent();
+            Hide();
+            if (File.Exists("lock"))
+            {
+                MessageBox.Show("Yggdrasil is already running!");
+                try
+                {
+                    e.Cancel = true;
+                    Hide();
+                    try
+                    {
+                        Stream str = Properties.sounds._out;
+                        SoundPlayer snd = new SoundPlayer(str);
+                        snd.Play();
+                    }
+                    catch { }
+                }
+                catch { }
+
+            }
             Thread t = new Thread(new ThreadStart(splash));
             t.Start();
-            Hide();
             ygginit();
             localize();
             Thread.Sleep(420);
@@ -53,6 +71,7 @@ namespace Yggdrasil
             massUploadToolStripMenuItem.Enabled = false;
             listBox1.Enabled = false;
             textBox1.Focus();
+            File.Create("lock");
         }
 
         private bool _dragging = false;
@@ -123,19 +142,23 @@ namespace Yggdrasil
                 catch { }
                 try
                 {
-                    string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1000.txt");
-                    ads = ads.Replace("\n", Environment.NewLine);
-                    richTextBox1.Text += ads + Environment.NewLine;
-                }
-                catch { }
-                try
-                {
                     Stream str = Properties.sounds.off;
                     SoundPlayer snd = new SoundPlayer(str);
                     snd.Play();
                 }
                 catch { }
                 Thread.Sleep(1500);
+            }
+            catch { }
+        }
+
+        private void resetBox()
+        {
+            try
+            {
+                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1000.txt");
+                ads = ads.Replace("\n", Environment.NewLine);
+                richTextBox1.Text = ads + Environment.NewLine;
             }
             catch { }
         }
