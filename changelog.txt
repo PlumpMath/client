@@ -4,7 +4,6 @@
 - Added donation link
 - Added contact via E-Mail
 - Only one instance can be run on the same machine
-- Added curl (http://www.paehl.com/open_source/?CURL_7.54.0)
 - And lots of Bugfixes
 
 1.1.4

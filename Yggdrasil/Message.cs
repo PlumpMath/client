@@ -57,16 +57,6 @@ namespace Yggdrasil
             label1.Text = Properties.strings.Name;
             label2.Text = Properties.strings.EMail;
             label3.Text = Properties.strings.Text;
-            try
-            {
-                Directory.SetCurrentDirectory(Main.cwd);
-                Hide();
-                if (!File.Exists("curl.exe"))
-                {
-                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/curl.exe", "curl.exe");
-                }
-                ShowDialog();
-            } catch { }
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -85,14 +75,14 @@ namespace Yggdrasil
                 {
                     new WebClient().DownloadString("https://shitload.lima-city.de/");
                     Directory.SetCurrentDirectory(Main.cwd);
-                    Process process = new Process();
-                    process.StartInfo.RedirectStandardOutput = true;
-                    process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.CreateNoWindow = true;
-                    process.StartInfo.FileName = "curl";
-                    process.StartInfo.Arguments = "--data \"name=" + Nameb.Text + "&email=" + Emailb.Text + "&text=" + Textb.Text + "\" https://shitload.lima-city.de/yggmail.php";
-                    process.Start();
-                    Hide();
+                    string URI = "https://shitload.lima-city.de/yggmail.php";
+                    string myParameters = "name=" + Nameb.Text + "&email=" + Emailb.Text + "&text=" + Textb.Text;
+                    using (WebClient wc = new WebClient())
+                    {
+                        wc.Headers[HttpRequestHeader.ContentType] = "application/x-www-form-urlencoded";
+                        string HtmlResult = wc.UploadString(URI, myParameters);
+                    }
+                    this.Close();
                 } catch
                 {
                     MsgBox m = new MsgBox(Properties.strings.NoSend);
