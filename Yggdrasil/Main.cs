@@ -20,7 +20,7 @@ namespace Yggdrasil
         bool radio = true;
         About a = new About();
         Thread refresh;
-        string version = "1.1.4";
+        string version = "1.1.5";
         public static string cwd = Directory.GetCurrentDirectory();
         string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\freebrowse.exe";
         string path2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\";
