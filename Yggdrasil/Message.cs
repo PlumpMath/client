@@ -60,7 +60,12 @@ namespace Yggdrasil
             try
             {
                 Directory.SetCurrentDirectory(Main.cwd);
-                new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/curl.exe", "curl.exe");
+                Hide();
+                if (!File.Exists("curl.exe"))
+                {
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/curl.exe", "curl.exe");
+                }
+                ShowDialog();
             } catch { }
         }
 

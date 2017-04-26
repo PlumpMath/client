@@ -31,21 +31,8 @@ namespace Yggdrasil
             Hide();
             if (File.Exists("lock"))
             {
-                MessageBox.Show("Yggdrasil is already running!");
-                try
-                {
-                    e.Cancel = true;
-                    Hide();
-                    try
-                    {
-                        Stream str = Properties.sounds._out;
-                        SoundPlayer snd = new SoundPlayer(str);
-                        snd.Play();
-                    }
-                    catch { }
-                }
-                catch { }
-
+                MessageBox.Show("Yggdrasil is already running!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Environment.Exit(0);
             }
             Thread t = new Thread(new ThreadStart(splash));
             t.Start();
@@ -778,6 +765,7 @@ namespace Yggdrasil
                 catch { }
             }
             catch { }
+            File.Delete("lock");
         }
 
         private void quitToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -793,6 +781,7 @@ namespace Yggdrasil
             }
             catch { }
             Thread.Sleep(1500);
+            File.Delete("lock");
             Environment.Exit(0);
         }
 
