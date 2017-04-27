@@ -81,6 +81,7 @@ namespace Yggdrasil
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.freeBrowseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.caterpillarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useMonochromeIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
@@ -347,7 +348,7 @@ namespace Yggdrasil
             this.quitToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(179, 42);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(318, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(410, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -457,6 +458,7 @@ namespace Yggdrasil
             this.toolStripMenuItem1,
             this.radioStateToolStripMenuItem2,
             this.freeBrowseToolStripMenuItem,
+            this.caterpillarToolStripMenuItem,
             this.useMonochromeIconsToolStripMenuItem});
             this.extrasToolStripMenuItem1.Name = "extrasToolStripMenuItem1";
             this.extrasToolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
@@ -482,6 +484,13 @@ namespace Yggdrasil
             this.freeBrowseToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.freeBrowseToolStripMenuItem.Text = "FreeBrowse";
             this.freeBrowseToolStripMenuItem.Click += new System.EventHandler(this.freeBrowseToolStripMenuItem_Click);
+            // 
+            // caterpillarToolStripMenuItem
+            // 
+            this.caterpillarToolStripMenuItem.Name = "caterpillarToolStripMenuItem";
+            this.caterpillarToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.caterpillarToolStripMenuItem.Text = "Caterpillar";
+            this.caterpillarToolStripMenuItem.Click += new System.EventHandler(this.caterpillarToolStripMenuItem_Click);
             // 
             // useMonochromeIconsToolStripMenuItem
             // 
@@ -718,5 +727,6 @@ namespace Yggdrasil
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ToolStripMenuItem freeBrowseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useMonochromeIconsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem caterpillarToolStripMenuItem;
     }
 }
