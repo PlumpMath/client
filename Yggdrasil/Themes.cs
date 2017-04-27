@@ -52,6 +52,7 @@ namespace Yggdrasil
                     }
                     catch { }
                     Thread.Sleep(200);
+                    File.Delete("lock");
                     System.Diagnostics.Process.Start(Application.ExecutablePath);
                     Environment.Exit(0);
                 }
@@ -106,6 +107,7 @@ namespace Yggdrasil
                 }
                 catch { }
                 Thread.Sleep(200);
+                File.Delete("lock");
                 System.Diagnostics.Process.Start(Application.ExecutablePath);
                 Environment.Exit(0);
             } catch { }
