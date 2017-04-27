@@ -1,3 +1,8 @@
+1.1.5 Build 2003
+
+- Bugfixes
+- Added Caterpillar
+
 1.1.5
 
 - Changed about box a bit

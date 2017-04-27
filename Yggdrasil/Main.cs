@@ -13,6 +13,7 @@ using System.Collections.Generic;
 namespace Yggdrasil
 {
     public partial class Main : Form
+
     {
         bool connected = false;
         string passPhrase = "";
@@ -20,7 +21,7 @@ namespace Yggdrasil
         bool radio = true;
         About a = new About();
         Thread refresh;
-        string version = "1.1.5";
+        string version = "2003";
         public static string cwd = Directory.GetCurrentDirectory();
         string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\freebrowse.exe";
         string path2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\";
@@ -34,6 +35,8 @@ namespace Yggdrasil
                 MessageBox.Show("Yggdrasil is already running!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
+            var FileLock = File.Create("lock");
+            FileLock.Close();
             Thread t = new Thread(new ThreadStart(splash));
             t.Start();
             ygginit();
@@ -58,7 +61,6 @@ namespace Yggdrasil
             massUploadToolStripMenuItem.Enabled = false;
             listBox1.Enabled = false;
             textBox1.Focus();
-            File.Create("lock");
         }
 
         private bool _dragging = false;
@@ -763,9 +765,9 @@ namespace Yggdrasil
                     snd.Play();
                 }
                 catch { }
+                File.Delete("lock");
             }
             catch { }
-            File.Delete("lock");
         }
 
         private void quitToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -778,10 +780,10 @@ namespace Yggdrasil
                 Stream str = Properties.sounds._out;
                 SoundPlayer snd = new SoundPlayer(str);
                 snd.Play();
+                File.Delete("lock");
             }
             catch { }
             Thread.Sleep(1500);
-            File.Delete("lock");
             Environment.Exit(0);
         }
 
@@ -1114,6 +1116,26 @@ namespace Yggdrasil
             else
             {
                 e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void caterpillarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("caterpillar.exe"))
+            {
+                try
+                {
+                    new WebClient().DownloadFile("https://github.com/yggdrasilfs/caterpillar/releases/download/latest/caterpillar.exe", "caterpillar.exe");
+                    Process.Start("caterpillar.exe");
+                }
+                catch
+                {
+                    MessageBox.Show(Properties.strings.NotAlive, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                Process.Start("caterpillar.exe");
             }
         }
     }
