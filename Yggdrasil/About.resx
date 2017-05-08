@@ -151,22 +151,27 @@ koyuawsmbrtn - Maintainer/Programmer and UI/UX developement
 Hauke - The guy who made the encryption library
 SansWithHat - Graphic designer
 
+Close/OK icon by Madebyoliver from Flaticons.com
+(flaticon.com/authors/madebyoliver)
+Sad face icon by Freepik from Flaticons.com (freepik.com)
+
 And all thanks to our donators on Paypal.
 
 THIS SOFTWARE COMES WITHOUT ANY
 WARRANTY AS DESCRIBED IN THE GPL
 
-© Yggdrasil 2017
+      © Yggdrasil 2017
 </value>
   </data>
   <data name="pictureBox3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xMK0KCsAAAADHSURBVFhHxc5R
-        DoUgDAVR979pHppIhA7lNuGVj+PHCC1XKeUojJkwZsKYCWMmjNvda55V9p8JjXMp5J0zmWVCs7goEWZg
-        bIQBU+JdjB1xUCdwB6MRGBg6W2FEymDlzADjlLfA++fA6KJF1EQYl74Lv+o3CqNkw/IbRsnRB4zLX/Ub
-        hdFFC6mJME55i7x/DoxIWaCcGWA0IoMjZyuMneDAR+AOxiYwyBDvYmyEAa73vjMD41aLR5jwF8cf4MCY
-        CWMmjJkw5inXDw/Ughm6SQ7OAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAA3NCSVQICAjb4U/gAAAAAXNSR0IArs4c
+        6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAABGwAAARsAa9dceEAAAAZdEVYdFNvZnR3YXJlAHd3dy5p
+        bmtzY2FwZS5vcmeb7jwaAAAAzUlEQVQ4T6VTOxKCMBCNl/Ew5ADOkBtYcQO5E+MBbGiwoBJm7On9TNp1
+        X2b5BBN1TPFg2X3vsdkkiog8dLts2+VZyagYgwBxidqaP38otbkYXTDRMigCCw64vgEn+lwfA4IgwB1N
+        nIH8OUiOwXUCA1mz37bRHjmSs9AqDjCwucDEW32i695MOcTIBUwOMMCEvQIE96Z272W85jEqGGCb3ooQ
+        PNszPdomJgaGjwYQw+SbQfISEoeYuo3JBwmP5KM8mkgnf1ymBWQmP15nUi8/AnmZUgMEfgAAAABJRU5E
+        rkJggg==
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
