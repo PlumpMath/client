@@ -18,13 +18,11 @@ namespace Yggdrasil
         bool connected = false;
         string passPhrase = "";
         string stream;
-        bool radio = true;
+        bool radio = false;
         About a = new About();
         Thread refresh;
-        string version = "2006";
+        string version = "1.1.6";
         public static string cwd = Directory.GetCurrentDirectory();
-        string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\freebrowse.exe";
-        string path2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\" + "FreeBrowse\\";
 
         public Main()
         {
@@ -145,7 +143,7 @@ namespace Yggdrasil
         {
             try
             {
-                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1000.txt");
+                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1001.txt");
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text = ads + Environment.NewLine;
             }
@@ -177,6 +175,13 @@ namespace Yggdrasil
             Application.Run(new Splash());
         }
 
+        public void notify(string title, string message)
+        {
+            notifyIcon1.BalloonTipText = message;
+            notifyIcon1.BalloonTipTitle = title;
+            notifyIcon1.ShowBalloonTip(3000);
+        }
+
         public void ygginit()
         {
             if (File.Exists("monoicons"))
@@ -196,7 +201,7 @@ namespace Yggdrasil
             }
             try
             {
-                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1000.txt");
+                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1001.txt");
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text += ads + Environment.NewLine;
             }
@@ -220,7 +225,7 @@ namespace Yggdrasil
             try
             {
                 new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/latest.txt");
-                new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Launcher.exe", "Launcher.exe");
+                new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Launcher.exe", "Updater.exe");
             }
             catch
             {
@@ -266,12 +271,28 @@ namespace Yggdrasil
                     File.Delete("ygg_bgimage.conf");
                 }
             }
+            try
+            {
+                string latest = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/latest.txt");
+                if (!File.Exists("Updater.exe") && File.Exists("Launcher.exe"))
+                {
+                    try
+                    {
+                        File.Move("Launcher.exe", "Updater.exe");
+                    }
+                    catch { }
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Launcher_New.exe", "Launcher.exe");
+                }
+                if (File.ReadAllText("verinfo").Split('\n')[0] != latest)
+                {
+                    notify(Properties.strings.Info, Properties.strings.NeedUpdate);
+                }
+            } catch { }
             textBox4.Text = "Done. Have a nice day :)";
         }
 
         private void localize()
         {
-            button8.Text = Properties.strings.About;
             label3.Text = Properties.strings.File;
             label4.Text = Properties.strings.Disconnected;
             label1.Text = Properties.strings.Files + ":";
@@ -286,9 +307,13 @@ namespace Yggdrasil
             clearToolStripMenuItem1.Text = Properties.strings.Clear;
             extrasToolStripMenuItem1.Text = Properties.strings.Extras;
             quitToolStripMenuItem2.Text = Properties.strings.Quit;
-            radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
-            radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
+            radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
+            radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
             aboutToolStripMenuItem.Text = Properties.strings.About;
+            aboutToolStripMenuItem1.Text = Properties.strings.About;
+            updateSettingsToolStripMenuItem.Text = Properties.strings.Info;
+            updateSettingsToolStripMenuItem.Text = Properties.strings.Settings;
+            lookForUpdatesToolStripMenuItem.Text = Properties.strings.CheckUpdates;
             quitToolStripMenuItem1.Text = Properties.strings.Quit;
             compressionToolToolStripMenuItem.Text = Properties.strings.CompressionTool;
             importFilelistToolStripMenuItem.Text = Properties.strings.Import;
@@ -353,11 +378,6 @@ namespace Yggdrasil
             {
                 textBox1.Text = textBox1.Text.Replace('\n', ' ');
             }
-        }
-
-        private void button8_Click_1(object sender, EventArgs e)
-        {
-            a.ShowDialog();
         }
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -436,7 +456,10 @@ namespace Yggdrasil
                         try
                         {
                             stream = new WebClient().DownloadString("http://" + textBox1.Text + "/stream").Split('\n')[0];
-                            PlayMusicFromURL(stream);
+                            if (radio)
+                            {
+                                PlayMusicFromURL(stream);
+                            }
                         }
                         catch { }
                         try
@@ -707,7 +730,7 @@ namespace Yggdrasil
 
         private void themesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Themes t = new Themes();
+            Settings t = new Settings();
             t.ShowDialog();
         }
 
@@ -985,46 +1008,6 @@ namespace Yggdrasil
             Hide();
         }
 
-        private void freeBrowseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (File.Exists(path))
-                {
-                    Directory.SetCurrentDirectory(path2);
-                    Process.Start(path);
-                }
-                else
-                {
-                    Directory.SetCurrentDirectory(cwd);
-                    DialogResult dr = MessageBox.Show(Properties.strings.NoFreeBrowse, Properties.strings.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (dr == DialogResult.Yes)
-                    {
-                        MessageBox.Show(Properties.strings.FreeBrowseWait);
-                        string filename = "setup_freebrowse.exe";
-                        ff = filename;
-                        WebClient webClient = new WebClient();
-                        webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(wb_DownloadFreeBrowseCompleted);
-                        webClient.DownloadProgressChanged += (s, ee) =>
-                        {
-                            progressBar1.Visible = true;
-                            progressBar1.Value = ee.ProgressPercentage;
-                        };
-                        webClient.DownloadFileCompleted += (s, ee) =>
-                        {
-                            progressBar1.Visible = false;
-                        };
-                        passPhrase = textBox3.Text;
-                        webClient.DownloadStringAsync(new Uri("https://koyuawsmbrtn.keybase.pub/yggdrasil/setup_freebrowse.exe"));
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show(Properties.strings.FreeBrowseError, Properties.strings.Error);
-            }
-        }
-
         private void useMonochromeIconsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!File.Exists("monoicons"))
@@ -1120,24 +1103,25 @@ namespace Yggdrasil
             }
         }
 
-        private void caterpillarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void lookForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists("caterpillar.exe"))
+            try
             {
-                try
-                {
-                    new WebClient().DownloadFile("https://github.com/yggdrasilfs/caterpillar/releases/download/latest/caterpillar.exe", "caterpillar.exe");
-                    Process.Start("caterpillar.exe");
-                }
-                catch
-                {
-                    MessageBox.Show(Properties.strings.NotAlive, Properties.strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                Process.Start("caterpillar.exe");
-            }
+                File.Delete("lock");
+            } catch { }
+            Process.Start("Updater.exe");
+            Environment.Exit(0);
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            a.ShowDialog();
+        }
+
+        private void updateSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Settings s = new Settings();
+            s.ShowDialog();
         }
     }
 }

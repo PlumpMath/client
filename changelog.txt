@@ -1,4 +1,13 @@
-1.1.5 Build 2003
+1.1.6
+
+- Bug fixes
+- Cleaned up the UI
+- No more auto-updates
+- New about page
+- New icons
+- Radio is muted by default
+
+1.1.5 Build 2003-2006
 
 - Bugfixes
 - Added Caterpillar

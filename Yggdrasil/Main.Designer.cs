@@ -45,7 +45,6 @@ namespace Yggdrasil
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button8 = new System.Windows.Forms.Button();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,11 +77,12 @@ namespace Yggdrasil
             this.consoleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.extrasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.freeBrowseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.caterpillarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useMonochromeIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lookForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -196,19 +196,6 @@ namespace Yggdrasil
             this.textBox3.Size = new System.Drawing.Size(203, 20);
             this.textBox3.TabIndex = 25;
             this.textBox3.UseSystemPasswordChar = true;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.White;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Location = new System.Drawing.Point(991, 495);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(67, 23);
-            this.button8.TabIndex = 30;
-            this.button8.Text = "About";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click_1);
             // 
             // connectToolStripMenuItem
             // 
@@ -345,10 +332,11 @@ namespace Yggdrasil
             this.serverToolStripMenuItem1,
             this.consoleToolStripMenuItem1,
             this.extrasToolStripMenuItem1,
+            this.updatesToolStripMenuItem,
             this.quitToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(179, 42);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(410, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(450, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -455,21 +443,11 @@ namespace Yggdrasil
             // extrasToolStripMenuItem1
             // 
             this.extrasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
             this.radioStateToolStripMenuItem2,
-            this.freeBrowseToolStripMenuItem,
-            this.caterpillarToolStripMenuItem,
             this.useMonochromeIconsToolStripMenuItem});
             this.extrasToolStripMenuItem1.Name = "extrasToolStripMenuItem1";
             this.extrasToolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.extrasToolStripMenuItem1.Text = "Extras";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(200, 22);
-            this.toolStripMenuItem1.Text = "Themes";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
             // 
             // radioStateToolStripMenuItem2
             // 
@@ -478,26 +456,43 @@ namespace Yggdrasil
             this.radioStateToolStripMenuItem2.Text = "RadioState";
             this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
             // 
-            // freeBrowseToolStripMenuItem
-            // 
-            this.freeBrowseToolStripMenuItem.Name = "freeBrowseToolStripMenuItem";
-            this.freeBrowseToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.freeBrowseToolStripMenuItem.Text = "FreeBrowse";
-            this.freeBrowseToolStripMenuItem.Click += new System.EventHandler(this.freeBrowseToolStripMenuItem_Click);
-            // 
-            // caterpillarToolStripMenuItem
-            // 
-            this.caterpillarToolStripMenuItem.Name = "caterpillarToolStripMenuItem";
-            this.caterpillarToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.caterpillarToolStripMenuItem.Text = "Caterpillar";
-            this.caterpillarToolStripMenuItem.Click += new System.EventHandler(this.caterpillarToolStripMenuItem_Click);
-            // 
             // useMonochromeIconsToolStripMenuItem
             // 
             this.useMonochromeIconsToolStripMenuItem.Name = "useMonochromeIconsToolStripMenuItem";
             this.useMonochromeIconsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.useMonochromeIconsToolStripMenuItem.Text = "Use monochrome Icons";
             this.useMonochromeIconsToolStripMenuItem.Click += new System.EventHandler(this.useMonochromeIconsToolStripMenuItem_Click);
+            // 
+            // updatesToolStripMenuItem
+            // 
+            this.updatesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.updateSettingsToolStripMenuItem,
+            this.lookForUpdatesToolStripMenuItem,
+            this.aboutToolStripMenuItem1});
+            this.updatesToolStripMenuItem.Name = "updatesToolStripMenuItem";
+            this.updatesToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.updatesToolStripMenuItem.Text = "Info";
+            // 
+            // updateSettingsToolStripMenuItem
+            // 
+            this.updateSettingsToolStripMenuItem.Name = "updateSettingsToolStripMenuItem";
+            this.updateSettingsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.updateSettingsToolStripMenuItem.Text = "Settings";
+            this.updateSettingsToolStripMenuItem.Click += new System.EventHandler(this.updateSettingsToolStripMenuItem_Click);
+            // 
+            // lookForUpdatesToolStripMenuItem
+            // 
+            this.lookForUpdatesToolStripMenuItem.Name = "lookForUpdatesToolStripMenuItem";
+            this.lookForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.lookForUpdatesToolStripMenuItem.Text = "Check for updates";
+            this.lookForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.lookForUpdatesToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
+            this.aboutToolStripMenuItem1.Text = "About";
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
             // quitToolStripMenuItem2
             // 
@@ -630,7 +625,6 @@ namespace Yggdrasil
             this.ClientSize = new System.Drawing.Size(1152, 654);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox2);
@@ -678,7 +672,6 @@ namespace Yggdrasil
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listDirectoryToolStripMenuItem;
@@ -719,14 +712,15 @@ namespace Yggdrasil
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label textBox4;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label textBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.ToolStripMenuItem freeBrowseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useMonochromeIconsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem caterpillarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lookForUpdatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
     }
 }

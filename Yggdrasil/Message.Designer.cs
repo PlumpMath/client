@@ -56,7 +56,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(349, 303);
+            this.button1.Location = new System.Drawing.Point(349, 256);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -68,7 +68,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 48);
+            this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 13;
@@ -78,7 +78,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(12, 74);
+            this.label2.Location = new System.Drawing.Point(12, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 14;
@@ -88,7 +88,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(12, 101);
+            this.label3.Location = new System.Drawing.Point(12, 72);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 15;
@@ -96,21 +96,21 @@
             // 
             // Nameb
             // 
-            this.Nameb.Location = new System.Drawing.Point(56, 45);
+            this.Nameb.Location = new System.Drawing.Point(56, 9);
             this.Nameb.Name = "Nameb";
             this.Nameb.Size = new System.Drawing.Size(156, 20);
             this.Nameb.TabIndex = 16;
             // 
             // Emailb
             // 
-            this.Emailb.Location = new System.Drawing.Point(56, 71);
+            this.Emailb.Location = new System.Drawing.Point(56, 35);
             this.Emailb.Name = "Emailb";
             this.Emailb.Size = new System.Drawing.Size(156, 20);
             this.Emailb.TabIndex = 17;
             // 
             // Textb
             // 
-            this.Textb.Location = new System.Drawing.Point(15, 117);
+            this.Textb.Location = new System.Drawing.Point(15, 88);
             this.Textb.Multiline = true;
             this.Textb.Name = "Textb";
             this.Textb.Size = new System.Drawing.Size(409, 162);
@@ -121,7 +121,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(12, 308);
+            this.label4.Location = new System.Drawing.Point(12, 266);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(131, 13);
             this.label4.TabIndex = 19;
@@ -133,7 +133,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(43)))));
-            this.ClientSize = new System.Drawing.Size(436, 338);
+            this.ClientSize = new System.Drawing.Size(436, 288);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Textb);
             this.Controls.Add(this.Emailb);

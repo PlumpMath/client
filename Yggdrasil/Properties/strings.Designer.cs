@@ -97,6 +97,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Check for updates ähnelt.
+        /// </summary>
+        internal static string CheckUpdates {
+            get {
+                return ResourceManager.GetString("CheckUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Choose an image: ähnelt.
         /// </summary>
         internal static string ChooseImage {
@@ -367,6 +376,15 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Yggdrasil needs an update. Please go to &quot;Info &gt; Check for updates&quot; in order to update. ähnelt.
+        /// </summary>
+        internal static string NeedUpdate {
+            get {
+                return ResourceManager.GetString("NeedUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The Blog is currently unavailable right now. ähnelt.
         /// </summary>
         internal static string NoBlog {
@@ -525,6 +543,15 @@ namespace Yggdrasil.Properties {
         internal static string Server {
             get {
                 return ResourceManager.GetString("Server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
+        /// </summary>
+        internal static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         

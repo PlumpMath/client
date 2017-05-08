@@ -19,7 +19,6 @@ namespace Yggdrasil
             label1.Text = Properties.strings.OhNo;
             label2.Text = errortext;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-            button1.Text = Properties.strings.OK;
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]

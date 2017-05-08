@@ -294,4 +294,13 @@
   <data name="NoSend" xml:space="preserve">
     <value>Konnte E-Mail nicht senden.</value>
   </data>
+  <data name="CheckUpdates" xml:space="preserve">
+    <value>Nach Updates suchen</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="NeedUpdate" xml:space="preserve">
+    <value>Yggdrasil benötigt ein Update. Klicke dazu auf "Info &gt; Nach Updates suchen", um ein Update durchzuführen.</value>
+  </data>
 </root>

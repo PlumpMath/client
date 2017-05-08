@@ -71,7 +71,7 @@ namespace Yggdrasil
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://yggdrasil.96.lt");
+            Process.Start("http://yggdrasifs.tk");
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

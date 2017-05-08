@@ -153,11 +153,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Themes.cs">
+    <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Themes.Designer.cs">
-      <DependentUpon>Themes.cs</DependentUpon>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Message.resx">
       <DependentUpon>Message.cs</DependentUpon>
@@ -201,8 +201,8 @@
     <EmbeddedResource Include="Splash.resx">
       <DependentUpon>Splash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Themes.resx">
-      <DependentUpon>Themes.cs</DependentUpon>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

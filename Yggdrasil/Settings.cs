@@ -9,15 +9,14 @@ using System.Runtime.InteropServices;
 
 namespace Yggdrasil
 {
-    public partial class Themes : Form
+    public partial class Settings : Form
     {
-        public Themes()
+        public Settings()
         {
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             button1.Text = Properties.strings.Browse;
             label1.Text = Properties.strings.ChooseImage;
-            button2.Text = Properties.strings.OK;
             button3.Text = Properties.strings.RemoveTheme;
             Directory.SetCurrentDirectory(Main.cwd);
         }
