@@ -148,7 +148,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Build 2016";
+            this.label3.Text = "Build 2020";
             this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.label3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.label3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
