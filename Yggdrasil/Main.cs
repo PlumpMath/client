@@ -21,7 +21,7 @@ namespace Yggdrasil
         bool radio = false;
         About a = new About();
         Thread refresh;
-        string version = "1.1.6";
+        string version = "2020";
         public static string cwd = Directory.GetCurrentDirectory();
 
         public Main()
@@ -179,7 +179,7 @@ namespace Yggdrasil
         {
             notifyIcon1.BalloonTipText = message;
             notifyIcon1.BalloonTipTitle = title;
-            notifyIcon1.ShowBalloonTip(3000);
+            notifyIcon1.ShowBalloonTip(1000);
         }
 
         public void ygginit()
@@ -274,20 +274,18 @@ namespace Yggdrasil
             try
             {
                 string latest = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/latest.txt");
-                if (!File.Exists("Updater.exe") && File.Exists("Launcher.exe"))
+                try
                 {
-                    try
-                    {
-                        File.Move("Launcher.exe", "Updater.exe");
-                    }
-                    catch { }
-                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Launcher_New.exe", "Launcher.exe");
+                    File.Move("Launcher.exe", "Updater.exe");
                 }
+                catch { }
+                new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Launcher_New.exe", "Launcher.exe");
                 if (File.ReadAllText("verinfo").Split('\n')[0] != latest)
                 {
                     notify(Properties.strings.Info, Properties.strings.NeedUpdate);
                 }
-            } catch { }
+            }
+            catch { }
             textBox4.Text = "Done. Have a nice day :)";
         }
 
@@ -1107,8 +1105,10 @@ namespace Yggdrasil
         {
             try
             {
+                PlayerStop();
                 File.Delete("lock");
-            } catch { }
+            }
+            catch { }
             Process.Start("Updater.exe");
             Environment.Exit(0);
         }
