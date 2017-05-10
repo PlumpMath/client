@@ -8,16 +8,12 @@ namespace Yggdrasil
 {
     public partial class About : Form
     {
-
-        //Global variables;
         private bool _dragging = false;
-        //private Point _offset;
         private Point _start_point = new Point(0, 0);
-
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            _dragging = true;  // _dragging is your variable flag
+            _dragging = true;
             _start_point = new Point(e.X, e.Y);
             SetBounds(Bounds.X, Bounds.Y, Width, Height);
         }
@@ -71,7 +67,7 @@ namespace Yggdrasil
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://yggdrasifs.tk");
+            Process.Start("http://yggdrasilfs.tk");
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -22,6 +22,7 @@ namespace Yggdrasil
             usemono.Text = Properties.strings.MonoIcons;
             nlist.Text = Properties.strings.UseNamelist;
             label4.Text = Properties.strings.NameListTitle;
+            this.Text = Properties.strings.Settings;
             if (File.Exists("monoicon"))
             {
                 usemono.Checked = true;

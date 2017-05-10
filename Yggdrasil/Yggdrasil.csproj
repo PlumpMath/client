@@ -230,6 +230,8 @@
     <None Include="Resources\logo-new_big-mono.ico" />
     <None Include="Resources\logo-new_big.png" />
     <None Include="Resources\logo-new_big-mono.png" />
+    <None Include="Resources\pictureBox3.BackgroundImage.png" />
+    <None Include="Resources\button2.BackgroundImage.png" />
     <Content Include="ygg-ico.ico" />
   </ItemGroup>
   <ItemGroup>

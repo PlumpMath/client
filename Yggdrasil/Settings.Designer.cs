@@ -262,7 +262,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Settings";
-            this.Text = "Themes";
+            this.Text = "Settings";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
