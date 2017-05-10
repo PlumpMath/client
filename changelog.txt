@@ -1,3 +1,10 @@
+1.1.7
+
+- Moved more items to settings
+- Bugfixes
+- Introducing the namelist: Connect faster by typing in a phrase
+- Settings is more movable
+
 1.1.6 Build 2020
 
 - Bug fixes
