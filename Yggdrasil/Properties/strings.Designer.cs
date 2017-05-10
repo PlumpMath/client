@@ -367,11 +367,29 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monochrome icon ähnelt.
+        /// </summary>
+        internal static string MonoTitle {
+            get {
+                return ResourceManager.GetString("MonoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Namelist ähnelt.
+        /// </summary>
+        internal static string NameListTitle {
+            get {
+                return ResourceManager.GetString("NameListTitle", resourceCulture);
             }
         }
         
@@ -588,6 +606,15 @@ namespace Yggdrasil.Properties {
         internal static string Upload {
             get {
                 return ResourceManager.GetString("Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Use namelist ähnelt.
+        /// </summary>
+        internal static string UseNamelist {
+            get {
+                return ResourceManager.GetString("UseNamelist", resourceCulture);
             }
         }
         

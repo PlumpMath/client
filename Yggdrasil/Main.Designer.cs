@@ -78,7 +78,6 @@ namespace Yggdrasil
             this.clearToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.extrasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.useMonochromeIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lookForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,6 +94,7 @@ namespace Yggdrasil
             this.textBox2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -336,7 +336,7 @@ namespace Yggdrasil
             this.quitToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(179, 42);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(450, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(358, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -443,8 +443,7 @@ namespace Yggdrasil
             // extrasToolStripMenuItem1
             // 
             this.extrasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.radioStateToolStripMenuItem2,
-            this.useMonochromeIconsToolStripMenuItem});
+            this.radioStateToolStripMenuItem2});
             this.extrasToolStripMenuItem1.Name = "extrasToolStripMenuItem1";
             this.extrasToolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.extrasToolStripMenuItem1.Text = "Extras";
@@ -452,16 +451,9 @@ namespace Yggdrasil
             // radioStateToolStripMenuItem2
             // 
             this.radioStateToolStripMenuItem2.Name = "radioStateToolStripMenuItem2";
-            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(200, 22);
+            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(130, 22);
             this.radioStateToolStripMenuItem2.Text = "RadioState";
             this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
-            // 
-            // useMonochromeIconsToolStripMenuItem
-            // 
-            this.useMonochromeIconsToolStripMenuItem.Name = "useMonochromeIconsToolStripMenuItem";
-            this.useMonochromeIconsToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.useMonochromeIconsToolStripMenuItem.Text = "Use monochrome Icons";
-            this.useMonochromeIconsToolStripMenuItem.Click += new System.EventHandler(this.useMonochromeIconsToolStripMenuItem_Click);
             // 
             // updatesToolStripMenuItem
             // 
@@ -615,6 +607,12 @@ namespace Yggdrasil
             this.progressBar1.TabIndex = 43;
             this.progressBar1.Visible = false;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -712,15 +710,15 @@ namespace Yggdrasil
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label textBox4;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label textBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.ToolStripMenuItem useMonochromeIconsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lookForUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
+        public System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

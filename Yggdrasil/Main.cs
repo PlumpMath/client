@@ -13,7 +13,6 @@ using System.Collections.Generic;
 namespace Yggdrasil
 {
     public partial class Main : Form
-
     {
         bool connected = false;
         string passPhrase = "";
@@ -21,8 +20,9 @@ namespace Yggdrasil
         bool radio = false;
         About a = new About();
         Thread refresh;
-        string version = "2020";
-        public static string cwd = Directory.GetCurrentDirectory();
+        string version = "1.1.7";
+        public static bool namelist = false;
+        public static bool mono = false;
 
         public Main()
         {
@@ -33,6 +33,18 @@ namespace Yggdrasil
                 MessageBox.Show("Yggdrasil is already running!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
+            if (!File.Exists("namelist"))
+            {
+                File.WriteAllText("use_namelist", "0");
+                File.WriteAllText("namelist", "blitzkrieg#10.33.156.187\nkoyuhub#koyuhub.96.lt:80\nhardradio#yggdrasilfs.neocities.org:80\npublic#yggdrasilfs.neocities.org:80");
+            }
+            try
+            {
+                if (File.Exists("use_namelist"))
+                {
+                    namelist = true;
+                }
+            } catch { }
             var FileLock = File.Create("lock");
             FileLock.Close();
             Thread t = new Thread(new ThreadStart(splash));
@@ -184,16 +196,17 @@ namespace Yggdrasil
 
         public void ygginit()
         {
-            if (File.Exists("monoicons"))
+            if (File.Exists("monoicon"))
             {
-                useMonochromeIconsToolStripMenuItem.Checked = true;
                 notifyIcon1.Icon = Properties.icons.logo_new_big_mono;
+                notifyIcon1.Visible = false;
+                notifyIcon1.Visible = true;
             }
             else
             {
-                useMonochromeIconsToolStripMenuItem.Checked = false;
                 notifyIcon1.Icon = Properties.icons.logo_new;
-                this.Icon = Properties.icons.logo_new;
+                notifyIcon1.Visible = false;
+                notifyIcon1.Visible = true;
             }
             if (!File.Exists("peazip.exe"))
             {
@@ -319,7 +332,6 @@ namespace Yggdrasil
             filesToolStripMenuItem.Text = Properties.strings.Files;
             massUploadToolStripMenuItem.Text = Properties.strings.MassUpload;
             themesToolStripMenuItem.Text = Properties.strings.Themes;
-            useMonochromeIconsToolStripMenuItem.Text = Properties.strings.MonoIcons;
         }
 
         #region player
@@ -380,7 +392,6 @@ namespace Yggdrasil
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Directory.SetCurrentDirectory(cwd);
             if (connected == false)
             {
                 try
@@ -390,6 +401,21 @@ namespace Yggdrasil
                 catch { }
                 try
                 {
+                    if (namelist)
+                    {
+                        try
+                        {
+                            foreach (string item in File.ReadAllLines("namelist"))
+                            {
+                                string custom = item.Split('#')[0];
+                                string ip = item.Split('#')[1];
+                                if (custom == textBox1.Text)
+                                {
+                                    textBox1.Text = ip;
+                                }
+                            }
+                        } catch { }
+                    }
                     if (!textBox1.Text.Contains(":"))
                     {
                         if (!Text.Contains(":82"))
@@ -1008,22 +1034,19 @@ namespace Yggdrasil
 
         private void useMonochromeIconsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!File.Exists("monoicons"))
+            if (!File.Exists("monoicon"))
             {
-                Directory.SetCurrentDirectory(cwd);
                 notifyIcon1.Icon = Properties.icons.logo_new_big_mono;
                 notifyIcon1.Visible = false;
                 notifyIcon1.Visible = true;
-                File.WriteAllText("monoicons", "");
-                useMonochromeIconsToolStripMenuItem.Checked = true;
+                File.WriteAllText("monoicon", "");
             }
             else
             {
                 notifyIcon1.Icon = Properties.icons.logo_new;
                 notifyIcon1.Visible = false;
                 notifyIcon1.Visible = true;
-                File.Delete("monoicons");
-                useMonochromeIconsToolStripMenuItem.Checked = false;
+                File.Delete("monoicon");
             }
         }
 
@@ -1122,6 +1145,22 @@ namespace Yggdrasil
         {
             Settings s = new Settings();
             s.ShowDialog();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (File.Exists("monoicon"))
+            {
+                notifyIcon1.Icon = Properties.icons.logo_new_big_mono;
+                notifyIcon1.Visible = false;
+                notifyIcon1.Visible = true;
+            }
+            else
+            {
+                notifyIcon1.Icon = Properties.icons.logo_new;
+                notifyIcon1.Visible = false;
+                notifyIcon1.Visible = true;
+            }
         }
     }
 }

@@ -271,7 +271,7 @@
     <value>FreeBrowse ist gerade nicht installiert. Möchtest du es herunterladen und installieren?</value>
   </data>
   <data name="MonoIcons" xml:space="preserve">
-    <value>Benutze monochrome Icons</value>
+    <value>Benutze monochromes Icon</value>
   </data>
   <data name="RefreshFileList" xml:space="preserve">
     <value>Dateiliste aktualisieren</value>
@@ -302,5 +302,14 @@
   </data>
   <data name="NeedUpdate" xml:space="preserve">
     <value>Yggdrasil benötigt ein Update. Klicke dazu auf "Info &gt; Nach Updates suchen", um ein Update durchzuführen.</value>
+  </data>
+  <data name="MonoTitle" xml:space="preserve">
+    <value>Monochrome Icons</value>
+  </data>
+  <data name="UseNamelist" xml:space="preserve">
+    <value>Benutze Namensliste</value>
+  </data>
+  <data name="NameListTitle" xml:space="preserve">
+    <value>Namensliste</value>
   </data>
 </root>

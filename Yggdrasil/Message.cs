@@ -74,7 +74,6 @@ namespace Yggdrasil
                 try
                 {
                     new WebClient().DownloadString("https://shitload.lima-city.de/");
-                    Directory.SetCurrentDirectory(Main.cwd);
                     string URI = "https://shitload.lima-city.de/yggmail.php";
                     string myParameters = "name=" + Nameb.Text + "&email=" + Emailb.Text + "&text=" + Textb.Text;
                     using (WebClient wc = new WebClient())
