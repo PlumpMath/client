@@ -95,11 +95,13 @@ namespace Yggdrasil
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button2 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.button2)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -126,7 +128,7 @@ namespace Yggdrasil
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(852, 439);
+            this.label2.Location = new System.Drawing.Point(852, 435);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 19;
@@ -137,7 +139,7 @@ namespace Yggdrasil
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(45)))), ((int)(((byte)(43)))));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(855, 455);
+            this.textBox1.Location = new System.Drawing.Point(855, 451);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(203, 20);
@@ -613,6 +615,18 @@ namespace Yggdrasil
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Location = new System.Drawing.Point(1042, 455);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(13, 13);
+            this.button2.TabIndex = 44;
+            this.button2.TabStop = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -621,6 +635,7 @@ namespace Yggdrasil
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1152, 654);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.checkBox1);
@@ -654,6 +669,7 @@ namespace Yggdrasil
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.button2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -687,7 +703,6 @@ namespace Yggdrasil
         private System.Windows.Forms.ToolStripMenuItem radioStateToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem listDirectoryToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem1;
@@ -720,5 +735,7 @@ namespace Yggdrasil
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
         public System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem1;
+        private System.Windows.Forms.PictureBox button2;
     }
 }

@@ -8,6 +8,7 @@ using System.Threading;
 using System.Drawing;
 using System.Media;
 using System.Diagnostics;
+using Microsoft.Win32;
 using System.Collections.Generic;
 
 namespace Yggdrasil
@@ -20,7 +21,7 @@ namespace Yggdrasil
         bool radio = false;
         About a = new About();
         Thread refresh;
-        string version = "1.1.7";
+        string version = "2036";
         public static bool namelist = false;
         public static bool mono = false;
 
@@ -146,7 +147,7 @@ namespace Yggdrasil
                     snd.Play();
                 }
                 catch { }
-                Thread.Sleep(1500);
+                button2.BackgroundImage = Properties.images.ok;
             }
             catch { }
         }
@@ -189,9 +190,18 @@ namespace Yggdrasil
 
         public void notify(string title, string message)
         {
+            timer1.Enabled = false;
             notifyIcon1.BalloonTipText = message;
             notifyIcon1.BalloonTipTitle = title;
-            notifyIcon1.ShowBalloonTip(1000);
+            if (!IsWindows10())
+            {
+                notifyIcon1.ShowBalloonTip(1000);
+            } else
+            {
+                notifyIcon1.ShowBalloonTip(1000);
+            }
+            Thread.Sleep(3000);
+            timer1.Enabled = true;
         }
 
         public void ygginit()
@@ -300,6 +310,15 @@ namespace Yggdrasil
             }
             catch { }
             textBox4.Text = "Done. Have a nice day :)";
+        }
+
+        static bool IsWindows10()
+        {
+            var reg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
+
+            string productName = (string)reg.GetValue("ProductName");
+
+            return productName.StartsWith("Windows 10");
         }
 
         private void localize()
@@ -501,6 +520,7 @@ namespace Yggdrasil
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
                         richTextBox1.ScrollToCaret();
                     }
+                    button2.BackgroundImage = Properties.images.close;
                 }
                 catch
                 {
@@ -1161,6 +1181,11 @@ namespace Yggdrasil
                 notifyIcon1.Visible = false;
                 notifyIcon1.Visible = true;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            connectToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
         }
     }
 }

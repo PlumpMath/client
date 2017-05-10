@@ -117,7 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Yggdrasil is an open-source project, so feel free to support us.
+
+Contributors:
+koyuawsmbrtn - Maintainer/Programmer and UI/UX developement
+Hauke - The guy who made the encryption library
+SansWithHat - Graphic designer
+
+Close/OK icon by Madebyoliver from Flaticons.com
+(flaticon.com/authors/madebyoliver)
+Sad face icon by Freepik from Flaticons.com (freepik.com)
+
+And all thanks to our donators on Paypal.
+
+THIS SOFTWARE COMES WITHOUT ANY
+WARRANTY AS DESCRIBED IN THE GPL
+
+      © Yggdrasil 2017
+</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAE
+        bAAABGwBr11x4QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADNSURBVDhPpVM7
+        EoIwEI2X8TDkAM6QG1hxA7kT4wFsaLCgEmbs6f1M2nVfZvkEE3VM8WDZfe+x2SSKiDx0u2zb5VnJqBiD
+        AHGJ2po/fyi1uRhdMNEyKAILDri+ASf6XB8DgiDAHU2cgfw5SI7BdQIDWbPfttEeOZKz0CoOMLC5wMRb
+        faLr3kw5xMgFTA4wwIS9AgT3pnbvZbzmMSoYYJveihA82zM92iYmBoaPBhDD5JtB8hISh5i6jckHCY/k
+        ozyaSCd/XKYFZCY/XmdSLz8CeZlSAwR+AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="pictureBox2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADcAAAA3CAYAAACo29JGAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -141,37 +171,6 @@
         hBcHDdj9TJED5SCpwbhTpefae4cmv5anBwW7wnmWcghCJ6H1Xb4IvWp5WlCsK+r7/BQ7QXLX5KC2hnGX
         3M0YNfcz4YJQqbvq1HIYe/M2g6ZrzbvzTkzhORmjs4uFNx0NMDojTr1/9vCGpw536v2Lx9Hh9pzX68PF
         0QG3htf5gwueIrAVDy43ikc93P8nrq7+Bl5SU6m8YOEuAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Yggdrasil is an open-source project, so feel free to support us.
-
-Contributors:
-koyuawsmbrtn - Maintainer/Programmer and UI/UX developement
-Hauke - The guy who made the encryption library
-SansWithHat - Graphic designer
-
-Close/OK icon by Madebyoliver from Flaticons.com
-(flaticon.com/authors/madebyoliver)
-Sad face icon by Freepik from Flaticons.com (freepik.com)
-
-And all thanks to our donators on Paypal.
-
-THIS SOFTWARE COMES WITHOUT ANY
-WARRANTY AS DESCRIBED IN THE GPL
-
-      © Yggdrasil 2017
-</value>
-  </data>
-  <data name="pictureBox3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAA3NCSVQICAjb4U/gAAAAAXNSR0IArs4c
-        6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAABGwAAARsAa9dceEAAAAZdEVYdFNvZnR3YXJlAHd3dy5p
-        bmtzY2FwZS5vcmeb7jwaAAAAzUlEQVQ4T6VTOxKCMBCNl/Ew5ADOkBtYcQO5E+MBbGiwoBJm7On9TNp1
-        X2b5BBN1TPFg2X3vsdkkiog8dLts2+VZyagYgwBxidqaP38otbkYXTDRMigCCw64vgEn+lwfA4IgwB1N
-        nIH8OUiOwXUCA1mz37bRHjmSs9AqDjCwucDEW32i695MOcTIBUwOMMCEvQIE96Z272W85jEqGGCb3ooQ
-        PNszPdomJgaGjwYQw+SbQfISEoeYuo3JBwmP5KM8mkgnf1ymBWQmP15nUi8/AnmZUgMEfgAAAABJRU5E
-        rkJggg==
 </value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
