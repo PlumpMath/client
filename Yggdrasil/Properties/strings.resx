@@ -300,4 +300,13 @@
   <data name="NeedUpdate" xml:space="preserve">
     <value>Yggdrasil needs an update. Please go to "Info &gt; Check for updates" in order to update.</value>
   </data>
+  <data name="MonoTitle" xml:space="preserve">
+    <value>Monochrome icon</value>
+  </data>
+  <data name="UseNamelist" xml:space="preserve">
+    <value>Use namelist</value>
+  </data>
+  <data name="NameListTitle" xml:space="preserve">
+    <value>Namelist</value>
+  </data>
 </root>

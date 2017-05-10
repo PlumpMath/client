@@ -18,7 +18,25 @@ namespace Yggdrasil
             button1.Text = Properties.strings.Browse;
             label1.Text = Properties.strings.ChooseImage;
             button3.Text = Properties.strings.RemoveTheme;
-            Directory.SetCurrentDirectory(Main.cwd);
+            label3.Text = Properties.strings.MonoTitle;
+            usemono.Text = Properties.strings.MonoIcons;
+            nlist.Text = Properties.strings.UseNamelist;
+            label4.Text = Properties.strings.NameListTitle;
+            if (File.Exists("monoicon"))
+            {
+                usemono.Checked = true;
+            }
+            else
+            {
+                usemono.Checked = false;
+            }
+            if (Main.namelist)
+            {
+                nlist.Checked = true;
+            } else
+            {
+                nlist.Checked = false;
+            }
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -55,7 +73,8 @@ namespace Yggdrasil
                     System.Diagnostics.Process.Start(Application.ExecutablePath);
                     Environment.Exit(0);
                 }
-            } catch { }
+            }
+            catch { }
         }
 
         //Global variables;
@@ -109,7 +128,8 @@ namespace Yggdrasil
                 File.Delete("lock");
                 System.Diagnostics.Process.Start(Application.ExecutablePath);
                 Environment.Exit(0);
-            } catch { }
+            }
+            catch { }
         }
 
         public static void PlayerStop()
@@ -121,6 +141,33 @@ namespace Yggdrasil
             process.StartInfo.FileName = "taskkill";
             process.StartInfo.Arguments = "/IM yggplayer.exe /F";
             process.Start();
+        }
+
+        private void usemono_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!usemono.Checked)
+            {
+                File.Delete("monoicon");
+            }
+            else
+            {
+                var f = File.Create("monoicon");
+                f.Close();
+            }
+        }
+
+        private void nlist_CheckedChanged(object sender, EventArgs e)
+        {
+            if (nlist.Checked)
+            {
+                var f = File.Create("use_namelist");
+                f.Close();
+            }
+            else
+            {
+                File.Delete("use_namelist");
+            }
+            Main.namelist = nlist.Checked;
         }
     }
 }
