@@ -48,6 +48,7 @@ namespace Yggdrasil
         {
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            label3.Text = "Build " + Main.version;
         }
 
         private void button1_Click(object sender, EventArgs e)

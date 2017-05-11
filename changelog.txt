@@ -1,5 +1,12 @@
-1.1.7 Build 2036
+1.1.8
 
+- verinfo contains only the build number
+- Moved last item from Info to Extras
+- msg_xxx is now shown on disconnect
+- Tweaked about window mechanics
+- Bigger sadface
+- Taskbar icon is not flickering anymore
+- Removed Nyan Cat
 - Bugfixes
 
 1.1.7
