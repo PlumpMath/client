@@ -77,8 +77,6 @@ namespace Yggdrasil
             this.consoleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.extrasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.updatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lookForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,6 +94,8 @@ namespace Yggdrasil
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button2 = new System.Windows.Forms.PictureBox();
+            this.radioStateToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -116,7 +116,7 @@ namespace Yggdrasil
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(188, 89);
+            this.richTextBox1.Location = new System.Drawing.Point(188, 92);
             this.richTextBox1.Multiline = true;
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
@@ -334,11 +334,10 @@ namespace Yggdrasil
             this.serverToolStripMenuItem1,
             this.consoleToolStripMenuItem1,
             this.extrasToolStripMenuItem1,
-            this.updatesToolStripMenuItem,
             this.quitToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(179, 42);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(358, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(318, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -445,27 +444,13 @@ namespace Yggdrasil
             // extrasToolStripMenuItem1
             // 
             this.extrasToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.radioStateToolStripMenuItem2});
+            this.updateSettingsToolStripMenuItem,
+            this.lookForUpdatesToolStripMenuItem,
+            this.radioStateToolStripMenuItem2,
+            this.aboutToolStripMenuItem1});
             this.extrasToolStripMenuItem1.Name = "extrasToolStripMenuItem1";
             this.extrasToolStripMenuItem1.Size = new System.Drawing.Size(49, 20);
             this.extrasToolStripMenuItem1.Text = "Extras";
-            // 
-            // radioStateToolStripMenuItem2
-            // 
-            this.radioStateToolStripMenuItem2.Name = "radioStateToolStripMenuItem2";
-            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(130, 22);
-            this.radioStateToolStripMenuItem2.Text = "RadioState";
-            this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
-            // 
-            // updatesToolStripMenuItem
-            // 
-            this.updatesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.updateSettingsToolStripMenuItem,
-            this.lookForUpdatesToolStripMenuItem,
-            this.aboutToolStripMenuItem1});
-            this.updatesToolStripMenuItem.Name = "updatesToolStripMenuItem";
-            this.updatesToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.updatesToolStripMenuItem.Text = "Info";
             // 
             // updateSettingsToolStripMenuItem
             // 
@@ -612,7 +597,7 @@ namespace Yggdrasil
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 20;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // button2
@@ -620,12 +605,24 @@ namespace Yggdrasil
             this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(1042, 455);
+            this.button2.Location = new System.Drawing.Point(1042, 454);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(13, 13);
             this.button2.TabIndex = 44;
             this.button2.TabStop = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // radioStateToolStripMenuItem2
+            // 
+            this.radioStateToolStripMenuItem2.Name = "radioStateToolStripMenuItem2";
+            this.radioStateToolStripMenuItem2.Size = new System.Drawing.Size(170, 22);
+            this.radioStateToolStripMenuItem2.Text = "RadioState";
+            this.radioStateToolStripMenuItem2.Click += new System.EventHandler(this.radioStateToolStripMenuItem_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Main
             // 
@@ -710,8 +707,6 @@ namespace Yggdrasil
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem consoleToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem extrasToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem radioStateToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem2;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
@@ -729,7 +724,7 @@ namespace Yggdrasil
         private System.Windows.Forms.Label textBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.ToolStripMenuItem updatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extrasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem updateSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lookForUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
@@ -737,5 +732,7 @@ namespace Yggdrasil
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem1;
         private System.Windows.Forms.PictureBox button2;
+        private System.Windows.Forms.ToolStripMenuItem radioStateToolStripMenuItem2;
+        private System.Windows.Forms.Timer timer2;
     }
 }

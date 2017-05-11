@@ -10,6 +10,7 @@ using System.Media;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Collections.Generic;
+using System.Net.Sockets;
 
 namespace Yggdrasil
 {
@@ -20,10 +21,10 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        Thread refresh;
-        string version = "2036";
+        public static string version = "2048";
         public static bool namelist = false;
         public static bool mono = false;
+        public static bool rm = false;
 
         public Main()
         {
@@ -45,7 +46,8 @@ namespace Yggdrasil
                 {
                     namelist = true;
                 }
-            } catch { }
+            }
+            catch { }
             var FileLock = File.Create("lock");
             FileLock.Close();
             Thread t = new Thread(new ThreadStart(splash));
@@ -53,7 +55,6 @@ namespace Yggdrasil
             ygginit();
             localize();
             Thread.Sleep(420);
-            refresh = new Thread(check);
             t.Abort();
             this.TransparencyKey = this.BackColor;
             this.Show();
@@ -79,38 +80,6 @@ namespace Yggdrasil
 
         public int WebClientUploadProgressChanged { get; private set; }
 
-        private void check()
-        {
-            while (true)
-            {
-                Thread.Sleep(20);
-                if (connected)
-                {
-                    try
-                    {
-                        if (textBox1.Text.Contains(":82"))
-                        {
-                            this.Invoke((MethodInvoker)delegate
-                            {
-                                try
-                                {
-
-                                    new WebClient().DownloadString("http://" + textBox1.Text + "/alive");
-                                }
-                                catch
-                                {
-                                    disconnect();
-                                    MsgBox msg = new MsgBox(Properties.strings.ErrorDisconnect);
-                                    msg.ShowDialog();
-                                }
-                            });
-                        }
-                    }
-                    catch { }
-                }
-                Thread.Sleep(1000);
-            }
-        }
         public void disconnect()
         {
             try
@@ -148,6 +117,7 @@ namespace Yggdrasil
                 }
                 catch { }
                 button2.BackgroundImage = Properties.images.ok;
+                resetBox();
             }
             catch { }
         }
@@ -156,7 +126,7 @@ namespace Yggdrasil
         {
             try
             {
-                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1001.txt");
+                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1002.txt");
                 ads = ads.Replace("\n", Environment.NewLine);
                 richTextBox1.Text = ads + Environment.NewLine;
             }
@@ -196,7 +166,8 @@ namespace Yggdrasil
             if (!IsWindows10())
             {
                 notifyIcon1.ShowBalloonTip(1000);
-            } else
+            }
+            else
             {
                 notifyIcon1.ShowBalloonTip(1000);
             }
@@ -222,13 +193,7 @@ namespace Yggdrasil
             {
                 compressionToolToolStripMenuItem.Enabled = false;
             }
-            try
-            {
-                string ads = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/msg_1001.txt");
-                ads = ads.Replace("\n", Environment.NewLine);
-                richTextBox1.Text += ads + Environment.NewLine;
-            }
-            catch { }
+            resetBox();
             bool waserror = false;
             if (!File.Exists("patch061_complete"))
             {
@@ -341,7 +306,6 @@ namespace Yggdrasil
             radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
             aboutToolStripMenuItem.Text = Properties.strings.About;
             aboutToolStripMenuItem1.Text = Properties.strings.About;
-            updateSettingsToolStripMenuItem.Text = Properties.strings.Info;
             updateSettingsToolStripMenuItem.Text = Properties.strings.Settings;
             lookForUpdatesToolStripMenuItem.Text = Properties.strings.CheckUpdates;
             quitToolStripMenuItem1.Text = Properties.strings.Quit;
@@ -433,7 +397,8 @@ namespace Yggdrasil
                                     textBox1.Text = ip;
                                 }
                             }
-                        } catch { }
+                        }
+                        catch { }
                     }
                     if (!textBox1.Text.Contains(":"))
                     {
@@ -510,7 +475,6 @@ namespace Yggdrasil
                             Stream str = Properties.sounds.on;
                             SoundPlayer snd = new SoundPlayer(str);
                             snd.Play();
-                            refresh.Start();
                         }
                         catch { }
                     }
@@ -532,6 +496,7 @@ namespace Yggdrasil
             else
             {
                 disconnect();
+
             }
         }
 
@@ -1169,23 +1134,52 @@ namespace Yggdrasil
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (File.Exists("monoicon"))
+            if (rm)
             {
-                notifyIcon1.Icon = Properties.icons.logo_new_big_mono;
-                notifyIcon1.Visible = false;
-                notifyIcon1.Visible = true;
-            }
-            else
-            {
-                notifyIcon1.Icon = Properties.icons.logo_new;
-                notifyIcon1.Visible = false;
-                notifyIcon1.Visible = true;
+                rm = false;
+                if (File.Exists("monoicon"))
+                {
+                    notifyIcon1.Icon = Properties.icons.logo_new_big_mono;
+                    notifyIcon1.Visible = false;
+                    notifyIcon1.Visible = true;
+                }
+                else
+                {
+                    notifyIcon1.Icon = Properties.icons.logo_new;
+                    notifyIcon1.Visible = false;
+                    notifyIcon1.Visible = true;
+                }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             connectToolStripMenuItem_Click("Yggdrasil", EventArgs.Empty);
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Contains(":82") && connected)
+            {
+                try
+                {
+
+                    using (TcpClient tcpClient = new TcpClient())
+                    {
+                        try
+                        {
+                            tcpClient.Connect(textBox1.Text.Replace(":82", ""), 82);
+                        }
+                        catch (Exception)
+                        {
+                            disconnect();
+                            MsgBox msg = new MsgBox(Properties.strings.ErrorDisconnect);
+                            msg.ShowDialog();
+                        }
+                    }
+                }
+                catch { }
+            }
         }
     }
 }

@@ -155,6 +155,7 @@ namespace Yggdrasil
                 var f = File.Create("monoicon");
                 f.Close();
             }
+            Main.rm = true;
         }
 
         private void nlist_CheckedChanged(object sender, EventArgs e)
