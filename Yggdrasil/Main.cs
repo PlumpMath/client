@@ -21,10 +21,11 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        public static string version = "2048";
+        public static string version = "2051";
         public static bool namelist = false;
         public static bool mono = false;
         public static bool rm = false;
+        int tick = 0;
 
         public Main()
         {
@@ -261,19 +262,24 @@ namespace Yggdrasil
             }
             try
             {
-                string latest = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/latest.txt");
                 try
                 {
                     File.Move("Launcher.exe", "Updater.exe");
                 }
                 catch { }
                 new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Launcher_New.exe", "Launcher.exe");
+            }
+            catch { }
+            try
+            {
+                string latest = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/latest.txt");
                 if (File.ReadAllText("verinfo").Split('\n')[0] != latest)
                 {
                     notify(Properties.strings.Info, Properties.strings.NeedUpdate);
                 }
             }
             catch { }
+            timer3.Enabled = true;
             textBox4.Text = "Done. Have a nice day :)";
         }
 
@@ -1180,6 +1186,30 @@ namespace Yggdrasil
                 }
                 catch { }
             }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tick == 2)
+                {
+                    PlayerStop();
+                    File.Delete("lock");
+                    Process.Start("Updater.exe");
+                    Environment.Exit(0);
+                }
+                try
+                {
+                    string latest = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/latest.txt");
+                    if (File.ReadAllText("verinfo").Split('\n')[0] != latest)
+                    {
+                        notify(Properties.strings.Info, Properties.strings.NeedUpdate);
+                    }
+                }
+                catch { }
+            } catch { }
+            tick++;
         }
     }
 }
