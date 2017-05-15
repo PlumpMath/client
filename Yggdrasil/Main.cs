@@ -21,7 +21,7 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        public static string version = "2051";
+        public static string version = "2052";
         public static bool namelist = false;
         public static bool mono = false;
         public static bool rm = false;
@@ -1192,12 +1192,19 @@ namespace Yggdrasil
         {
             try
             {
-                if (tick == 2)
+                if (tick >= 2)
                 {
-                    PlayerStop();
-                    File.Delete("lock");
-                    Process.Start("Updater.exe");
-                    Environment.Exit(0);
+                    try
+                    {
+                        string latest = new WebClient().DownloadString("https://koyuawsmbrtn.keybase.pub/yggdrasil/latest.txt");
+                        if (File.ReadAllText("verinfo").Split('\n')[0] != latest)
+                        {
+                            PlayerStop();
+                            File.Delete("lock");
+                            Process.Start("Updater.exe");
+                            Environment.Exit(0);
+                        }
+                    } catch { }
                 }
                 try
                 {
