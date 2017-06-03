@@ -21,10 +21,11 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        public static string version = "2052";
+        public static string version = "2055";
         public static bool namelist = false;
         public static bool mono = false;
         public static bool rm = false;
+        public static bool useradio = false;
         int tick = 0;
 
         public Main()
@@ -38,7 +39,7 @@ namespace Yggdrasil
             }
             if (!File.Exists("namelist"))
             {
-                File.WriteAllText("use_namelist", "0");
+                File.WriteAllText("use_namelist", "");
                 File.WriteAllText("namelist", "blitzkrieg#10.33.156.187\nkoyuhub#koyuhub.96.lt:80\nhardradio#yggdrasilfs.neocities.org:80\npublic#yggdrasilfs.neocities.org:80");
             }
             try
@@ -46,6 +47,14 @@ namespace Yggdrasil
                 if (File.Exists("use_namelist"))
                 {
                     namelist = true;
+                }
+            } catch { }
+            try
+            {
+                if (File.Exists("use_radio"))
+                {
+                    useradio = true;
+                    radio = true;
                 }
             }
             catch { }
@@ -308,8 +317,15 @@ namespace Yggdrasil
             clearToolStripMenuItem1.Text = Properties.strings.Clear;
             extrasToolStripMenuItem1.Text = Properties.strings.Extras;
             quitToolStripMenuItem2.Text = Properties.strings.Quit;
-            radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
-            radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+            if (!useradio)
+            {
+                radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
+                radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+            } else
+            {
+                radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
+                radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
+            }
             aboutToolStripMenuItem.Text = Properties.strings.About;
             aboutToolStripMenuItem1.Text = Properties.strings.About;
             updateSettingsToolStripMenuItem.Text = Properties.strings.Settings;
@@ -759,6 +775,7 @@ namespace Yggdrasil
                     radio = false;
                     radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
                     radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+                    File.Delete("use_radio");
                 }
                 else
                 {
@@ -769,6 +786,8 @@ namespace Yggdrasil
                     {
                         PlayMusicFromURL(stream);
                     }
+                    var FileRadio = File.Create("use_radio");
+                    FileRadio.Close();
                 }
             }
             catch { }
