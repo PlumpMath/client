@@ -48,7 +48,14 @@ namespace Yggdrasil
         {
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-            label3.Text = "Build " + Main.version;
+            if (!Main.ishotfix)
+            {
+                label3.Text = "Build " + Main.version;
+            } else
+            {
+                label3.Text = "Build " + Main.version + " Hotfix Update";
+                label3.SetBounds(label3.Bounds.X - 81, label3.Bounds.Y, label3.Bounds.Width, label3.Bounds.Height);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

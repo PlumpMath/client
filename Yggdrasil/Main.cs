@@ -21,11 +21,12 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        public static string version = "2067";
+        public static string version = "2070";
         public static bool namelist = false;
         public static bool mono = false;
         public static bool rm = false;
         public static bool useradio = false;
+        public static bool ishotfix = true;
         int tick = 0;
 
         public Main()
@@ -1090,7 +1091,7 @@ namespace Yggdrasil
             ff = Path.GetFileName(filename);
             if (File.Exists(filename) && connected)
             {
-                string encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(filename, Encoding.Default));
+                string encryptedfile = BitConverter.ToString(TripleSecManaged.V3.Encrypt(StringToByteArray(System.IO.File.ReadAllText(filename, Encoding.Default)), Encoding.UTF8.GetBytes(CalculateMD5Hash(textBox3.Text)))).Replace("-", string.Empty);
                 passPhrase = textBox3.Text;
                 wc.UploadStringAsync(new Uri("http://" + textBox1.Text + "/upload"), "content=" + encryptedfile + "&filename=" + ff + "&password=" + CalculateMD5Hash(passPhrase));
                 wc.UploadProgressChanged += (s, ee) =>
