@@ -394,7 +394,7 @@ namespace Yggdrasil.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Yggdrasil needs an update. Please go to &quot;Info &gt; Check for updates&quot; in order to update. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Yggdrasil needs an update. Please go to &quot;Extras &gt; Check for updates&quot; in order to update. ähnelt.
         /// </summary>
         internal static string NeedUpdate {
             get {

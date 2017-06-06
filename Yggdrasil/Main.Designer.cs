@@ -64,14 +64,9 @@ namespace Yggdrasil
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.connectToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.compressionToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importFilelistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportFileListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.listDirectoryToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.massUploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.consoleToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,6 +92,11 @@ namespace Yggdrasil
             this.button2 = new System.Windows.Forms.PictureBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.massUploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressionToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importFilelistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportFileListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -338,7 +338,7 @@ namespace Yggdrasil
             this.quitToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(179, 42);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(318, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(276, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -348,37 +348,6 @@ namespace Yggdrasil
             this.connectToolStripMenuItem1.Size = new System.Drawing.Size(64, 20);
             this.connectToolStripMenuItem1.Text = "Connect";
             this.connectToolStripMenuItem1.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
-            // 
-            // filesToolStripMenuItem
-            // 
-            this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.compressionToolToolStripMenuItem,
-            this.importFilelistToolStripMenuItem,
-            this.exportFileListToolStripMenuItem});
-            this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
-            this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
-            this.filesToolStripMenuItem.Text = "Files";
-            // 
-            // compressionToolToolStripMenuItem
-            // 
-            this.compressionToolToolStripMenuItem.Name = "compressionToolToolStripMenuItem";
-            this.compressionToolToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.compressionToolToolStripMenuItem.Text = "Compression tool";
-            this.compressionToolToolStripMenuItem.Click += new System.EventHandler(this.compressionToolToolStripMenuItem_Click);
-            // 
-            // importFilelistToolStripMenuItem
-            // 
-            this.importFilelistToolStripMenuItem.Name = "importFilelistToolStripMenuItem";
-            this.importFilelistToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.importFilelistToolStripMenuItem.Text = "Import file list";
-            this.importFilelistToolStripMenuItem.Click += new System.EventHandler(this.importFilelistToolStripMenuItem_Click);
-            // 
-            // exportFileListToolStripMenuItem
-            // 
-            this.exportFileListToolStripMenuItem.Name = "exportFileListToolStripMenuItem";
-            this.exportFileListToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.exportFileListToolStripMenuItem.Text = "Export file list";
-            this.exportFileListToolStripMenuItem.Click += new System.EventHandler(this.exportFileListToolStripMenuItem_Click);
             // 
             // serverToolStripMenuItem1
             // 
@@ -395,35 +364,28 @@ namespace Yggdrasil
             // listDirectoryToolStripMenuItem1
             // 
             this.listDirectoryToolStripMenuItem1.Name = "listDirectoryToolStripMenuItem1";
-            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
+            this.listDirectoryToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.listDirectoryToolStripMenuItem1.Text = "Refresh file list";
             this.listDirectoryToolStripMenuItem1.Click += new System.EventHandler(this.listDirectoryToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem1
             // 
             this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
-            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
+            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.uploadToolStripMenuItem1.Text = "Upload";
             this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
-            // 
-            // massUploadToolStripMenuItem
-            // 
-            this.massUploadToolStripMenuItem.Name = "massUploadToolStripMenuItem";
-            this.massUploadToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.massUploadToolStripMenuItem.Text = "Mass upload";
-            this.massUploadToolStripMenuItem.Click += new System.EventHandler(this.massUploadToolStripMenuItem_Click);
             // 
             // downloadToolStripMenuItem1
             // 
             this.downloadToolStripMenuItem1.Name = "downloadToolStripMenuItem1";
-            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
+            this.downloadToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.downloadToolStripMenuItem1.Text = "Download";
             this.downloadToolStripMenuItem1.Click += new System.EventHandler(this.downloadToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem1
             // 
             this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
-            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -630,6 +592,46 @@ namespace Yggdrasil
             this.timer3.Interval = 300000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
+            // massUploadToolStripMenuItem
+            // 
+            this.massUploadToolStripMenuItem.Name = "massUploadToolStripMenuItem";
+            this.massUploadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.massUploadToolStripMenuItem.Text = "Mass upload";
+            this.massUploadToolStripMenuItem.Visible = false;
+            this.massUploadToolStripMenuItem.Click += new System.EventHandler(this.massUploadToolStripMenuItem_Click);
+            // 
+            // compressionToolToolStripMenuItem
+            // 
+            this.compressionToolToolStripMenuItem.Name = "compressionToolToolStripMenuItem";
+            this.compressionToolToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.compressionToolToolStripMenuItem.Text = "Compression tool";
+            this.compressionToolToolStripMenuItem.Click += new System.EventHandler(this.compressionToolToolStripMenuItem_Click);
+            // 
+            // importFilelistToolStripMenuItem
+            // 
+            this.importFilelistToolStripMenuItem.Name = "importFilelistToolStripMenuItem";
+            this.importFilelistToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.importFilelistToolStripMenuItem.Text = "Import file list";
+            this.importFilelistToolStripMenuItem.Click += new System.EventHandler(this.importFilelistToolStripMenuItem_Click);
+            // 
+            // exportFileListToolStripMenuItem
+            // 
+            this.exportFileListToolStripMenuItem.Name = "exportFileListToolStripMenuItem";
+            this.exportFileListToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.exportFileListToolStripMenuItem.Text = "Export file list";
+            this.exportFileListToolStripMenuItem.Click += new System.EventHandler(this.exportFileListToolStripMenuItem_Click);
+            // 
+            // filesToolStripMenuItem
+            // 
+            this.filesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.compressionToolToolStripMenuItem,
+            this.importFilelistToolStripMenuItem,
+            this.exportFileListToolStripMenuItem});
+            this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
+            this.filesToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.filesToolStripMenuItem.Text = "Files";
+            this.filesToolStripMenuItem.Visible = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -715,11 +717,6 @@ namespace Yggdrasil
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem2;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem compressionToolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importFilelistToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportFileListToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem massUploadToolStripMenuItem;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
@@ -741,5 +738,10 @@ namespace Yggdrasil
         private System.Windows.Forms.ToolStripMenuItem radioStateToolStripMenuItem2;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compressionToolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importFilelistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportFileListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem massUploadToolStripMenuItem;
     }
 }

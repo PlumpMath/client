@@ -21,7 +21,7 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        public static string version = "2055";
+        public static string version = "2065";
         public static bool namelist = false;
         public static bool mono = false;
         public static bool rm = false;
@@ -288,6 +288,17 @@ namespace Yggdrasil
                 }
             }
             catch { }
+            try
+            {
+                if (!File.Exists("TripleSecManaged.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/TripleSecManaged.dll", "TripleSecManaged.dll");
+                if (!File.Exists("CryptSharp.SCryptSubset.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/CryptSharp.SCryptSubset.dll", "CryptSharp.SCryptSubset.dll");
+                if (!File.Exists("BouncyCastle.Crypto.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/BouncyCastle.Crypto.dll", "BouncyCastle.Crypto.dll");
+                if (!File.Exists("Chaos.NaCl.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Chaos.NaCl.dll", "Chaos.NaCl.dll");
+            } catch { }
             timer3.Enabled = true;
             textBox4.Text = "Done. Have a nice day :)";
         }
@@ -550,6 +561,15 @@ namespace Yggdrasil
             textBox2.Text = "";
         }
 
+        public static byte[] StringToByteArray(String hex)
+        {
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            return bytes;
+        }
+
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var encryptedfile = "";
@@ -559,7 +579,7 @@ namespace Yggdrasil
             {
                 if (System.IO.File.Exists(openFileDialog1.FileName))
                 {
-                    encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
+                    encryptedfile = BitConverter.ToString(TripleSecManaged.V3.Encrypt(Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default)), Encoding.UTF8.GetBytes(CalculateMD5Hash(textBox3.Text)))).Replace("-", string.Empty);
                     passPhrase = textBox3.Text;
                     string filename = openFileDialog1.SafeFileName;
                     wc.UploadStringAsync(new Uri("http://" + textBox1.Text + "/upload"), "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
@@ -648,7 +668,7 @@ namespace Yggdrasil
                     {
                         string downloadedfile = e.Result;
                         downloadedfile = downloadedfile.Replace(' ', '+');
-                        string decrypted = Setup.Decrypt(downloadedfile);
+                        string decrypted = Encoding.UTF8.GetString(TripleSecManaged.V3.Decrypt(StringToByteArray(downloadedfile), Encoding.UTF8.GetBytes(CalculateMD5Hash(textBox3.Text))));
                         System.IO.File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\" + ff, decrypted, Encoding.Default);
                         richTextBox1.Text += "File \"" + textBox2.Text + "\" downloaded.\n" + Environment.NewLine;
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;

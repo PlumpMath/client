@@ -298,7 +298,7 @@
     <value>Settings</value>
   </data>
   <data name="NeedUpdate" xml:space="preserve">
-    <value>Yggdrasil needs an update. Please go to "Info &gt; Check for updates" in order to update.</value>
+    <value>Yggdrasil needs an update. Please go to "Extras &gt; Check for updates" in order to update.</value>
   </data>
   <data name="MonoTitle" xml:space="preserve">
     <value>Monochrome icon</value>

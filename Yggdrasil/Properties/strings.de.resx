@@ -301,7 +301,7 @@
     <value>Einstellungen</value>
   </data>
   <data name="NeedUpdate" xml:space="preserve">
-    <value>Yggdrasil benötigt ein Update. Klicke dazu auf "Info &gt; Nach Updates suchen", um ein Update durchzuführen.</value>
+    <value>Yggdrasil benötigt ein Update. Klicke dazu auf "Extras &gt; Nach Updates suchen", um ein Update durchzuführen.</value>
   </data>
   <data name="MonoTitle" xml:space="preserve">
     <value>Monochrome Icons</value>
