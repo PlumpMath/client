@@ -21,7 +21,7 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        public static string version = "2065";
+        public static string version = "2066";
         public static bool namelist = false;
         public static bool mono = false;
         public static bool rm = false;
