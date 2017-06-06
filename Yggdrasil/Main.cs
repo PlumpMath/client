@@ -21,10 +21,11 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        public static string version = "2052";
+        public static string version = "2066";
         public static bool namelist = false;
         public static bool mono = false;
         public static bool rm = false;
+        public static bool useradio = false;
         int tick = 0;
 
         public Main()
@@ -38,7 +39,7 @@ namespace Yggdrasil
             }
             if (!File.Exists("namelist"))
             {
-                File.WriteAllText("use_namelist", "0");
+                File.WriteAllText("use_namelist", "");
                 File.WriteAllText("namelist", "blitzkrieg#10.33.156.187\nkoyuhub#koyuhub.96.lt:80\nhardradio#yggdrasilfs.neocities.org:80\npublic#yggdrasilfs.neocities.org:80");
             }
             try
@@ -46,6 +47,14 @@ namespace Yggdrasil
                 if (File.Exists("use_namelist"))
                 {
                     namelist = true;
+                }
+            } catch { }
+            try
+            {
+                if (File.Exists("use_radio"))
+                {
+                    useradio = true;
+                    radio = true;
                 }
             }
             catch { }
@@ -279,6 +288,17 @@ namespace Yggdrasil
                 }
             }
             catch { }
+            try
+            {
+                if (!File.Exists("TripleSecManaged.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/TripleSecManaged.dll", "TripleSecManaged.dll");
+                if (!File.Exists("CryptSharp.SCryptSubset.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/CryptSharp.SCryptSubset.dll", "CryptSharp.SCryptSubset.dll");
+                if (!File.Exists("BouncyCastle.Crypto.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/BouncyCastle.Crypto.dll", "BouncyCastle.Crypto.dll");
+                if (!File.Exists("Chaos.NaCl.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Chaos.NaCl.dll", "Chaos.NaCl.dll");
+            } catch { }
             timer3.Enabled = true;
             textBox4.Text = "Done. Have a nice day :)";
         }
@@ -308,8 +328,15 @@ namespace Yggdrasil
             clearToolStripMenuItem1.Text = Properties.strings.Clear;
             extrasToolStripMenuItem1.Text = Properties.strings.Extras;
             quitToolStripMenuItem2.Text = Properties.strings.Quit;
-            radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
-            radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+            if (!useradio)
+            {
+                radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
+                radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+            } else
+            {
+                radioStateToolStripMenuItem2.Text = Properties.strings.RadioOff;
+                radioStateToolStripMenuItem1.Text = Properties.strings.RadioOff;
+            }
             aboutToolStripMenuItem.Text = Properties.strings.About;
             aboutToolStripMenuItem1.Text = Properties.strings.About;
             updateSettingsToolStripMenuItem.Text = Properties.strings.Settings;
@@ -534,6 +561,15 @@ namespace Yggdrasil
             textBox2.Text = "";
         }
 
+        public static byte[] StringToByteArray(String hex)
+        {
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            return bytes;
+        }
+
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var encryptedfile = "";
@@ -543,7 +579,7 @@ namespace Yggdrasil
             {
                 if (System.IO.File.Exists(openFileDialog1.FileName))
                 {
-                    encryptedfile = Setup.Encrypt(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default));
+                    encryptedfile = BitConverter.ToString(TripleSecManaged.V3.Encrypt(Encoding.UTF8.GetBytes(System.IO.File.ReadAllText(openFileDialog1.FileName, Encoding.Default)), Encoding.UTF8.GetBytes(CalculateMD5Hash(textBox3.Text)))).Replace("-", string.Empty);
                     passPhrase = textBox3.Text;
                     string filename = openFileDialog1.SafeFileName;
                     wc.UploadStringAsync(new Uri("http://" + textBox1.Text + "/upload"), "content=" + encryptedfile + "&filename=" + filename + "&password=" + CalculateMD5Hash(passPhrase));
@@ -632,7 +668,7 @@ namespace Yggdrasil
                     {
                         string downloadedfile = e.Result;
                         downloadedfile = downloadedfile.Replace(' ', '+');
-                        string decrypted = Setup.Decrypt(downloadedfile);
+                        string decrypted = Encoding.UTF8.GetString(TripleSecManaged.V3.Decrypt(StringToByteArray(downloadedfile), Encoding.UTF8.GetBytes(CalculateMD5Hash(textBox3.Text))));
                         System.IO.File.WriteAllText(folderBrowserDialog1.SelectedPath + "\\" + ff, decrypted, Encoding.Default);
                         richTextBox1.Text += "File \"" + textBox2.Text + "\" downloaded.\n" + Environment.NewLine;
                         richTextBox1.SelectionStart = richTextBox1.Text.Length;
@@ -759,6 +795,7 @@ namespace Yggdrasil
                     radio = false;
                     radioStateToolStripMenuItem2.Text = Properties.strings.RadioOn;
                     radioStateToolStripMenuItem1.Text = Properties.strings.RadioOn;
+                    File.Delete("use_radio");
                 }
                 else
                 {
@@ -769,6 +806,8 @@ namespace Yggdrasil
                     {
                         PlayMusicFromURL(stream);
                     }
+                    var FileRadio = File.Create("use_radio");
+                    FileRadio.Close();
                 }
             }
             catch { }

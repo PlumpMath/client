@@ -1,3 +1,11 @@
+2066
+
+- Bug fixes
+- New encryption module
+- No more mass uploads
+- Radio state will be saved
+- Updated language pack
+
 2051/2052
 
 - Bug fixes

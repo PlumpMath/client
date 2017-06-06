@@ -13,6 +13,12 @@ Yggdrasil client software
 
 Download the compiled package from http://yggdrasil.96.lt/
 
+## Third-party software
+
+- TripleSec by Keybase.io
+- VLC
+- PeaZip
+
 ## How to compile
 
 Clone this repository and open it in Visual Studio or MonoDevelop. Then press the F5 key and you will find it in <Repo>/Yggdrasil/bin/Debug/

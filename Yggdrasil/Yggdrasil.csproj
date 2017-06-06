@@ -71,6 +71,18 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>C:\Users\juain\Desktop\thosedlls\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Chaos.NaCl">
+      <HintPath>C:\Users\juain\Desktop\thosedlls\Chaos.NaCl.dll</HintPath>
+    </Reference>
+    <Reference Include="CryptSharp.SCryptSubset">
+      <HintPath>C:\Users\juain\Desktop\thosedlls\CryptSharp.SCryptSubset.dll</HintPath>
+    </Reference>
+    <Reference Include="HashLib">
+      <HintPath>C:\Users\juain\Desktop\thosedlls\HashLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -82,6 +94,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TripleSecManaged">
+      <HintPath>C:\Users\juain\Desktop\thosedlls\TripleSecManaged.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Message.cs">
@@ -177,6 +192,7 @@
     <EmbeddedResource Include="Properties\icons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>icons.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\images.resx">
       <Generator>ResXFileCodeGenerator</Generator>
