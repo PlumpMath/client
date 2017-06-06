@@ -1,3 +1,7 @@
+2057
+
+- Added HashLib
+
 2066
 
 - Bug fixes

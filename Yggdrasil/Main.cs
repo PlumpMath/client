@@ -21,7 +21,7 @@ namespace Yggdrasil
         string stream;
         bool radio = false;
         About a = new About();
-        public static string version = "2066";
+        public static string version = "2067";
         public static bool namelist = false;
         public static bool mono = false;
         public static bool rm = false;
@@ -298,6 +298,8 @@ namespace Yggdrasil
                     new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/BouncyCastle.Crypto.dll", "BouncyCastle.Crypto.dll");
                 if (!File.Exists("Chaos.NaCl.dll"))
                     new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/Chaos.NaCl.dll", "Chaos.NaCl.dll");
+                if (!File.Exists("HashLib.dll"))
+                    new WebClient().DownloadFile("https://koyuawsmbrtn.keybase.pub/yggdrasil/HashLib.dll", "HashLib.dll");
             } catch { }
             timer3.Enabled = true;
             textBox4.Text = "Done. Have a nice day :)";
