@@ -1,3 +1,7 @@
+2070 Hotfix Update
+
+- Fixed bug with drag and drop support
+
 2067
 
 - Added HashLib
